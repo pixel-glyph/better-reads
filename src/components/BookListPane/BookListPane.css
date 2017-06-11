@@ -1,0 +1,12 @@
+.app-book-list-pane {
+  display: inline-block;
+  width: 420px;
+  height: 500px;
+  margin: 30px 40px;
+  background-color: #52b7e2;
+  border: 1px solid grey;
+}
+
+.book {
+  list-style-type: none;
+}
