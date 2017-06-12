@@ -1,5 +1,4 @@
 import React from 'react';
-import './BookListPane.css';
 
 class BookListPane extends React.Component {
   render() {

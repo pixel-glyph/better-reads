@@ -1,5 +1,4 @@
 import React from 'react';
-import './ListPicker.css';
 
 class ListPicker extends React.Component {
   render() {

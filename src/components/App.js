@@ -1,9 +1,8 @@
 import React from 'react';
-import './App.css';
-import Logo from './../Logo/Logo';
-import SearchBar from './../SearchBar/SearchBar';
-import ListPicker from './../ListPicker/ListPicker';
-import BookListPane from './../BookListPane/BookListPane';
+import Logo from './Logo';
+import SearchBar from './SearchBar';
+import ListPicker from './ListPicker';
+import BookListPane from './BookListPane';
 
 class App extends React.Component {
   render() {
