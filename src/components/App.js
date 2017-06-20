@@ -70,7 +70,7 @@ class App extends React.Component {
       <div className="app-wrapper">
         <Logo/>
         <SearchBar/>
-        <ListPicker/>
+        <ListPicker lists={this.state.bookLists}/>
         <BookListPane currentList={this.getCurrentList()}/>
       </div> 
     )
