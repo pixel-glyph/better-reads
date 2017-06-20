@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'immutability-helper';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
@@ -53,6 +54,15 @@ class App extends React.Component {
       }
     };
   }
+    
+  addBookToList = (list, newBook) => {
+    const books = {...this.state.bookLists[list].books};
+    const id = Date.now();
+    books[`book-${id}`] = newBook;
+    this.setState({
+      bookLists: update(this.state.bookLists, {[list]: {books: {$set: books}}})
+    });
+  };
   
   getCurrentList = () => {
     const currListName =  
@@ -71,8 +81,10 @@ class App extends React.Component {
         <Logo/>
         <SearchBar/>
         <ListPicker lists={this.state.bookLists}/>
-        <BookListPane currentList={this.getCurrentList()}/>
-      </div> 
+        <BookListPane 
+          currentList={this.getCurrentList()}
+          addBook={this.addBookToList}/>
+      </div>
     )
   }
 }

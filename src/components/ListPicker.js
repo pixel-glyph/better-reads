@@ -9,7 +9,7 @@ class ListPicker extends React.Component {
           {
             Object
               .keys(lists)
-              .map(list => <li>{lists[list].listName}</li>)
+              .map(list => <li key={list}>{lists[list].listName}</li>)
           }
         </ul>
       </div>
