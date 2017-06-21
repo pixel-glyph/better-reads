@@ -1,4 +1,5 @@
 import React from 'react';
+import BookList from './BookList';
 import PropTypes from 'prop-types';
 
 class ListPicker extends React.Component {
@@ -10,7 +11,12 @@ class ListPicker extends React.Component {
           {
             Object
               .keys(lists)
-              .map(list => <li key={list}>{lists[list].listName}</li>)
+              .map((list, i) => 
+                <BookList 
+                  key={i} 
+                  listName={lists[list].listName} 
+                  numBooks={Object.keys(lists[list].books).length}/>
+              )
           }
         </ul>
       </div>

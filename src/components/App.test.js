@@ -6,3 +6,6 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
 });
+
+
+// test that one and only one booklist.selected === true

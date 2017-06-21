@@ -5,4 +5,11 @@
   margin: 100px 100px 0 50px;
   background-color: #b8b8b8;
   border: 1px solid grey;
+  
+  .book-lists {
+    li {
+      list-style-type: none;
+      cursor: pointer;
+    }
+  }
 }

@@ -5,8 +5,6 @@ import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 
-// add book
-
 // remove book
 
 class App extends React.Component {
@@ -36,12 +34,33 @@ class App extends React.Component {
             }
           }
         },
+        
+        'read': {
+          listName: 'Read',
+          selected: false,
+          books: {
+            'book-3': {
+              title: 'Ragtime',
+              author: 'E.L. Doctorow',
+              pubDate: '1931',
+              img: 'url-to-image',
+              list: 'read'
+            },
+            'book-4:': {
+              title: 'Middlesex',
+              author: 'Jeffery Eugenides',
+              pubDate: '2004',
+              img: 'url-to-image',
+              list: 'read'  
+            }
+          }
+        },
       
         'favorites': {
           listName: 'Favorites',
           selected: false,
           books: {
-            'book-3': {
+            'book-5': {
               title: 'Infinite Jest',
               author: 'David Foster Wallace',
               pubDate: '1994',
@@ -54,10 +73,12 @@ class App extends React.Component {
       }
     };
   }
-    
+  
+  // newBook will come from api
   addBookToList = (list, newBook) => {
     const books = {...this.state.bookLists[list].books};
     const id = Date.now();
+    newBook.list = list;
     books[`book-${id}`] = newBook;
     this.setState({
       bookLists: update(this.state.bookLists, {[list]: {books: {$set: books}}})
