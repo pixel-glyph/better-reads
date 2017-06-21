@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ListPicker extends React.Component {
   render() {
@@ -16,5 +17,9 @@ class ListPicker extends React.Component {
     )
   }
 }
+
+ListPicker.propTypes = {
+  lists: PropTypes.object.isRequired
+};
 
 export default ListPicker;

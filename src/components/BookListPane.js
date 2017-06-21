@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 class BookListPane extends React.Component {
@@ -18,5 +19,10 @@ class BookListPane extends React.Component {
     )
   }
 }
+
+BookListPane.propTypes = {
+  currentList: PropTypes.object.isRequired,
+  addBook: PropTypes.func.isRequired
+};
 
 export default BookListPane;
