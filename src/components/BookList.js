@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class BookList extends React.Component {
-  
-  switchCurrentList = () => {
-    console.log('switching');
-  };
-  
+class BookList extends React.Component {  
   render() {
-    const { listName } = this.props;
+    const { listDisplayName, listName } = this.props;
     return(
-      <li onClick={this.switchCurrentList}>
-        <span>{listName} </span>
+      <li onClick={() => this.props.switchList(listName)}>
+        <span>{listDisplayName} </span>
         <span>({this.props.numBooks})</span>
       </li>
     )
@@ -20,7 +15,9 @@ class BookList extends React.Component {
 
 BookList.propTypes = {
   listName: PropTypes.string.isRequired,
-  numBooks: PropTypes.number.isRequired
+  listDisplayName: PropTypes.string.isRequired,
+  numBooks: PropTypes.number.isRequired,
+  switchList: PropTypes.func.isRequired
 };
 
 export default BookList;

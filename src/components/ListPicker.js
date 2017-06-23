@@ -13,9 +13,11 @@ class ListPicker extends React.Component {
               .keys(lists)
               .map((list, i) => 
                 <BookList 
-                  key={i} 
-                  listName={lists[list].listName} 
-                  numBooks={Object.keys(lists[list].books).length}/>
+                  key={i}
+                  listName={list}
+                  listDisplayName={lists[list].listName}
+                  numBooks={Object.keys(lists[list].books).length}
+                  switchList={this.props.switchList}/>
               )
           }
         </ul>
@@ -25,7 +27,8 @@ class ListPicker extends React.Component {
 }
 
 ListPicker.propTypes = {
-  lists: PropTypes.object.isRequired
+  lists: PropTypes.object.isRequired,
+  switchList: PropTypes.func.isRequired
 };
 
 export default ListPicker;

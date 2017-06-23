@@ -16,6 +16,7 @@ class App extends React.Component {
         
         'to-read': {
           listName: 'To Read',
+          name: 'to-read',
           selected: true,
           books: {
             'book-1': {
@@ -37,6 +38,7 @@ class App extends React.Component {
         
         'read': {
           listName: 'Read',
+          name: 'read',
           selected: false,
           books: {
             'book-3': {
@@ -58,6 +60,7 @@ class App extends React.Component {
       
         'favorites': {
           listName: 'Favorites',
+          name: 'favorites',
           selected: false,
           books: {
             'book-5': {
@@ -75,13 +78,13 @@ class App extends React.Component {
   }
   
   // newBook will come from api
-  addBookToList = (list, newBook) => {
-    const books = {...this.state.bookLists[list].books};
+  addBookToList = (listName, newBook) => {
+    const books = {...this.state.bookLists[listName].books};
     const id = Date.now();
-    newBook.list = list;
+    newBook.list = listName;
     books[`book-${id}`] = newBook;
     this.setState({
-      bookLists: update(this.state.bookLists, {[list]: {books: {$set: books}}})
+      bookLists: update(this.state.bookLists, {[listName]: {books: {$set: books}}})
     });
   };
   
@@ -93,7 +96,26 @@ class App extends React.Component {
           return this.state.bookLists[list].selected;
         });
     
-    return this.state.bookLists[currListName];
+    return this.state.bookLists[currListName]
+      ? this.state.bookLists[currListName]
+      : {};
+  };
+  
+  toggleSelected = (listName) => {
+    let selected = this.state.bookLists[listName].selected;
+    selected = !selected;
+    this.setState(newState => {
+      return {
+        bookLists: update(newState.bookLists, {[listName]: {selected: {$set: selected}}})
+      }
+    });
+  };
+    
+  switchList = (listName) => {
+    const currList = this.getCurrentList();
+    if(listName === currList.name) return;
+    this.toggleSelected(listName);
+    this.toggleSelected(currList.name);
   };
   
   render() {
@@ -101,7 +123,7 @@ class App extends React.Component {
       <div className="app-wrapper">
         <Logo/>
         <SearchBar/>
-        <ListPicker lists={this.state.bookLists}/>
+        <ListPicker switchList={this.switchList} lists={this.state.bookLists}/>
         <BookListPane 
           currentList={this.getCurrentList()}
           addBook={this.addBookToList}/>

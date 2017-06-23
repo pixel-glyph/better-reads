@@ -6,6 +6,7 @@ class BookListPane extends React.Component {
   
   render() {
     const { currentList } = this.props;
+    currentList.books = currentList.books || {};
     return (
       <div className="app-book-list-pane">
         <ul className="app-book-list">
