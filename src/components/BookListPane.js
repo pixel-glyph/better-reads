@@ -4,6 +4,11 @@ import Book from './Book';
 
 class BookListPane extends React.Component {
   
+  renderBook = (bookId) => {
+    if(!this.props.currentList.books[bookId]) return;
+    return <Book key={bookId} bookInfo={this.props.currentList.books[bookId]}/>;
+  };
+  
   render() {
     const { currentList } = this.props;
     currentList.books = currentList.books || {};
@@ -13,7 +18,7 @@ class BookListPane extends React.Component {
           {
             Object
               .keys(currentList.books)
-              .map(bookId => <Book key={bookId} bookInfo={currentList.books[bookId]}/>)
+              .map(bookId => this.renderBook(bookId))
           }
         </ul>
       </div>
