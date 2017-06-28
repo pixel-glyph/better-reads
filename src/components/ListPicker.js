@@ -3,22 +3,29 @@ import BookList from './BookList';
 import PropTypes from 'prop-types';
 
 class ListPicker extends React.Component {
-  render() {
+  
+  getNumbooks = (list, i) => {
     const { lists } = this.props;
+    const numBooks = lists[list].books
+      ? Object.keys(lists[list].books).length
+      : 0;
+    
+    return <BookList 
+            key={i}
+            listName={list}
+            listDisplayName={lists[list].listName}
+            numBooks={numBooks}
+            switchList={this.props.switchList}/>;
+  };
+  
+  render() {
     return (
       <div className="app-list-picker">
         <ul className="book-lists">
           {
             Object
-              .keys(lists)
-              .map((list, i) => 
-                <BookList 
-                  key={i}
-                  listName={list}
-                  listDisplayName={lists[list].listName}
-                  numBooks={Object.keys(lists[list].books).length}
-                  switchList={this.props.switchList}/>
-              )
+              .keys(this.props.lists)
+              .map((list, i) => this.getNumbooks(list, i))
           }
         </ul>
       </div>

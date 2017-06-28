@@ -90,8 +90,14 @@ class App extends React.Component {
   
   // newBook will come from api
   addBookToList = (listName, newBook) => {
+    // will have to add check for no books in list
     const books = {...this.state.bookLists[listName].books};
+    // use id prop from api instead of date ts
     const id = Date.now();
+    // if(books.hasOwnProperty(id)) {
+    //   return alert('book is already in list!');
+    // }
+    
     newBook.list = listName;
     books[`book-${id}`] = newBook;
     this.setState({
@@ -131,6 +137,24 @@ class App extends React.Component {
       };
     });
   };
+    
+  createList = (listName) => {
+    const bookLists = {...this.state.bookLists};
+    if(bookLists.hasOwnProperty(listName)) {
+      return alert('list already exists!');
+    }
+    
+    // sample data for testing
+    bookLists[listName] = {
+      listName: listName,
+      name: 'summer-reading',
+      selected: false,
+      books: {}
+    };
+    this.setState({ bookLists });
+  };
+  
+  // removeList
     
   switchList = (listName) => {
     const currList = this.getCurrentList();

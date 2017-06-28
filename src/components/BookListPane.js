@@ -9,17 +9,21 @@ class BookListPane extends React.Component {
     return <Book key={bookId} bookInfo={this.props.currentList.books[bookId]}/>;
   };
   
-  render() {
+  renderList = () => {
     const { currentList } = this.props;
-    currentList.books = currentList.books || {};
+    if(!currentList.books) {
+      return <li className="book">List is empty :(</li>;
+    }
+    return Object
+      .keys(currentList.books)
+      .map(bookId => this.renderBook(bookId));
+  };
+  
+  render() {
     return (
       <div className="app-book-list-pane">
         <ul className="app-book-list">
-          {
-            Object
-              .keys(currentList.books)
-              .map(bookId => this.renderBook(bookId))
-          }
+          {this.renderList()}
         </ul>
       </div>
     )
