@@ -13,7 +13,7 @@ class ListPicker extends React.Component {
     return <BookList 
             key={i}
             listName={list}
-            listDisplayName={lists[list].listName}
+            listDisplayName={list}
             numBooks={numBooks}
             switchList={this.props.switchList}/>;
   };

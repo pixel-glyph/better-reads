@@ -21,9 +21,8 @@ class App extends React.Component {
         context: this,
         state: 'bookLists',
         defaultValue: {
-          'to-read': {
+          'To Read': {
             listName: 'To Read',
-            name: 'to-read',
             selected: true,
             books: {
               'book-1': {
@@ -31,21 +30,20 @@ class App extends React.Component {
                 author: 'Harper Lee',
                 pubDate: '1952',
                 img: 'url-to-image',
-                list: 'to-read'
+                list: 'To Read'
               },
               'book-2:': {
                 title: 'The Tempest',
                 author: 'William Shakespeare',
                 pubDate: '1519',
                 img: 'url-to-image',
-                list: 'to-read'  
+                list: 'To Read'  
               }
             }
           },
           
-          'read': {
+          'Read': {
             listName: 'Read',
-            name: 'read',
             selected: false,
             books: {
               'book-3': {
@@ -53,21 +51,20 @@ class App extends React.Component {
                 author: 'E.L. Doctorow',
                 pubDate: '1931',
                 img: 'url-to-image',
-                list: 'read'
+                list: 'Read'
               },
               'book-4:': {
                 title: 'Middlesex',
                 author: 'Jeffery Eugenides',
                 pubDate: '2004',
                 img: 'url-to-image',
-                list: 'read'  
+                list: 'Read'  
               }
             }
           },
         
-          'favorites': {
+          'Favorites': {
             listName: 'Favorites',
-            name: 'favorites',
             selected: false,
             books: {
               'book-5': {
@@ -75,7 +72,7 @@ class App extends React.Component {
                 author: 'David Foster Wallace',
                 pubDate: '1994',
                 img: 'url-to-image',
-                list: 'favorites'
+                list: 'Favorites'
               }
             }
           }
@@ -119,9 +116,7 @@ class App extends React.Component {
     const currListName =  
       Object
         .keys(this.state.bookLists)
-        .find(list => {
-          return this.state.bookLists[list].selected;
-        });
+        .find(list => this.state.bookLists[list].selected);
     
     return this.state.bookLists[currListName]
       ? this.state.bookLists[currListName]
@@ -147,7 +142,6 @@ class App extends React.Component {
     // sample data for testing
     bookLists[listName] = {
       listName: listName,
-      name: 'summer-reading',
       selected: false,
       books: {}
     };
@@ -158,9 +152,9 @@ class App extends React.Component {
     
   switchList = (listName) => {
     const currList = this.getCurrentList();
-    if(listName === currList.name) return;
+    if(listName === currList.listName) return;
     this.toggleSelected(listName);
-    this.toggleSelected(currList.name);
+    this.toggleSelected(currList.listName);
   };
   
   render() {
