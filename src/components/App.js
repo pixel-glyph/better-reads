@@ -32,7 +32,7 @@ class App extends React.Component {
                 img: 'url-to-image',
                 list: 'To Read'
               },
-              'book-2:': {
+              'book-2': {
                 title: 'The Tempest',
                 author: 'William Shakespeare',
                 pubDate: '1519',
@@ -53,7 +53,7 @@ class App extends React.Component {
                 img: 'url-to-image',
                 list: 'Read'
               },
-              'book-4:': {
+              'book-4': {
                 title: 'Middlesex',
                 author: 'Jeffery Eugenides',
                 pubDate: '2004',
@@ -85,16 +85,23 @@ class App extends React.Component {
     base.removeBinding(this.ref);
   }
   
+  
+  doesListExist = (bookLists, listName) => {
+    return bookLists.hasOwnProperty(listName);
+  };
+  
+  isBookInList = (books, bookID) => {
+    return books.hasOwnProperty(bookID);
+  };
+  
   // newBook will come from api
   addBookToList = (listName, newBook) => {
-    // will have to add check for no books in list
     const books = {...this.state.bookLists[listName].books};
     // use id prop from api instead of date ts
     const id = Date.now();
-    // if(books.hasOwnProperty(id)) {
-    //   return alert('book is already in list!');
-    // }
-    
+    if(this.isBookInList(books, newBook.ID)) {
+      return alert('book is already in list!');
+    }
     newBook.list = listName;
     books[`book-${id}`] = newBook;
     this.setState({
@@ -102,9 +109,12 @@ class App extends React.Component {
     });
   };
   
-  removeBookFromList = (listName, book) => {
+  removeBookFromList = (listName, bookID) => {
     const books = {...this.state.bookLists[listName].books};
-    books[book] = null;
+    if(!this.isBookInList(books, bookID)) {
+      return alert('book is not in list!');
+    }
+    books[bookID] = null;
     this.setState(newState => {
       return {
         bookLists: update(this.state.bookLists, {[listName]: {books: {$set: books}}})
@@ -135,10 +145,9 @@ class App extends React.Component {
     
   createList = (listName) => {
     const bookLists = {...this.state.bookLists};
-    if(bookLists.hasOwnProperty(listName)) {
+    if(this.doesListExist(bookLists, listName)) {
       return alert('list already exists!');
     }
-    
     // sample data for testing
     bookLists[listName] = {
       listName: listName,
@@ -148,7 +157,7 @@ class App extends React.Component {
     this.setState({ bookLists });
   };
   
-  // removeList
+  // TODO: removeList
     
   switchList = (listName) => {
     const currList = this.getCurrentList();
