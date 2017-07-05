@@ -6,7 +6,7 @@ import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 // import base from '../base';
 
-import { getJSON } from '../google-books';
+import { getJSON, APIKey } from '../google-books';
 
 class App extends React.Component {
   constructor() {
@@ -146,16 +146,25 @@ class App extends React.Component {
   // }
   
   
-  search = (terms) => {
+  search = (terms, APIKey) => {
     const searchTerms = terms.split(' ').join('+');
-    const APIKey = '';
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
         
     getJSON(url).then(res => {
-      console.log('woo book!', res);
+      console.log('woo books!', res);
     }).catch(error => {
       console.log('There was an problem retrieving the search: ', error);
     });  // add another then() here to stop loading gif
+  };
+  
+  getBook = (volumeID, APIKey) => {
+    const url = `https://www.googleapis.com/books/v1/volumes/${volumeID}&key=${APIKey}`;
+    
+    getJSON(url).then(res => {
+      console.log('woo book!', res);
+    }).catch(error => {
+      console.log('There was an problem retrieving this book: ', error);
+    });
   };
     
   doesListExist = (bookLists, listName) => {
@@ -172,7 +181,7 @@ class App extends React.Component {
     // use id prop from api instead of date ts
     const id = Date.now();
     if(this.isBookInList(books, newBook.ID)) {
-      return alert('book is already in list!');
+      return alert('book is already in list');
     }
     newBook.list = listName;
     books[`book-${id}`] = newBook;
@@ -184,12 +193,12 @@ class App extends React.Component {
   removeBookFromList = (listName, bookID) => {
     const books = {...this.state.bookLists[listName].books};
     if(!this.isBookInList(books, bookID)) {
-      return alert('book is not in list!');
+      return alert('book is not in list');
     }
     books[bookID] = null;
     this.setState(newState => {
       return {
-        bookLists: update(this.state.bookLists, {[listName]: {books: {$set: books}}})
+        bookLists: update(newState.bookLists, {[listName]: {books: {$set: books}}})
       };
     });
   };
@@ -218,7 +227,7 @@ class App extends React.Component {
   createList = (listName) => {
     const bookLists = {...this.state.bookLists};
     if(this.doesListExist(bookLists, listName)) {
-      return alert('list already exists!');
+      return alert('list already exists');
     }
     // sample data for testing
     bookLists[listName] = {
@@ -229,7 +238,16 @@ class App extends React.Component {
     this.setState({ bookLists });
   };
   
-  // TODO: removeList
+  removeList = (listName) => {
+    const bookLists = {...this.state.bookLists};
+    if(!this.doesListExist(bookLists, listName)) {
+      return alert('list does not exist');
+    }
+    bookLists[listName] = null;
+    this.setState(newState => {
+      return {bookLists: newState.bookLists};
+    });
+  };
     
   switchList = (listName) => {
     const currList = this.getCurrentList();
