@@ -6,7 +6,7 @@ import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 // import base from '../base';
 
-import { getJSON, APIKey } from '../google-books';
+import { getJSON } from '../get';
 
 class App extends React.Component {
   constructor() {
