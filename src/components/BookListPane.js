@@ -22,6 +22,7 @@ class BookListPane extends React.Component {
   render() {
     return (
       <div className="app-book-list-pane">
+        <h1 className="list-title">List Title</h1>
         <ul className="app-book-list">
           {this.renderList()}
         </ul>

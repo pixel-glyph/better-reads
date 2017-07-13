@@ -1,12 +1,17 @@
 .app-book-list-pane {
   display: inline-block;
-  width: 420px;
+  width: 520px;
   height: 500px;
   margin: 30px 40px;
   background-color: #fff;
   color: #4d4d4d;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
+              
+  .book-title-author {
+    display: inline-block;
+    margin: 0 20px;
+  }
 }
 
 .book {
