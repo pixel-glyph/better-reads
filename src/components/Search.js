@@ -1,7 +1,7 @@
 import React from 'react';  
 import SearchBar from './SearchBar';
 
-import { search, getBook } from '../get';
+import { getBook } from '../get';
 
 class Search extends React.Component {
   
