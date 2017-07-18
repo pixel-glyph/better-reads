@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 
 import App from './components/App';
-import Search from './components/Search'; 
 import registerServiceWorker from './registerServiceWorker';
 import './styles/css/style.css';
 
@@ -14,8 +13,7 @@ const Root = () => {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={App}/>
-        <Route exact path="/search" component={Search}/>
+        <Route path="/" component={App}/>
       </div>
     </Router>
   )

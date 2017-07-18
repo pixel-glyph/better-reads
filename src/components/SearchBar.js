@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
         
     getJSON(url).then(res => {
-      console.log('woo books!', res);
+      this.props.listResults(res);
     }).catch(error => {
       console.log('There was an problem retrieving the search: ', error);
     });  // add another then() here to stop loading gif

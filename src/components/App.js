@@ -1,5 +1,7 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import update from 'immutability-helper';
+
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
@@ -68,8 +70,10 @@ class App extends React.Component {
             }
           }
           
-        }
-      
+        },
+        
+        searchResults: []
+          
     };
   }
   // 
@@ -233,16 +237,50 @@ class App extends React.Component {
     this.toggleSelected(currList.listName);
   };
   
+  listResults = (results) => {
+    const searchResults = results.items.map(book => {
+      const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
+      const img = book.volumeInfo.imageLinks 
+        ? book.volumeInfo.imageLinks.smallThumbnail
+        : 'no-cover-img';
+        
+      return {
+        title: book.volumeInfo.title,
+        pubDate: book.volumeInfo.publishedDate,
+        author,
+        img,
+      };
+    });
+    
+    this.setState({ searchResults });
+  };
+  
   render() {
-    return (
-      <div className="app-wrapper">
-        <Logo/>
-        <SearchBar/>
+    const Main = () => (
+      <div className="main-wrapper">
         <ListPicker switchList={this.switchList} lists={this.state.bookLists}/>
         <BookListPane 
           currentList={this.getCurrentList()}
           addBook={this.addBookToList}/>
       </div>
+    );
+    
+    const Search = () => (
+      <div className="search-wrapper">
+        <ul className="search-results">
+          <li>Results</li>
+        </ul>
+      </div>
+    );
+
+    return (
+        <div className="app-wrapper">
+          <Logo/>
+          <SearchBar listResults={this.listResults}/>
+          
+          <Route exact path="/" component={Main}/>
+          <Route path="/search" component={Search}/>
+        </div>
     )
   }
 }
