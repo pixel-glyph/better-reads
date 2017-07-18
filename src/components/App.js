@@ -243,7 +243,7 @@ class App extends React.Component {
       const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
       const img = book.volumeInfo.imageLinks 
         ? book.volumeInfo.imageLinks.smallThumbnail
-        : 'no-cover-img';
+        : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
         
       return {
         title: book.volumeInfo.title,
