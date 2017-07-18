@@ -6,6 +6,7 @@ import Logo from './Logo';
 import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
+import Book from './Book';
 // import base from '../base';
 
 class App extends React.Component {
@@ -237,7 +238,7 @@ class App extends React.Component {
     this.toggleSelected(currList.listName);
   };
   
-  listResults = (results) => {
+  setResults = (results) => {
     const searchResults = results.items.map(book => {
       const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
       const img = book.volumeInfo.imageLinks 
@@ -255,6 +256,22 @@ class App extends React.Component {
     this.setState({ searchResults });
   };
   
+  listResults = () => {
+    const { searchResults } = this.state;
+    if(!searchResults.length) {
+      return <li className="book">No Results</li>;
+    }
+    
+    const results = searchResults.map( (book, i) => {
+      return (
+        <Book key={i} bookInfo={book}/>
+      );
+    });
+    
+    return results;
+    
+  };
+  
   render() {
     const Main = () => (
       <div className="main-wrapper">
@@ -268,7 +285,9 @@ class App extends React.Component {
     const Search = () => (
       <div className="search-wrapper">
         <ul className="search-results">
-          <li>Results</li>
+          {
+            this.listResults()
+          }
         </ul>
       </div>
     );
@@ -276,7 +295,7 @@ class App extends React.Component {
     return (
         <div className="app-wrapper">
           <Logo/>
-          <SearchBar listResults={this.listResults}/>
+          <SearchBar setResults={this.setResults}/>
           
           <Route exact path="/" component={Main}/>
           <Route path="/search" component={Search}/>

@@ -7,7 +7,7 @@ class Book extends React.Component {
     const { bookInfo } = this.props;
     return (
       <li className="book">
-        <img className="book-thumbnail-img" src="" alt="book cover"/>
+        <img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/>
         <span className="book-title-author">
           <p>{bookInfo.title}</p>
           <p className="book-author">{bookInfo.author}, {bookInfo.pubDate}</p>
