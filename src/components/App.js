@@ -74,9 +74,6 @@ class App extends React.Component {
         },
         
         searchResults: [],
-        
-        onSearch: false
-        
     };
   }
   // 
@@ -151,12 +148,6 @@ class App extends React.Component {
   // }
   
   
-  componentWillUpdate() {
-    if(this.props.location.pathname !== '/search') {
-      console.log('update!');
-    }
-  }
-    
   doesListExist = (bookLists, listName) => {
     return bookLists.hasOwnProperty(listName);
   };
@@ -279,16 +270,6 @@ class App extends React.Component {
     return results;
   };
   
-  isOnSearch = () => {
-    let onSearch = {...this.state.onSearch};
-    if(this.props.location.pathname === '/search') {
-      onSearch = false;
-    } else {
-      onSearch = true;
-    }
-    this.setState({ onSearch });
-  };
-  
   render() {
     const Main = () => (
       <div className="main-wrapper">
@@ -312,7 +293,7 @@ class App extends React.Component {
     return (
       <div className="app-wrapper">
         <Logo/>
-        <SearchBar setResults={this.setResults} isOnSearch={this.isOnSearch} onSearch={this.state.onSearch}/>
+        <SearchBar history={this.props.history} setResults={this.setResults}/>
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
