@@ -293,7 +293,7 @@ class App extends React.Component {
     return (
       <div className="app-wrapper">
         <Logo/>
-        <SearchBar history={this.props.history} setResults={this.setResults}/>
+        <SearchBar path={this.props.location.pathname} history={this.props.history} setResults={this.setResults}/>
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>

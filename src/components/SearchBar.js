@@ -7,10 +7,13 @@ class SearchBar extends React.Component {
   
   search = (e) => {
     e.preventDefault();
-    this.props.history.push('/search');
-    
     const searchTerms = this.searchTerms.value.split(' ').join('+');
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
+    
+    if(this.props.path === '/') {
+      this.props.history.push('/search');
+      this.searchForm.reset();
+    }
         
     getJSON(url).then(res => {
       this.props.setResults(res);
@@ -22,8 +25,8 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <form className="book-search" onSubmit={(e) => this.search(e)}>
-          <input ref={(input) => this.searchTerms = input} className="book-search-input" type="text" placeholder="Search..." />
+        <form ref={(input) => this.searchForm = input} className="book-search" onSubmit={(e) => this.search(e)}>
+          <input ref={(input) => this.searchTerms = input} className="book-search-input" type="text" placeholder="Search Books..." />
           <button type="submit">Search</button>
         </form>
       </div>
