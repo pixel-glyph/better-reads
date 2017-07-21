@@ -7,100 +7,42 @@ import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 import Book from './Book';
-// import base from '../base';
+import base from '../base';
 
 class App extends React.Component {
   constructor() {
     super();
     
     this.state = {
-        bookLists: {
+        bookLists: {},
+        searchResults: []
+    };
+  }
+  
+  componentWillMount() {
+    this.ref = base.syncState('bookLists',
+      {
+        context: this,
+        state: 'bookLists',
+        defaultValue: {
           'To Read': {
             listName: 'To Read',
             selected: true,
-            books: {
-              'book-1': {
-                title: 'To Kill A Mockingbird',
-                author: 'Harper Lee',
-                pubDate: '1952',
-                img: 'url-to-image',
-                list: 'To Read'
-              },
-              'book-2': {
-                title: 'The Tempest',
-                author: 'William Shakespeare',
-                pubDate: '1519',
-                img: 'url-to-image',
-                list: 'To Read'  
-              }
-            }
+            books: {}
           },
           
           'Read': {
             listName: 'Read',
             selected: false,
-            books: {
-              'book-3': {
-                title: 'Ragtime',
-                author: 'E.L. Doctorow',
-                pubDate: '1931',
-                img: 'url-to-image',
-                list: 'Read'
-              },
-              'book-4': {
-                title: 'Middlesex',
-                author: 'Jeffery Eugenides',
-                pubDate: '2004',
-                img: 'url-to-image',
-                list: 'Read'  
-              }
-            }
-          },
-        
-          'Favorites': {
-            listName: 'Favorites',
-            selected: false,
-            books: {
-              'book-5': {
-                title: 'Infinite Jest',
-                author: 'David Foster Wallace',
-                pubDate: '1994',
-                img: 'url-to-image',
-                list: 'Favorites'
-              }
-            }
+            books: {}
           }
-          
-        },
-        
-        searchResults: [],
-    };
+        }
+      });
   }
-  //
-  // componentWillMount() {
-  //   this.ref = base.syncState('bookLists',
-  //     {
-  //       context: this,
-  //       state: 'bookLists',
-  //       defaultValue: {
-  //         'To Read': {
-  //           listName: 'To Read',
-  //           selected: true,
-  //           books: {}
-  //         },
-  //         
-  //         'Read': {
-  //           listName: 'Read',
-  //           selected: false,
-  //           books: {}
-  //         }
-  //       }
-  //     });
-  // }
-  // 
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
+  
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   
   
   doesListExist = (bookLists, listName) => {
