@@ -12,7 +12,7 @@ class Book extends React.Component {
           <p>{bookInfo.title}</p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
-        <button onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
+        <button className="add-book-btn" onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
       </li>
     )
   }
