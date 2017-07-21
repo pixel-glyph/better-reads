@@ -6,7 +6,11 @@ class BookListPane extends React.Component {
   
   renderBook = (bookId) => {
     if(!this.props.currentList.books[bookId]) return;
-    return <Book key={bookId} bookInfo={this.props.currentList.books[bookId]}/>;
+    return (
+        <Book 
+          key={bookId} 
+          bookInfo={this.props.currentList.books[bookId]}/>
+      )
   };
   
   renderList = () => {
@@ -32,8 +36,7 @@ class BookListPane extends React.Component {
 }
 
 BookListPane.propTypes = {
-  currentList: PropTypes.object.isRequired,
-  addBook: PropTypes.func.isRequired
+  currentList: PropTypes.object.isRequired
 };
 
 export default BookListPane;

@@ -3,6 +3,10 @@
   padding: 12px 0;
   border-top: 1px solid rgba(128, 128, 128, 0.34);
   
+  &.no-results {
+    border: none;
+  }
+  
   .book-title-author {
     display: inline-block;
     margin: 0 20px;

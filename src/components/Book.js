@@ -12,13 +12,15 @@ class Book extends React.Component {
           <p>{bookInfo.title}</p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
+        <button onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
       </li>
     )
   }
 }
 
 Book.propTypes = {
-  bookInfo: PropTypes.object.isRequired
+  bookInfo: PropTypes.object.isRequired,
+  addBook: PropTypes.func
 };
 
 export default Book;
