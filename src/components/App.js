@@ -111,16 +111,14 @@ class App extends React.Component {
     return books.hasOwnProperty(bookID);
   };
   
-  // newBook will come from api
   addBookToList = (listName, newBook) => {
     const books = {...this.state.bookLists[listName].books};
-    // use id prop from api instead of date ts
-    const id = Date.now();
-    if(this.isBookInList(books, newBook.ID)) {
+    const id = newBook.id;
+    if(this.isBookInList(books, id)) {
       return alert('book is already in list');
     }
     newBook.list = listName;
-    books[`book-${id}`] = newBook;
+    books[id] = newBook;
     this.setState({
       bookLists: update(this.state.bookLists, {[listName]: {books: {$set: books}}})
     });
@@ -203,6 +201,7 @@ class App extends React.Component {
       return {
         title: book.volumeInfo.title,
         pubDate: book.volumeInfo.publishedDate,
+        id: book.id,
         author,
         desc,
         img,
