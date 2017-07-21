@@ -8,10 +8,10 @@ class Book extends React.Component {
     return (
       <li className="book">
         <img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/>
-        <span className="book-title-author">
+        <div className="book-title-author">
           <p>{bookInfo.title}</p>
-          <p className="book-author">{bookInfo.author}, {bookInfo.pubDate}</p>
-        </span>
+          <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
+        </div>
       </li>
     )
   }
