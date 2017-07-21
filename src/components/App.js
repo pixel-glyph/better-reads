@@ -76,7 +76,7 @@ class App extends React.Component {
         searchResults: [],
     };
   }
-  // 
+  //
   // componentWillMount() {
   //   this.ref = base.syncState('bookLists',
   //     {
@@ -240,6 +240,7 @@ class App extends React.Component {
   setResults = (results) => {
     const searchResults = results.items.map(book => {
       const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
+      const desc = book.volumeInfo.description ? book.volumeInfo.description : '';
       const img = book.volumeInfo.imageLinks 
         ? book.volumeInfo.imageLinks.smallThumbnail
         : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
@@ -248,6 +249,7 @@ class App extends React.Component {
         title: book.volumeInfo.title,
         pubDate: book.volumeInfo.publishedDate,
         author,
+        desc,
         img,
       };
     });
