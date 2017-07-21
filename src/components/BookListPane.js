@@ -15,8 +15,8 @@ class BookListPane extends React.Component {
   
   renderList = () => {
     const { currentList } = this.props;
-    if(!currentList.books) {
-      return <li className="book">List is empty :(</li>;
+    if(!currentList.books || !Object.keys(currentList.books).length) {
+      return <li className="book empty-list">List is empty :(</li>;
     }
     return Object
       .keys(currentList.books)
