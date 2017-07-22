@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 class BookView extends React.Component {
   render() {
     return(
-      <h1>Single Book</h1>
+      <div>
+        <img src="" alt="book cover"/>
+        <div>{this.props.match.params.id}</div>
+      </div>
     )
   }
 }

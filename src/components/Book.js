@@ -8,12 +8,12 @@ class Book extends React.Component {
     const { bookInfo } = this.props;
     return (
       <li className="book">
-        <img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/>
+        <Link to={`/book/${bookInfo.id}`}><img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/></Link>
         <div className="book-title-author">
           <p><Link to={`/book/${bookInfo.id}`}>{bookInfo.title}</Link></p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
-        <button className="add-book-btn" onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
+        <button className="add-book-btn on-search" onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
       </li>
     )
   }

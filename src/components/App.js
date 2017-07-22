@@ -17,6 +17,7 @@ class App extends React.Component {
     
     this.state = {
         bookLists: {},
+        bookIDs: [],
         searchResults: []
     };
   }
@@ -40,6 +41,13 @@ class App extends React.Component {
           }
         }
       });
+      
+    this.ref = base.syncState('bookIDs', 
+      {
+        context: this,
+        state: 'bookIDs',
+        defaultValue: []
+      });
   }
   
   componentWillUnmount() {
@@ -55,16 +63,30 @@ class App extends React.Component {
     return books.hasOwnProperty(bookID);
   };
   
+  addBook = (id) => {
+    const bookIDs = [...this.state.bookIDs];
+    bookIDs.push(id);
+    this.setState(newState => {
+      return {
+        bookIDs: update(newState.bookIDs, {$set: bookIDs})
+      };
+    });
+  };
+  
   addBookToList = (listName, newBook) => {
     const books = {...this.state.bookLists[listName].books};
     const id = newBook.id;
     if(this.isBookInList(books, id)) {
       return alert('book is already in list');
     }
+    
+    this.addBook(id);
     newBook.list = listName;
     books[id] = newBook;
-    this.setState({
-      bookLists: update(this.state.bookLists, {[listName]: {books: {$set: books}}})
+    this.setState(newState => {
+      return {
+        bookLists: update(newState.bookLists, {[listName]: {books: {$set: books}}})
+      };
     });
   };
   
@@ -197,7 +219,7 @@ class App extends React.Component {
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
         <Route path="/book/:id" render={(props) => (
-          <BookView {...props}/>
+          <BookView {...props} bookInfo={props.match.params.id}/>
         )}/>
       </div>
     )
