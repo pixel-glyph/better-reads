@@ -7,6 +7,8 @@ import SearchBar from './SearchBar';
 import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 import Book from './Book';
+import BookView from './BookView';
+
 import base from '../base';
 
 class App extends React.Component {
@@ -194,6 +196,9 @@ class App extends React.Component {
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
+        <Route path="/book/:id" render={(props) => (
+          <BookView {...props}/>
+        )}/>
       </div>
     )
   }
