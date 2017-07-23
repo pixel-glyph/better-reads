@@ -55,6 +55,10 @@ class App extends React.Component {
   }
   
   
+  doesBookExist = (id) => {
+    return this.state.bookIDs.includes(id);
+  };
+  
   doesListExist = (bookLists, listName) => {
     return bookLists.hasOwnProperty(listName);
   };
@@ -73,16 +77,18 @@ class App extends React.Component {
     });
   };
   
+  // for adding a book from search
   addBookToList = (listName, newBook) => {
     const books = {...this.state.bookLists[listName].books};
     const id = newBook.id;
-    if(this.isBookInList(books, id)) {
-      return alert('book is already in list');
+    if(this.doesBookExist(id)) {
+      return alert('book is already in a shelf')
     }
     
     this.addBook(id);
     newBook.list = listName;
     books[id] = newBook;
+    
     this.setState(newState => {
       return {
         bookLists: update(newState.bookLists, {[listName]: {books: {$set: books}}})
