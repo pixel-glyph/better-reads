@@ -113,6 +113,11 @@ class App extends React.Component {
     });
   };
   
+  moveBook = (book, id, fromList, toList) => {
+    this.removeBookFromList(fromList, id);
+    this.addBookToList(toList, book);
+  };
+  
   getCurrentList = () => {
     const currListName =  
       Object
