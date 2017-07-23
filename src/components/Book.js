@@ -13,7 +13,7 @@ class Book extends React.Component {
           <p><Link to={`/book/${bookInfo.id}`}>{bookInfo.title}</Link></p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
-        <button className="add-book-btn on-search" onClick={() => this.props.addBook('To Read', bookInfo)}>Add Book</button>
+        <button className="add-book-btn on-search" onClick={() => this.props.addNewBook('To Read', bookInfo)}>Add Book</button>
       </li>
     )
   }
@@ -21,7 +21,7 @@ class Book extends React.Component {
 
 Book.propTypes = {
   bookInfo: PropTypes.object.isRequired,
-  addBook: PropTypes.func
+  addNewBook: PropTypes.func
 };
 
 export default Book;

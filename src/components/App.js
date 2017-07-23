@@ -77,23 +77,27 @@ class App extends React.Component {
     });
   };
   
-  // for adding a book from search
-  addBookToList = (listName, newBook) => {
+  addBookToList = (listName, book) => {
     const books = {...this.state.bookLists[listName].books};
-    const id = newBook.id;
-    if(this.doesBookExist(id)) {
-      return alert('book is already in a shelf')
-    }
-    
-    this.addBook(id);
-    newBook.list = listName;
-    books[id] = newBook;
+    book.list = listName;
+    books[book.id] = book;
     
     this.setState(newState => {
       return {
         bookLists: update(newState.bookLists, {[listName]: {books: {$set: books}}})
       };
     });
+  };
+  
+  // for adding a new book from search
+  addNewBook = (listName, newBook) => {
+    const id = newBook.id;
+    if(this.doesBookExist(id)) {
+      return alert('book is already in a shelf');
+    }
+    
+    this.addBook(id);
+    this.addBookToList(listName, newBook);
   };
   
   removeBookFromList = (listName, bookID) => {
@@ -191,7 +195,7 @@ class App extends React.Component {
     
     const results = searchResults.map( (book, i) => {
       return (
-        <Book key={i} bookInfo={book} addBook={this.addBookToList}/>
+        <Book key={i} bookInfo={book} addNewBook={this.addNewBook}/>
       );
     });
     
