@@ -18,6 +18,7 @@ class App extends React.Component {
     this.state = {
         bookLists: {},
         bookIDs: [],
+        bookView: false,
         searchResults: []
     };
   }
@@ -47,6 +48,13 @@ class App extends React.Component {
         context: this,
         state: 'bookIDs',
         defaultValue: []
+      });
+      
+    this.ref = base.syncState('bookView', 
+      {
+        context: this,
+        state: 'bookView',
+        defaultValue: false
       });
   }
   
@@ -159,9 +167,7 @@ class App extends React.Component {
       return alert('list does not exist');
     }
     bookLists[listName] = null;
-    this.setState(newState => {
-      return {bookLists: newState.bookLists};
-    });
+    this.setState({ bookLists });
   };
     
   switchList = (listName) => {
@@ -200,19 +206,27 @@ class App extends React.Component {
     
     const results = searchResults.map( (book, i) => {
       return (
-        <Book key={i} bookInfo={book} addNewBook={this.addNewBook}/>
+        <Book 
+          key={i} 
+          bookInfo={book} 
+          addNewBook={this.addNewBook}/>
       );
     });
     
     return results;
   };
   
+  setBookView = (book) => {
+    let bookView = {...this.state.bookView};
+    bookView = book;
+    this.setState({ bookView });
+  };
+  
   render() {
     const Main = () => (
       <div className="main-wrapper">
         <ListPicker switchList={this.switchList} lists={this.state.bookLists}/>
-        <BookListPane 
-          currentList={this.getCurrentList()}/>
+        <BookListPane currentList={this.getCurrentList()}/>
       </div>
     );
     
@@ -229,12 +243,19 @@ class App extends React.Component {
     return (
       <div className="app-wrapper">
         <Logo/>
-        <SearchBar path={this.props.location.pathname} history={this.props.history} setResults={this.setResults}/>
+        <SearchBar 
+          path={this.props.location.pathname} 
+          history={this.props.history} 
+          setResults={this.setResults}/>
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
         <Route path="/book/:id" render={(props) => (
-          <BookView {...props} bookInfo={props.match.params.id}/>
+          <BookView 
+            {...props} 
+            bookID={props.match.params.id} 
+            bookInfo={this.state.bookView}
+            setBookView={this.setBookView}/>
         )}/>
       </div>
     )
