@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
     const searchTerms = this.searchTerms.value.split(' ').join('+');
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
     
-    if(this.props.path === '/') {
+    if(this.props.path !== '/search') {
       this.props.history.push('/search');
       this.searchForm.reset();
     }
