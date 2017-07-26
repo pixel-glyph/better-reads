@@ -255,7 +255,8 @@ class App extends React.Component {
             {...props} 
             bookID={props.match.params.id} 
             bookInfo={this.state.bookView}
-            setBookView={this.setBookView}/>
+            setBookView={this.setBookView}
+            doesBookExist={this.doesBookExist}/>
         )}/>
       </div>
     )
