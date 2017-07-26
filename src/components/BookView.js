@@ -9,13 +9,23 @@ class BookView extends React.Component {
   }
   
   renderBtns = () => {
+    const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     if(this.props.doesBookExist(this.props.bookID)) {
       return (
-        <button>Move To</button>
+        <div className="book-view-btns">
+          <button>Move To</button>
+          <button>Remove</button>
+        </div>
       )
     } else {
       return (
-        <button>Add To</button>
+        <div className="book-view-btns">
+          <button 
+            className="add-book-btn on-search" 
+            onClick={() => this.props.addNewBook('To Read', bookInfo)}>
+              Add Book
+          </button>
+        </div>
       )
     }
   };
@@ -28,9 +38,7 @@ class BookView extends React.Component {
         <div className="book-view-title">{bookInfo.title}</div>
         <div className="book-view-author">{bookInfo.author}</div>
         <p className="book-view-desc">{bookInfo.desc}</p>
-        <div className="book-view-btns">
-          {this.renderBtns()}
-        </div>
+        {this.renderBtns()}
       </div>
     )
   }
@@ -40,6 +48,7 @@ BookView.propTypes = {
   bookID: PropTypes.string.isRequired,
   setBookView: PropTypes.func.isRequired,
   doesBookExist: PropTypes.func.isRequired,
+  addNewBook: PropTypes.func.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

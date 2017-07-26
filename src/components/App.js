@@ -191,7 +191,7 @@ class App extends React.Component {
         id: book.id,
         author,
         desc,
-        img,
+        img
       };
     });
     
@@ -256,7 +256,8 @@ class App extends React.Component {
             bookID={props.match.params.id} 
             bookInfo={this.state.bookView}
             setBookView={this.setBookView}
-            doesBookExist={this.doesBookExist}/>
+            doesBookExist={this.doesBookExist}
+            addNewBook={this.addNewBook}/>
         )}/>
       </div>
     )

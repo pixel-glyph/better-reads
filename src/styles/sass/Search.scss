@@ -1,3 +1,8 @@
 .search-results {
   margin: 50px 0 0;
+  
+  //TODO: hide this only on mobile
+  .add-book-btn {
+    display: none;
+  }
 }
