@@ -20,8 +20,14 @@
       border-right: 1px solid #1f7932;
     }
     
-    .btn-icon {
-      padding: 8px 0 0 6px;
+    .btn-icon-wrapper {
+      display: inline-block;
+      width: 36px;
+      height: 39px;
+      
+      .btn-icon {
+        padding: 8px 0 0 6px;
+      }
     }
   }
 }
