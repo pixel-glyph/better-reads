@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AddBookBtn from './AddBookBtn';
+
 class BookView extends React.Component {
   
   componentWillMount() {
@@ -19,13 +21,7 @@ class BookView extends React.Component {
       )
     } else {
       return (
-        <div className="book-view-btns">
-          <button 
-            className="add-book-btn on-search" 
-            onClick={() => this.props.addNewBook('To Read', bookInfo)}>
-              Add Book
-          </button>
-        </div>
+        <AddBookBtn bookInfo={bookInfo} addNewBook={this.props.addNewBook}/>
       )
     }
   };
