@@ -75,6 +75,10 @@ class App extends React.Component {
     return books.hasOwnProperty(bookID);
   };
   
+  getAllLists = () => {
+    return Object.keys(this.state.bookLists);
+  };
+  
   addBook = (id) => {
     const bookIDs = [...this.state.bookIDs];
     bookIDs.push(id);
@@ -257,7 +261,8 @@ class App extends React.Component {
             bookInfo={this.state.bookView}
             setBookView={this.setBookView}
             doesBookExist={this.doesBookExist}
-            addNewBook={this.addNewBook}/>
+            addNewBook={this.addNewBook}
+            getAllLists={this.getAllLists}/>
         )}/>
       </div>
     )

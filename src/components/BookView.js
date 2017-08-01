@@ -21,7 +21,10 @@ class BookView extends React.Component {
       )
     } else {
       return (
-        <AddBookBtn bookInfo={bookInfo} addNewBook={this.props.addNewBook}/>
+        <AddBookBtn 
+          bookInfo={bookInfo} 
+          addNewBook={this.props.addNewBook}
+          getAllLists={this.props.getAllLists}/>
       )
     }
   };

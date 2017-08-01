@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class AddBookBtn extends React.Component {
   
   showAddMenu = () => {
-    return console.log('showing!');
+    // add 'slide' class to add-list-select
   };
   
   render() {
@@ -21,6 +21,15 @@ class AddBookBtn extends React.Component {
             <PlusIcon/>
           </div>
         </div>
+        <div className="add-list-select">
+          <ul>
+            {
+              this.props.getAllLists().map((list, i) => {
+                return <li key={i}>{list}</li>
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   }
@@ -28,6 +37,7 @@ class AddBookBtn extends React.Component {
 
 AddBookBtn.propTypes = {
   addNewBook: PropTypes.func.isRequired,
+  getAllLists: PropTypes.func.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool
