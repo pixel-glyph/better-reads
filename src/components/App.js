@@ -19,6 +19,7 @@ class App extends React.Component {
         bookLists: {},
         bookIDs: [],
         bookView: false,
+        showList: false,
         searchResults: []
     };
   }
@@ -54,6 +55,13 @@ class App extends React.Component {
       {
         context: this,
         state: 'bookView',
+        defaultValue: false
+      });
+      
+    this.ref = base.syncState('showList', 
+      {
+        context: this,
+        state: 'showList',
         defaultValue: false
       });
   }
@@ -226,6 +234,12 @@ class App extends React.Component {
     this.setState({ bookView });
   };
   
+  toggleSideList = () => {
+    let showList = this.state.showList;
+    showList = !showList;
+    this.setState({ showList });
+  };
+  
   render() {
     const Main = () => (
       <div className="main-wrapper">
@@ -262,7 +276,9 @@ class App extends React.Component {
             setBookView={this.setBookView}
             doesBookExist={this.doesBookExist}
             addNewBook={this.addNewBook}
-            getAllLists={this.getAllLists}/>
+            getAllLists={this.getAllLists}
+            showList={this.state.showList}
+            toggleSideList={this.toggleSideList}/>
         )}/>
       </div>
     )

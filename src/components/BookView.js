@@ -24,7 +24,9 @@ class BookView extends React.Component {
         <AddBookBtn 
           bookInfo={bookInfo} 
           addNewBook={this.props.addNewBook}
-          getAllLists={this.props.getAllLists}/>
+          getAllLists={this.props.getAllLists}
+          showList={this.props.showList}
+          toggleSideList={this.props.toggleSideList}/>
       )
     }
   };
@@ -48,6 +50,8 @@ BookView.propTypes = {
   setBookView: PropTypes.func.isRequired,
   doesBookExist: PropTypes.func.isRequired,
   addNewBook: PropTypes.func.isRequired,
+  toggleSideList: PropTypes.func.isRequired,
+  showList: PropTypes.bool.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

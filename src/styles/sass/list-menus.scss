@@ -7,7 +7,7 @@
   background-color: #eaeaea;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
-  &.slide-in {
+  &.show-list {
     transform: translateX(-300px);
   }
   

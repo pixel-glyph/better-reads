@@ -1,12 +1,9 @@
 import React from 'react';
 import PlusIcon from './svg/Plus';
+import SideList from './SideList';
 import PropTypes from 'prop-types';
 
 class AddBookBtn extends React.Component {
-  
-  showAddMenu = () => {
-    // add 'slide' class to add-list-select
-  };
   
   render() {
     return (
@@ -17,19 +14,11 @@ class AddBookBtn extends React.Component {
             onClick={() => this.props.addNewBook('To Read', this.props.bookInfo)}>
             <span>To Read</span>
           </div>
-          <div className="btn-icon-wrapper" onClick={() => this.showAddMenu()}>
+          <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList()}>
             <PlusIcon/>
           </div>
         </div>
-        <div className={`add-list-select`}>
-          <ul className="list-names">
-            {
-              this.props.getAllLists().map((list, i) => {
-                return <li className="list-name" key={i}>{list}</li>
-              })
-            }
-          </ul>
-        </div>
+        <SideList getAllLists={this.props.getAllLists} showList={this.props.showList}/>
       </div>
     )
   }
@@ -38,6 +27,8 @@ class AddBookBtn extends React.Component {
 AddBookBtn.propTypes = {
   addNewBook: PropTypes.func.isRequired,
   getAllLists: PropTypes.func.isRequired,
+  toggleSideList: PropTypes.func.isRequired,
+  showList: PropTypes.bool.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool
