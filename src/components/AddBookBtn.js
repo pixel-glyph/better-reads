@@ -21,11 +21,11 @@ class AddBookBtn extends React.Component {
             <PlusIcon/>
           </div>
         </div>
-        <div className="add-list-select">
-          <ul>
+        <div className={`add-list-select`}>
+          <ul className="list-names">
             {
               this.props.getAllLists().map((list, i) => {
-                return <li key={i}>{list}</li>
+                return <li className="list-name" key={i}>{list}</li>
               })
             }
           </ul>
