@@ -10,6 +10,12 @@ class BookView extends React.Component {
     this.props.setBookView(this.props.location.bookInfo);
   }
   
+  componentWillUnmount() {
+    if(this.props.showList) {
+      this.props.toggleSideList();
+    }
+  }
+  
   renderBtns = () => {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     if(this.props.doesBookExist(this.props.bookID)) {
