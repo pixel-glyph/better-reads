@@ -133,8 +133,8 @@ class App extends React.Component {
     });
   };
   
-  moveBook = (book, id, fromList, toList) => {
-    this.removeBookFromList(fromList, id);
+  moveBook = (book, id, toList) => {
+    this.removeBookFromList(book.list, id);
     this.addBookToList(toList, book);
   };
   

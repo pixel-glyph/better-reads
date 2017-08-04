@@ -18,7 +18,12 @@ class AddBookBtn extends React.Component {
             <PlusIcon/>
           </div>
         </div>
-        <SideList getAllLists={this.props.getAllLists} showList={this.props.showList}/>
+        <SideList 
+          getAllLists={this.props.getAllLists} 
+          showList={this.props.showList} 
+          addNewBook={this.props.addNewBook}
+          bookInfo={this.props.bookInfo}
+          listTitle="Add To..."/>
       </div>
     )
   }
