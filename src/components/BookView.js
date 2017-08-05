@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import AddBookBtn from './AddBookBtn';
+import MoveBookBtn from './MoveBookBtn';
 
 class BookView extends React.Component {
   
@@ -21,7 +22,13 @@ class BookView extends React.Component {
     if(this.props.doesBookExist(this.props.bookID)) {
       return (
         <div className="book-view-btns">
-          <button>Move To</button>
+          <MoveBookBtn
+            bookInfo={bookInfo} 
+            moveBook={this.props.moveBook}
+            getAllLists={this.props.getAllLists}
+            showList={this.props.showList}
+            toggleSideList={this.props.toggleSideList}/>
+          
           <button>Remove</button>
         </div>
       )

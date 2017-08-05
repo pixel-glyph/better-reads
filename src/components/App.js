@@ -278,7 +278,8 @@ class App extends React.Component {
             addNewBook={this.addNewBook}
             getAllLists={this.getAllLists}
             showList={this.state.showList}
-            toggleSideList={this.toggleSideList}/>
+            toggleSideList={this.toggleSideList}
+            moveBook={this.moveBook}/>
         )}/>
       </div>
     )
