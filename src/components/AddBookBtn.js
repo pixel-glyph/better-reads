@@ -8,7 +8,7 @@ class AddBookBtn extends React.Component {
   render() {
     return (
       <div className="book-view-btns">
-        <div className="add-book-btn-wrapper">  
+        <span className="add-book-btn-wrapper">  
           <div 
             className="add-book-btn on-search" 
             onClick={() => this.props.addNewBook('To Read', this.props.bookInfo)}>
@@ -17,7 +17,7 @@ class AddBookBtn extends React.Component {
           <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList()}>
             <PlusIcon/>
           </div>
-        </div>
+        </span>
         <SideList 
           getAllLists={this.props.getAllLists} 
           showList={this.props.showList} 
