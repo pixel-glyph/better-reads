@@ -1,5 +1,5 @@
 import React from 'react';
-import PlusIcon from './svg/Plus';
+import MoveIcon from './svg/Move';
 import SideList from './SideList';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ class MoveBookBtn extends React.Component {
             <span>{this.props.bookInfo.list}</span>
           </div>
           <div className="btn-icon-wrapper">
-            <PlusIcon/>
+            <MoveIcon/>
           </div>
         </div>
         <SideList 
