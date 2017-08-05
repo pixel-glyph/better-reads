@@ -83,7 +83,13 @@ class App extends React.Component {
     return books.hasOwnProperty(bookID);
   };
   
-  getAllLists = () => {
+  getAllLists = (exceptList) => {
+    if(exceptList) {
+      let lists = Object.keys(this.state.bookLists);
+      lists = lists.filter(list => list !== exceptList);
+      return lists;
+    }
+    
     return Object.keys(this.state.bookLists);
   };
   

@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SideList extends React.Component {  
-  listSelect = (e) => {
+  listSelect = (e, book) => {
     this.props.toggleSideList();
+    
     const list = e.target.textContent;
-    const newBook = this.props.bookInfo;
-    this.props.listMethod(list, newBook, newBook.id);
+    this.props.listMethod(list, book, book.id);
   };
   
   render() {
-    const { showList } = this.props;
+    const { showList, bookInfo } = this.props;
     const showClass = showList ? " show-list" : "";
     
     return (
@@ -18,8 +18,8 @@ class SideList extends React.Component {
         <ul className="list-names">
           <li className="list-title">{this.props.listTitle}</li>
           {
-            this.props.getAllLists().map((list, i) => {
-              return <li className="list-name" key={i} onClick={(e) => this.listSelect(e)}>{list}</li>
+            this.props.getAllLists(bookInfo.list).map((list, i) => {
+              return <li className="list-name" key={i} onClick={(e) => this.listSelect(e, bookInfo)}>{list}</li>
             })
           }
         </ul>
