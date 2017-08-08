@@ -93,7 +93,7 @@ class App extends React.Component {
     return Object.keys(this.state.bookLists);
   };
   
-  addBook = (id) => {
+  addBookID = (id) => {
     const bookIDs = [...this.state.bookIDs];
     bookIDs.push(id);
     this.setState(newState => {
@@ -122,8 +122,29 @@ class App extends React.Component {
       return alert('book is already in a shelf');
     }
     
-    this.addBook(id);
+    this.addBookID(id);
     this.addBookToList(listName, newBook);
+  };
+  
+  removeBookIDs = (removeIDs) => {
+    const bookIDs = [...this.state.bookIDs];
+    if(!Array.isArray(removeIDs)) {
+      removeIDs = [removeIDs];
+    }
+    removeIDs.forEach(id => {
+      const i = bookIDs.indexOf(id);
+      if(i !== -1) {
+        bookIDs.splice(i, 1);
+      } else {
+        console.warn('ID not found in bookIDs');
+      }
+    });
+    
+    this.setState(newState => {
+      return {
+        bookIDs: update(newState.bookIDs, {$set: bookIDs})
+      };
+    });
   };
   
   removeBookFromList = (listName, bookID) => {
@@ -137,6 +158,12 @@ class App extends React.Component {
         bookLists: update(newState.bookLists, {[listName]: {books: {$set: books}}})
       };
     });
+  };
+  
+  // for removing a book entirely from the user's collection
+  removeBook = (listName, bookID) => {
+    this.removeBookIDs(bookID);
+    this.removeBookFromList(listName, bookID);
   };
   
   moveBook = (toList, book, id) => {
@@ -180,6 +207,9 @@ class App extends React.Component {
   };
   
   removeList = (listName) => {
+    
+    // TODO: gather IDs of all books in list, pass ID array to removeBookIDs
+    
     const bookLists = {...this.state.bookLists};
     if(!this.doesListExist(bookLists, listName)) {
       return alert('list does not exist');
@@ -285,7 +315,8 @@ class App extends React.Component {
             getAllLists={this.getAllLists}
             showList={this.state.showList}
             toggleSideList={this.toggleSideList}
-            moveBook={this.moveBook}/>
+            moveBook={this.moveBook}
+            removeBook={this.removeBook}/>
         )}/>
       </div>
     )

@@ -29,7 +29,7 @@ class BookView extends React.Component {
             showList={this.props.showList}
             toggleSideList={this.props.toggleSideList}/>
           
-          <button>Remove</button>
+          <button onClick={() => this.props.removeBook(bookInfo.list, bookInfo.id)}>Remove</button>
         </div>
       )
     } else {
@@ -64,6 +64,8 @@ BookView.propTypes = {
   doesBookExist: PropTypes.func.isRequired,
   addNewBook: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired,
+  moveBook: PropTypes.func.isRequired,
   showList: PropTypes.bool.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
