@@ -207,7 +207,6 @@ class App extends React.Component {
   };
   
   removeList = (listName) => {
-    
     // TODO: gather IDs of all books in list, pass ID array to removeBookIDs
     
     const bookLists = {...this.state.bookLists};
@@ -265,9 +264,21 @@ class App extends React.Component {
   };
   
   setBookView = (book) => {
-    let bookView = {...this.state.bookView};
-    bookView = book;
-    this.setState({ bookView });
+    const bookView = {...this.state.bookView};
+    
+    bookView.list = book.list || null;
+    bookView.author = book.author;
+    bookView.desc = book.desc;
+    bookView.id = book.id;
+    bookView.img = book.img;
+    bookView.pubDate = book.pubDate;
+    bookView.title = book.title;
+    
+    this.setState(newState => {
+      return {
+        bookView: update(newState.bookView, {$set: bookView})
+      };
+    });
   };
   
   toggleSideList = () => {
