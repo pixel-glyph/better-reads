@@ -17,6 +17,13 @@ class BookView extends React.Component {
     }
   }
   
+  remove = (list, id) => {
+    this.props.removeBook(list, id);
+    if(this.props.location.bookInfo) {
+      this.props.location.bookInfo.list = null;
+    }
+  };
+  
   renderBtns = () => {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     if(this.props.doesBookExist(this.props.bookID)) {
@@ -29,7 +36,7 @@ class BookView extends React.Component {
             showList={this.props.showList}
             toggleSideList={this.props.toggleSideList}/>
           
-          <button onClick={() => this.props.removeBook(bookInfo.list, bookInfo.id)}>Remove</button>
+          <button onClick={() => this.remove(bookInfo.list, bookInfo.id)}>Remove</button>
         </div>
       )
     } else {

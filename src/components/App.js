@@ -164,6 +164,7 @@ class App extends React.Component {
   removeBook = (listName, bookID) => {
     this.removeBookIDs(bookID);
     this.removeBookFromList(listName, bookID);
+    this.removeBookViewList();
   };
   
   moveBook = (toList, book, id) => {
@@ -274,6 +275,16 @@ class App extends React.Component {
     bookView.pubDate = book.pubDate;
     bookView.title = book.title;
     
+    this.setState(newState => {
+      return {
+        bookView: update(newState.bookView, {$set: bookView})
+      };
+    });
+  };
+  
+  removeBookViewList = () => {
+    const bookView = {...this.state.bookView};
+    bookView.list = null;
     this.setState(newState => {
       return {
         bookView: update(newState.bookView, {$set: bookView})
