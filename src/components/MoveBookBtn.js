@@ -22,6 +22,7 @@ class MoveBookBtn extends React.Component {
           listMethod={this.props.moveBook}
           bookInfo={this.props.bookInfo}
           toggleSideList={this.props.toggleSideList}
+          syncBookView={this.props.syncBookView}
           listTitle="Move To..."/>
       </div>
     )
@@ -33,6 +34,7 @@ MoveBookBtn.propTypes = {
   getAllLists: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.bool.isRequired,
+  syncBookView: PropTypes.func.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

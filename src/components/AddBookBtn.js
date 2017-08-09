@@ -5,13 +5,18 @@ import PropTypes from 'prop-types';
 
 class AddBookBtn extends React.Component {
   
+  addBook = (listName, newBook) => {
+    this.props.addNewBook(listName, newBook);
+    this.props.syncBookView();
+  };
+  
   render() {
     return (
       <div className="book-view-btns">
         <span className="add-book-btn-wrapper">  
           <div 
             className="add-book-btn on-search" 
-            onClick={() => this.props.addNewBook('To Read', this.props.bookInfo)}>
+            onClick={() => this.addBook('To Read', this.props.bookInfo)}>
             <span>To Read</span>
           </div>
           <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList()}>
@@ -24,6 +29,7 @@ class AddBookBtn extends React.Component {
           listMethod={this.props.addNewBook}
           bookInfo={this.props.bookInfo}
           toggleSideList={this.props.toggleSideList}
+          syncBookView={this.props.syncBookView}
           listTitle="Add To..."/>
       </div>
     )
@@ -35,6 +41,7 @@ AddBookBtn.propTypes = {
   getAllLists: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.bool.isRequired,
+  syncBookView: PropTypes.func.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

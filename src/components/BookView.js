@@ -7,8 +7,7 @@ import MoveBookBtn from './MoveBookBtn';
 class BookView extends React.Component {
   
   componentWillMount() {
-    if(!this.props.location.bookInfo) return;
-    this.props.setBookView(this.props.location.bookInfo);
+    this.syncBookView();
   }
   
   componentWillUnmount() {
@@ -16,6 +15,11 @@ class BookView extends React.Component {
       this.props.toggleSideList();
     }
   }
+  
+  syncBookView = () => {
+    if(!this.props.location.bookInfo) return;
+    this.props.setBookView(this.props.location.bookInfo);
+  };
   
   remove = (list, id) => {
     this.props.removeBook(list, id);
@@ -34,7 +38,8 @@ class BookView extends React.Component {
             moveBook={this.props.moveBook}
             getAllLists={this.props.getAllLists}
             showList={this.props.showList}
-            toggleSideList={this.props.toggleSideList}/>
+            toggleSideList={this.props.toggleSideList}
+            syncBookView={this.syncBookView}/>
           
           <button onClick={() => this.remove(bookInfo.list, bookInfo.id)}>Remove</button>
         </div>
@@ -46,7 +51,8 @@ class BookView extends React.Component {
           addNewBook={this.props.addNewBook}
           getAllLists={this.props.getAllLists}
           showList={this.props.showList}
-          toggleSideList={this.props.toggleSideList}/>
+          toggleSideList={this.props.toggleSideList}
+          syncBookView={this.syncBookView}/>
       )
     }
   };

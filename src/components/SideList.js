@@ -7,6 +7,7 @@ class SideList extends React.Component {
     
     const list = e.target.textContent;
     this.props.listMethod(list, book, book.id);
+    this.props.syncBookView();
   };
   
   render() {
@@ -34,6 +35,7 @@ SideList.propTypes = {
   listMethod: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   listTitle: PropTypes.string.isRequired,
+  syncBookView: PropTypes.func.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool
