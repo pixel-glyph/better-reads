@@ -204,7 +204,11 @@ class App extends React.Component {
       selected: false,
       books: {}
     };
-    this.setState({ bookLists });
+    this.setState(newState => {
+      return {
+        bookLists: update(newState.bookLists, {$set: bookLists})
+      };
+    });
   };
   
   removeList = (listName) => {
@@ -215,7 +219,11 @@ class App extends React.Component {
       return alert('list does not exist');
     }
     bookLists[listName] = null;
-    this.setState({ bookLists });
+    this.setState(newState => {
+      return {
+        bookLists: update(newState.bookLists, {$set: bookLists})
+      };
+    });
   };
     
   switchList = (listName) => {
@@ -243,7 +251,11 @@ class App extends React.Component {
       };
     });
     
-    this.setState({ searchResults });
+    this.setState(newState => {
+      return {
+        searchResults: update(newState.searchResults, {$set: searchResults})
+      };
+    });
   };
   
   listResults = () => {
@@ -295,7 +307,11 @@ class App extends React.Component {
   toggleSideList = () => {
     let showList = this.state.showList;
     showList = !showList;
-    this.setState({ showList });
+    this.setState(newState => {
+      return {
+        showList: update(newState.showList, {$set: showList})
+      };
+    });
   };
   
   render() {
