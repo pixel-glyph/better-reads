@@ -234,22 +234,27 @@ class App extends React.Component {
   };
   
   setResults = (results) => {
-    const searchResults = results.items.map(book => {
-      const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
-      const desc = book.volumeInfo.description ? book.volumeInfo.description : '';
-      const img = book.volumeInfo.imageLinks 
-        ? book.volumeInfo.imageLinks.smallThumbnail
-        : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
-        
-      return {
-        title: book.volumeInfo.title,
-        pubDate: book.volumeInfo.publishedDate,
-        id: book.id,
-        author,
-        desc,
-        img
-      };
-    });
+    let searchResults;
+    if(results.items) {
+      searchResults = results.items.map(book => {
+        const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
+        const desc = book.volumeInfo.description ? book.volumeInfo.description : '';
+        const img = book.volumeInfo.imageLinks 
+          ? book.volumeInfo.imageLinks.smallThumbnail
+          : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
+          
+        return {
+          title: book.volumeInfo.title,
+          pubDate: book.volumeInfo.publishedDate,
+          id: book.id,
+          author,
+          desc,
+          img
+        };
+      });
+    } else {
+      searchResults = [];
+    }
     
     this.setState(newState => {
       return {
