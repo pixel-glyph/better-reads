@@ -64,6 +64,13 @@ class App extends React.Component {
         state: 'showList',
         defaultValue: false
       });
+      
+    this.ref = base.syncState('searchResults', 
+      {
+        context: this,
+        state: 'searchResults',
+        defaultValue: []
+      });
   }
   
   componentWillUnmount() {

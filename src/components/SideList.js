@@ -29,7 +29,7 @@ class SideList extends React.Component {
         </div>
         <Overlay 
           toggleSideList={this.props.toggleSideList} 
-          showList={this.props.showList}/>
+          showClass={showClass}/>
       </div>
     )
   }
