@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 class AddBookBtn extends React.Component {
   
   addBook = (listName, newBook) => {
-    this.props.toggleSideList();
     this.props.addNewBook(listName, newBook);
     this.props.syncBookView();
   };

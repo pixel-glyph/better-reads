@@ -1,0 +1,17 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #212121;
+  opacity: 0.5;
+  cursor: pointer;
+  display: none;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+  
+  &.show-overlay {
+    display: block;
+  }
+}
