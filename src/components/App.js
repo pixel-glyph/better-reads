@@ -8,6 +8,8 @@ import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 import Book from './Book';
 import BookView from './BookView';
+import AddBookBtn from './AddBookBtn';
+import MoveBookBtn from './MoveBookBtn';
 
 import base from '../base';
 
@@ -277,12 +279,41 @@ class App extends React.Component {
     }
     
     const results = searchResults.map( (book, i) => {
-      return (
-        <Book 
-          key={i} 
-          bookInfo={book} 
-          addNewBook={this.addNewBook}/>
-      );
+      if(this.doesBookExist(book.id)) {
+        const lists = this.getAllLists();
+        lists.forEach((list) => {
+          if(this.isBookInList(this.state.bookLists[list].books, book.id)) {
+            book.list = list;
+            return;
+          }
+        });
+        
+        return (
+          <li key={i}>
+            <Book bookInfo={book} addNewBook={this.addNewBook}/>
+            <MoveBookBtn
+              bookInfo={book} 
+              moveBook={this.moveBook}
+              getAllLists={this.getAllLists}
+              showList={this.state.showList}
+              toggleSideList={this.toggleSideList}
+              syncBookView={this.syncBookView}/>
+          </li>
+        );
+      } else {
+        return (
+          <li key={i}>
+            <Book bookInfo={book} addNewBook={this.addNewBook}/>
+            <AddBookBtn 
+              bookInfo={book} 
+              addNewBook={this.addNewBook}
+              getAllLists={this.getAllLists}
+              showList={this.state.showList}
+              toggleSideList={this.toggleSideList}
+              syncBookView={this.syncBookView}/>
+          </li>
+        )
+      }
     });
     
     return results;

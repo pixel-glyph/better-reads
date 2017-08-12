@@ -7,7 +7,7 @@ class Book extends React.Component {
   render() {
     const { bookInfo } = this.props;
     return (
-      <li className="book">
+      <div className="book">
         <Link to={{pathname: `/book/${bookInfo.id}`, bookInfo: bookInfo}}>
           <img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/>
         </Link>
@@ -19,12 +19,7 @@ class Book extends React.Component {
           </p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
-        <button 
-          className="add-book-btn on-search" 
-          onClick={() => this.props.addNewBook('To Read', bookInfo)}>
-            Add Book
-        </button>
-      </li>
+      </div>
     )
   }
 }

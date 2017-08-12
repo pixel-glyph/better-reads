@@ -8,7 +8,7 @@ class MoveBookBtn extends React.Component {
   render() {
     return (
       <div className="book-view-btns">
-        <div className="add-book-btn-wrapper" onClick={() => this.props.toggleSideList()}>  
+        <div className="btn-wrapper" onClick={() => this.props.toggleSideList()}>  
           <div className="add-book-btn on-search">
             <span>{this.props.bookInfo.list}</span>
           </div>
@@ -34,7 +34,7 @@ MoveBookBtn.propTypes = {
   getAllLists: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.bool.isRequired,
-  syncBookView: PropTypes.func.isRequired,
+  syncBookView: PropTypes.func,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

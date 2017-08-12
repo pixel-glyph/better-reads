@@ -7,13 +7,15 @@ class AddBookBtn extends React.Component {
   
   addBook = (listName, newBook) => {
     this.props.addNewBook(listName, newBook);
-    this.props.syncBookView();
+    if(this.props.syncBookView) {
+      this.props.syncBookView();
+    }
   };
   
   render() {
     return (
       <div className="book-view-btns">
-        <span className="add-book-btn-wrapper">  
+        <span className="btn-wrapper">  
           <div 
             className="add-book-btn on-search" 
             onClick={() => this.addBook('To Read', this.props.bookInfo)}>
@@ -41,7 +43,7 @@ AddBookBtn.propTypes = {
   getAllLists: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.bool.isRequired,
-  syncBookView: PropTypes.func.isRequired,
+  syncBookView: PropTypes.func,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

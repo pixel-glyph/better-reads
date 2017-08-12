@@ -7,10 +7,10 @@ class BookListPane extends React.Component {
   renderBook = (bookId) => {
     if(!this.props.currentList.books[bookId]) return;
     return (
-        <Book 
-          key={bookId} 
-          bookInfo={this.props.currentList.books[bookId]}/>
-      )
+      <li key={bookId}>
+        <Book bookInfo={this.props.currentList.books[bookId]}/>
+      </li>
+    )
   };
   
   renderList = () => {
