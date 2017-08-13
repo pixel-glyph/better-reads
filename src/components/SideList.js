@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from './Overlay';
 
-class SideList extends React.Component {  
+class SideList extends React.Component {
+  
   listSelect = (e, book) => {
-    this.props.toggleSideList();
-    
     const list = e.target.textContent;
+    this.props.toggleSideList();
     this.props.listMethod(list, book, book.id);
     if(this.props.syncBookView) {
       this.props.syncBookView();
@@ -14,8 +14,10 @@ class SideList extends React.Component {
   };
   
   render() {
-    const { showList, bookInfo } = this.props;
-    const showClass = showList ? " show-list" : "";
+    const { showList, bookInfo, index } = this.props;
+    const showClass = (!index && showList.isActive) || (showList.isActive && showList.index === index)
+      ? " show-list" 
+      : "";
     
     return (
       <div>
@@ -38,12 +40,13 @@ class SideList extends React.Component {
 };
 
 SideList.propTypes = {
-  showList: PropTypes.bool.isRequired,
+  showList: PropTypes.object.isRequired,
   getAllLists: PropTypes.func.isRequired,
   listMethod: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   listTitle: PropTypes.string.isRequired,
   syncBookView: PropTypes.func,
+  index: PropTypes.number,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

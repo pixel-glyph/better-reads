@@ -21,7 +21,7 @@ class App extends React.Component {
         bookLists: {},
         bookIDs: [],
         bookView: false,
-        showList: false,
+        showList: {},
         searchResults: []
     };
   }
@@ -64,7 +64,10 @@ class App extends React.Component {
       {
         context: this,
         state: 'showList',
-        defaultValue: false
+        defaultValue: {
+          isActive: false,
+          index: 0
+        }
       });
       
     this.ref = base.syncState('searchResults', 
@@ -248,14 +251,15 @@ class App extends React.Component {
       searchResults = results.items.map(book => {
         const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
         const desc = book.volumeInfo.description ? book.volumeInfo.description : '';
+        const pubDate = book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : '';
         const img = book.volumeInfo.imageLinks 
           ? book.volumeInfo.imageLinks.smallThumbnail
           : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
           
         return {
           title: book.volumeInfo.title,
-          pubDate: book.volumeInfo.publishedDate,
           id: book.id,
+          pubDate,
           author,
           desc,
           img
@@ -264,7 +268,6 @@ class App extends React.Component {
     } else {
       searchResults = [];
     }
-    
     this.setState(newState => {
       return {
         searchResults: update(newState.searchResults, {$set: searchResults})
@@ -297,7 +300,8 @@ class App extends React.Component {
               getAllLists={this.getAllLists}
               showList={this.state.showList}
               toggleSideList={this.toggleSideList}
-              syncBookView={this.syncBookView}/>
+              syncBookView={this.syncBookView}
+              index={i}/>
           </li>
         );
       } else {
@@ -310,7 +314,8 @@ class App extends React.Component {
               getAllLists={this.getAllLists}
               showList={this.state.showList}
               toggleSideList={this.toggleSideList}
-              syncBookView={this.syncBookView}/>
+              syncBookView={this.syncBookView}
+              index={i}/>
           </li>
         )
       }
@@ -347,9 +352,10 @@ class App extends React.Component {
     });
   };
   
-  toggleSideList = () => {
-    let showList = this.state.showList;
-    showList = !showList;
+  toggleSideList = (i=0) => {
+    const showList = {...this.state.showList};
+    showList.isActive = !showList.isActive;
+    showList.index = i;
     this.setState(newState => {
       return {
         showList: update(newState.showList, {$set: showList})

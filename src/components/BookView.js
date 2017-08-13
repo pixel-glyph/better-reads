@@ -11,7 +11,7 @@ class BookView extends React.Component {
   }
   
   componentWillUnmount() {
-    if(this.props.showList) {
+    if(this.props.showList.isActive) {
       this.props.toggleSideList();
     }
   }
@@ -79,7 +79,7 @@ BookView.propTypes = {
   toggleSideList: PropTypes.func.isRequired,
   removeBook: PropTypes.func.isRequired,
   moveBook: PropTypes.func.isRequired,
-  showList: PropTypes.bool.isRequired,
+  showList: PropTypes.object.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool

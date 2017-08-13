@@ -21,7 +21,7 @@ class AddBookBtn extends React.Component {
             onClick={() => this.addBook('To Read', this.props.bookInfo)}>
             <span>To Read</span>
           </div>
-          <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList()}>
+          <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList(this.props.index)}>
             <PlusIcon/>
           </div>
         </span>
@@ -32,7 +32,8 @@ class AddBookBtn extends React.Component {
           bookInfo={this.props.bookInfo}
           toggleSideList={this.props.toggleSideList}
           syncBookView={this.props.syncBookView}
-          listTitle="Add To..."/>
+          listTitle="Add To..."
+          index={this.props.index}/>
       </div>
     )
   }
@@ -42,8 +43,9 @@ AddBookBtn.propTypes = {
   addNewBook: PropTypes.func.isRequired,
   getAllLists: PropTypes.func.isRequired,
   toggleSideList: PropTypes.func.isRequired,
-  showList: PropTypes.bool.isRequired,
+  showList: PropTypes.object.isRequired,
   syncBookView: PropTypes.func,
+  index: PropTypes.number,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool
