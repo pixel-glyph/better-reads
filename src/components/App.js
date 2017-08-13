@@ -378,6 +378,11 @@ class App extends React.Component {
             this.listResults()
           }
         </ul>
+        <div className="fetch-spinner">
+          <div className="bounce1"></div>
+          <div className="bounce2"></div>
+          <div className="bounce3"></div>
+        </div>
       </div>
     );
 
