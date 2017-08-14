@@ -22,7 +22,8 @@ class App extends React.Component {
         bookIDs: [],
         bookView: false,
         showList: {},
-        searchResults: []
+        searchResults: [],
+        isFetching: false
     };
   }
   
@@ -245,6 +246,16 @@ class App extends React.Component {
     this.toggleSelected(currList.listName);
   };
   
+  toggleFetch = () => {
+    let isFetching = this.state.isFetching;
+    isFetching = !isFetching;
+    this.setState(newState => {
+      return {
+        isFetching: update(newState.isFetching, {$set: isFetching})
+      };
+    });
+  };
+  
   setResults = (results) => {
     let searchResults;
     if(results.items) {
@@ -284,6 +295,7 @@ class App extends React.Component {
     const results = searchResults.map( (book, i) => {
       if(this.doesBookExist(book.id)) {
         const lists = this.getAllLists();
+        
         lists.forEach((list) => {
           if(this.isBookInList(this.state.bookLists[list].books, book.id)) {
             book.list = list;
@@ -373,16 +385,16 @@ class App extends React.Component {
     
     const Search = () => (
       <div className="search-wrapper">
-        <ul className="search-results">
-          {
-            this.listResults()
-          }
-        </ul>
-        <div className="fetch-spinner">
-          <div className="bounce1"></div>
-          <div className="bounce2"></div>
-          <div className="bounce3"></div>
-        </div>
+        {!this.state.isFetching
+          ? <ul className="search-results">
+              {this.listResults()}
+            </ul>
+          : <div className="fetch-spinner">
+              <div className="bounce1"></div>
+              <div className="bounce2"></div>
+              <div className="bounce3"></div>
+            </div>
+        }
       </div>
     );
 
@@ -392,7 +404,8 @@ class App extends React.Component {
         <SearchBar 
           path={this.props.location.pathname} 
           history={this.props.history} 
-          setResults={this.setResults}/>
+          setResults={this.setResults}
+          toggleFetch={this.toggleFetch}/>
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>

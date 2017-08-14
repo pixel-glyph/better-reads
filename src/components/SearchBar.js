@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { getJSON } from '../get';
 import { APIKey } from '../api';
@@ -7,6 +8,9 @@ class SearchBar extends React.Component {
   
   search = (e) => {
     e.preventDefault();
+    if(!this.searchTerms.value) return;
+    
+    this.props.toggleFetch();
     const searchTerms = this.searchTerms.value.split(' ').join('+');
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
     
@@ -17,6 +21,7 @@ class SearchBar extends React.Component {
         
     getJSON(url).then(res => {
       this.props.setResults(res);
+      this.props.toggleFetch();
     }).catch(error => {
       console.log('There was an problem retrieving the search: ', error);
     });  // add another then() here to stop loading gif
@@ -33,5 +38,12 @@ class SearchBar extends React.Component {
     )
   }
 }
+
+SearchBar.propTypes = {
+  setResults: PropTypes.func.isRequired,
+  toggleFetch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+};
 
 export default SearchBar;
