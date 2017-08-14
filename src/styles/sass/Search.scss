@@ -1,16 +1,29 @@
 .search-wrapper {
   .search-results {
+    padding: 0;
     margin: 50px 0 0;
     list-style-type: none;
+    
+    .book {
+      .book-thumbnail-img{
+        margin: 0 0 0 10px;
+      }
+    }
     
     .btn-wrapper {
       @include book-btn;
     }
     
-    //TODO: hide this only on mobile
-    // .add-book-btn {
-    //   display: none;
-    // }
+    .book-view-btns {
+      display: none;
+    }
+    
+    //TODO: implement SASS media query functions
+    @media (min-width: 850px) {
+      .book-view-btns {
+        display: block;
+      }
+    }
   }
   
   .fetch-spinner {
