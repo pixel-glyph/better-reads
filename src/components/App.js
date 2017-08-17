@@ -4,7 +4,6 @@ import update from 'immutability-helper';
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import ListPicker from './ListPicker';
 import BookListPane from './BookListPane';
 import Book from './Book';
 import BookView from './BookView';
@@ -379,8 +378,11 @@ class App extends React.Component {
   render() {
     const Main = () => (
       <div className="main-wrapper">
-        <SwitchListBtn/>
-        <ListPicker switchList={this.switchList} lists={this.state.bookLists}/>
+        <SwitchListBtn 
+          switchList={this.switchList}
+          toggleSideList={this.toggleSideList}
+          showList={this.state.showList}
+          lists={this.state.bookLists}/>
         <BookListPane currentList={this.getCurrentList()}/>
       </div>
     );

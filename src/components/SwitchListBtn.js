@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ListPicker from './ListPicker';
 import ListIcon from './svg/List';
 
 class SwitchListBtn extends React.Component {
@@ -8,7 +9,7 @@ class SwitchListBtn extends React.Component {
   render() {
     return (
       <div className="switch-list-btn">
-        <div className="btn-wrapper">  
+        <div className="btn-wrapper" onClick={() => this.props.toggleSideList()}>  
           <div className="btn-icon-wrapper">
             <ListIcon/>
           </div>
@@ -16,14 +17,21 @@ class SwitchListBtn extends React.Component {
             <span>Switch List</span>
           </div>
         </div>
-        {/*SideList*/}
+        <ListPicker 
+          lists={this.props.lists} 
+          switchList={this.props.switchList}
+          showList={this.props.showList}
+          toggleSideList={this.props.toggleSideList}/>
       </div>
     )
   }
 }
 
 SwitchListBtn.propTypes = {
-  
+  lists: PropTypes.object.isRequired,
+  switchList: PropTypes.func.isRequired,
+  showList: PropTypes.object.isRequired,
+  toggleSideList: PropTypes.func.isRequired
 };
 
 export default SwitchListBtn;

@@ -1,6 +1,8 @@
 import React from 'react';
-import BookList from './BookList';
 import PropTypes from 'prop-types';
+
+import BookList from './BookList';
+import Overlay from './Overlay';
 
 class ListPicker extends React.Component {
   
@@ -15,19 +17,29 @@ class ListPicker extends React.Component {
             listName={list}
             listDisplayName={list}
             numBooks={numBooks}
+            toggleSideList={this.props.toggleSideList}
             switchList={this.props.switchList}/>;
   };
   
   render() {
+    const { showList } = this.props;
+    const showClass = showList.isActive ? " show-list" : "";
+      
     return (
-      <div className="app-list-picker">
-        <ul className="book-lists">
-          {
-            Object
-              .keys(this.props.lists)
-              .map((list, i) => this.getNumbooks(list, i))
-          }
-        </ul>
+      <div>
+        <div className={`app-list-picker${showClass}`}>
+          <ul className="book-lists list-names">
+            <li className="list-title">Switch List</li>
+            {
+              Object
+                .keys(this.props.lists)
+                .map((list, i) => this.getNumbooks(list, i))
+            }
+          </ul>
+        </div>
+        <Overlay 
+          toggleSideList={this.props.toggleSideList} 
+          showClass={showClass}/>
       </div>
     )
   }
@@ -35,6 +47,8 @@ class ListPicker extends React.Component {
 
 ListPicker.propTypes = {
   lists: PropTypes.object.isRequired,
+  toggleSideList: PropTypes.func.isRequired,
+  showList: PropTypes.object.isRequired,
   switchList: PropTypes.func.isRequired
 };
 
