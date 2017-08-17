@@ -10,6 +10,7 @@ import Book from './Book';
 import BookView from './BookView';
 import AddBookBtn from './AddBookBtn';
 import MoveBookBtn from './MoveBookBtn';
+import SwitchListBtn from './SwitchListBtn';
 
 import base from '../base';
 
@@ -378,6 +379,7 @@ class App extends React.Component {
   render() {
     const Main = () => (
       <div className="main-wrapper">
+        <SwitchListBtn/>
         <ListPicker switchList={this.switchList} lists={this.state.bookLists}/>
         <BookListPane currentList={this.getCurrentList()}/>
       </div>
