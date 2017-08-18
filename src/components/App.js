@@ -10,6 +10,8 @@ import BookView from './BookView';
 import AddBookBtn from './AddBookBtn';
 import MoveBookBtn from './MoveBookBtn';
 import SwitchListBtn from './SwitchListBtn';
+import Plus from './svg/Plus';
+import Modal from './Modal';
 
 import base from '../base';
 
@@ -383,7 +385,9 @@ class App extends React.Component {
           toggleSideList={this.toggleSideList}
           showList={this.state.showList}
           lists={this.state.bookLists}/>
+        <Plus/>
         <BookListPane currentList={this.getCurrentList()}/>
+        <Modal/>
       </div>
     );
     
