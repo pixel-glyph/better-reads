@@ -4,15 +4,16 @@ import PropTypes from 'prop-types';
 class Overlay extends React.Component {
   
   render() {
+    const showClass = this.props.showOverlay ? ' show-overlay' : ''
     return (
-      <div className={`overlay${this.props.showClass}`} onClick={() => this.props.toggleSideList()}></div>
+      <div className={`overlay${showClass}`} onClick={() => this.props.toggle()}></div>
     )
   }
 };
 
 Overlay.propTypes = {
-  toggleSideList: PropTypes.func.isRequired,
-  showClass: PropTypes.string.isRequired
+  showOverlay: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired
 };
 
 export default Overlay;

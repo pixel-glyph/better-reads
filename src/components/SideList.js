@@ -32,8 +32,8 @@ class SideList extends React.Component {
           </ul>
         </div>
         <Overlay 
-          toggleSideList={this.props.toggleSideList} 
-          showClass={showClass}/>
+          toggle={this.props.toggleSideList} 
+          showOverlay={showList.isActive}/>
       </div>
     )
   }

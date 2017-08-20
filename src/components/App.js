@@ -23,9 +23,13 @@ class App extends React.Component {
         bookLists: {},
         bookIDs: [],
         bookView: false,
-        showList: {},
+        showList: {
+            isActive: false,
+            index: 0
+          },
         searchResults: [],
-        isFetching: false
+        isFetching: false,
+        showModal: false
     };
   }
   
@@ -61,16 +65,6 @@ class App extends React.Component {
         context: this,
         state: 'bookView',
         defaultValue: false
-      });
-      
-    this.ref = base.syncState('showList', 
-      {
-        context: this,
-        state: 'showList',
-        defaultValue: {
-          isActive: false,
-          index: 0
-        }
       });
       
     this.ref = base.syncState('searchResults', 
@@ -258,6 +252,16 @@ class App extends React.Component {
     });
   };
   
+  toggleModal = () => {
+    let showModal = this.state.showModal;
+    showModal = !showModal;
+    this.setState(newState => {
+      return {
+        showModal: update(newState.showModal, {$set: showModal})
+      };
+    });
+  };
+  
   setResults = (results) => {
     let searchResults;
     if(results.items) {
@@ -385,9 +389,14 @@ class App extends React.Component {
           toggleSideList={this.toggleSideList}
           showList={this.state.showList}
           lists={this.state.bookLists}/>
-        <Plus/>
+        <div onClick={() => this.toggleModal()}>
+          <Plus/>
+        </div>
         <BookListPane currentList={this.getCurrentList()}/>
-        <Modal/>
+        <Modal 
+          toggleSideList={this.toggleSideList} 
+          showModal={this.state.showModal}
+          toggleModal={this.toggleModal}/>
       </div>
     );
     
