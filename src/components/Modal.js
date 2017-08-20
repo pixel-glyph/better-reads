@@ -5,12 +5,25 @@ import Overlay from './Overlay';
 
 class Modal extends React.Component {
   
+  newListSubmit = (e) => {
+    e.preventDefault();
+    if(!this.newListName.value) return;
+    this.props.createList(this.newListName.value);
+    this.props.toggleModal();
+  };
+  
   render() {
     const showClass = this.props.showModal ? " show-modal" : "";
     return (
       <div>
         <div className={`modal${showClass}`}>
-          <p>Yo</p>
+          <div className="modal-input-wrapper">
+            <h1>Create New List</h1>
+              <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
+                <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" />
+                <button type="submit">Add List</button>
+              </form>
+          </div>
         </div>
         <Overlay 
           toggle={this.props.toggleModal} 
@@ -22,7 +35,8 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   showModal: PropTypes.bool.isRequired,
-  toggleModal: PropTypes.func.isRequired
+  toggleModal: PropTypes.func.isRequired,
+  createList: PropTypes.func.isRequired
 };
 
 export default Modal;

@@ -389,12 +389,13 @@ class App extends React.Component {
           toggleSideList={this.toggleSideList}
           showList={this.state.showList}
           lists={this.state.bookLists}/>
-        <div className="plus-icon-wrapper" onClick={() => this.toggleModal()}>
+        <div className="plus-icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
           <PlusIcon/>
         </div>
         <BookListPane currentList={this.getCurrentList()}/>
         <Modal 
           toggleSideList={this.toggleSideList} 
+          createList={this.createList} 
           showModal={this.state.showModal}
           toggleModal={this.toggleModal}/>
       </div>
