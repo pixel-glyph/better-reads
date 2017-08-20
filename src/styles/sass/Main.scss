@@ -1,6 +1,13 @@
 .main-wrapper {
-  .icon-plus {
-    fill: #3a3a3a;
-    cursor: pointer;
+  width: 96%;
+  margin: 0 auto;
+  .plus-icon-wrapper {
+    width: 25px;
+    height: 25px;
+    margin: 0 0 0 auto;
+    .icon-plus {
+      fill: #3a3a3a;
+      cursor: pointer;
+    }
   }
 }
