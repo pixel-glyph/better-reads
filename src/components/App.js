@@ -194,26 +194,23 @@ class App extends React.Component {
   };
   
   toggleSelected = (listName) => {
-    let selected = this.state.bookLists[listName].selected;
-    selected = !selected;
+    const bookLists = {...this.state.bookLists};
+    let list = bookLists[listName];
+    list.selected = !list.selected;
     this.setState(newState => {
-      return {
-        bookLists: update(newState.bookLists, {[listName]: {selected: {$set: selected}}})
-      };
+      return {bookLists: newState.bookLists};
     });
   };
     
   createList = (listName) => {
     const bookLists = {...this.state.bookLists};
-    if(this.doesListExist(bookLists, listName)) {
-      return alert('list already exists');
-    }
-    // sample data for testing
+    
     bookLists[listName] = {
       listName: listName,
-      selected: false,
+      selected: true,
       books: {}
     };
+    
     this.setState(newState => {
       return {
         bookLists: update(newState.bookLists, {$set: bookLists})
@@ -399,10 +396,13 @@ class App extends React.Component {
         </div>
         <BookListPane currentList={this.getCurrentList()}/>
         <Modal 
-          toggleSideList={this.toggleSideList} 
+          toggleSelected={this.toggleSelected} 
+          getCurrentList={this.getCurrentList} 
           createList={this.createList} 
           showModal={this.state.showModal}
-          toggleModal={this.toggleModal}/>
+          doesListExist={this.doesListExist}
+          toggleModal={this.toggleModal}
+          bookLists={this.state.bookLists}/>
       </div>
     );
     
