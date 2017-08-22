@@ -5,6 +5,10 @@ import Overlay from './Overlay';
 
 class Modal extends React.Component {
   
+  componentDidMount() {
+    this.newListName.focus();
+  }
+  
   newListSubmit = (e) => {
     e.preventDefault();
     if(!this.newListName.value) return;

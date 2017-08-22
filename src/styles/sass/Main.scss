@@ -1,13 +1,30 @@
 .main-wrapper {
   width: 96%;
   margin: 0 auto;
-  .plus-icon-wrapper {
-    width: 25px;
-    height: 25px;
+  
+  .main-icon-wrapper {
+    width: 50px;
     margin: 0 0 0 auto;
-    .icon-plus {
-      fill: #3a3a3a;
-      cursor: pointer;
+    
+    .plus-icon-wrapper {
+      width: 25px;
+      height: 25px;
+      .icon-plus {
+      
+      }
     }
+    
+    .remove-icon-wrapper {
+      width: 25px;
+      height: 25px;
+      .icon-remove {
+        
+      }
+    }
+  }
+  
+  .btn-icon {
+    fill: #3a3a3a;
+    cursor: pointer;
   }
 }
