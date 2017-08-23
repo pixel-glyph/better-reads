@@ -8,7 +8,7 @@ class ListPicker extends React.Component {
   
   getNumbooks = (list, i) => {
     const { lists } = this.props;
-    const numBooks = lists[list].books
+    const numBooks = lists[list] && lists[list].books
       ? Object.keys(lists[list].books).length
       : 0;
     

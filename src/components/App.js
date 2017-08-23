@@ -183,10 +183,16 @@ class App extends React.Component {
   };
   
   getCurrentList = () => {
+    let currList;
     const currListName =  
       Object
         .keys(this.state.bookLists)
-        .find(list => this.state.bookLists[list].selected);
+        .find(list => {
+          currList = this.state.bookLists[list] 
+            ? this.state.bookLists[list].selected 
+            : false;
+          return currList;
+        });
     
     return this.state.bookLists[currListName]
       ? this.state.bookLists[currListName]
@@ -224,6 +230,14 @@ class App extends React.Component {
     if(!this.doesListExist(bookLists, listName)) {
       return alert('list does not exist');
     }
+    
+    let listToRemove = bookLists[listName];
+    let ids = [];
+    for (var id in listToRemove.books) {
+      ids.push(id);
+    }
+    this.removeBookIDs(ids);
+    
     bookLists[listName] = null;
     this.setState(newState => {
       return {
