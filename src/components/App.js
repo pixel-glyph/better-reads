@@ -225,7 +225,6 @@ class App extends React.Component {
   };
   
   removeList = (listName) => {
-    // TODO: gather IDs of all books in list, pass ID array to removeBookIDs
     const bookLists = {...this.state.bookLists};
     if(!this.doesListExist(bookLists, listName)) {
       return alert('list does not exist');
@@ -393,32 +392,41 @@ class App extends React.Component {
   };
   
   render() {
-    const Main = () => (
-      <div className="main-wrapper">
-        <SwitchListBtn 
-          switchList={this.switchList}
-          toggleSideList={this.toggleSideList}
-          showList={this.state.showList}
-          lists={this.state.bookLists}/>
-        <div className="main-icon-wrapper">
-          <span className="plus-icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
-            <PlusIcon/>
-          </span>
-          <span className="remove-icon-wrapper" title="Remove List" onClick={() => this.removeList()}>
-            <RemoveIcon/>
-          </span>
+    const Main = () => {
+      
+      const removeListHandler = () => {
+        const currList = this.getCurrentList().listName;
+        this.removeList(currList);
+        this.toggleSelected('To Read');
+      };
+      
+      return(
+        <div className="main-wrapper">
+          <SwitchListBtn 
+            switchList={this.switchList}
+            toggleSideList={this.toggleSideList}
+            showList={this.state.showList}
+            lists={this.state.bookLists}/>
+          <div className="main-icon-wrapper">
+            <span className="plus-icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
+              <PlusIcon/>
+            </span>
+            <span className="remove-icon-wrapper" title="Remove List" onClick={() => removeListHandler()}>
+              <RemoveIcon/>
+            </span>
+          </div>
+          <BookListPane currentList={this.getCurrentList()}/>
+          <Modal 
+            toggleSelected={this.toggleSelected} 
+            getCurrentList={this.getCurrentList} 
+            createList={this.createList} 
+            showModal={this.state.showModal}
+            doesListExist={this.doesListExist}
+            toggleModal={this.toggleModal}
+            bookLists={this.state.bookLists}/>
         </div>
-        <BookListPane currentList={this.getCurrentList()}/>
-        <Modal 
-          toggleSelected={this.toggleSelected} 
-          getCurrentList={this.getCurrentList} 
-          createList={this.createList} 
-          showModal={this.state.showModal}
-          doesListExist={this.doesListExist}
-          toggleModal={this.toggleModal}
-          bookLists={this.state.bookLists}/>
-      </div>
-    );
+      )
+    };
     
     const Search = () => (
       <div className="search-wrapper">
