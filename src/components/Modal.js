@@ -31,7 +31,7 @@ class Modal extends React.Component {
           <div className="modal-input-wrapper">
             <h1>Create New List</h1>
             <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
-              <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" />
+              <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>
               <button type="submit">Add List</button>
             </form>
           </div>

@@ -36,8 +36,11 @@
       width: 62%;
       padding: 5px;
       border-style: none;
-      border-radius: 2px;
-      border: 1px solid #dadada;
+      background-color: #ebe9e9;
+      border-bottom: 1px solid #676767;
+      &:focus {
+        outline: none;
+      }
     }
     
     button {

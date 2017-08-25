@@ -393,9 +393,9 @@ class App extends React.Component {
   
   render() {
     const Main = () => {
+      const currList = this.getCurrentList().listName;
       
       const removeListHandler = () => {
-        const currList = this.getCurrentList().listName;
         this.removeList(currList);
         this.toggleSelected('To Read');
       };
@@ -408,12 +408,15 @@ class App extends React.Component {
             showList={this.state.showList}
             lists={this.state.bookLists}/>
           <div className="main-icon-wrapper">
-            <span className="plus-icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
-              <PlusIcon/>
-            </span>
-            <span className="remove-icon-wrapper" title="Remove List" onClick={() => removeListHandler()}>
-              <RemoveIcon/>
-            </span>
+            <div className="plus-icon-wrapper icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
+              New List <PlusIcon/>
+            </div>
+            {currList !== 'To Read' && currList !== 'Read'
+              ? <div className="remove-icon-wrapper icon-wrapper" title="Remove List" onClick={() => removeListHandler()}>
+                  Remove List <RemoveIcon/>
+                </div>
+              : null
+            }
           </div>
           <BookListPane currentList={this.getCurrentList()}/>
           <Modal 

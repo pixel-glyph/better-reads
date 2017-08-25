@@ -3,28 +3,24 @@
   margin: 0 auto;
   
   .main-icon-wrapper {
-    width: 50px;
-    margin: 0 0 0 auto;
+    // margin: 0 0 0 auto;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
     
-    .plus-icon-wrapper {
-      width: 25px;
-      height: 25px;
-      .icon-plus {
-      
-      }
+    > .icon-wrapper {
+      width: auto;
+      margin: 2px 5px;
+      padding: 4px 9px 7px;
+      background-color: #dcdcdc;
+      border-radius: 13px;
+      cursor: pointer;
     }
     
-    .remove-icon-wrapper {
-      width: 25px;
-      height: 25px;
-      .icon-remove {
-        
-      }
-    }
   }
   
   .btn-icon {
     fill: #3a3a3a;
-    cursor: pointer;
+    margin-bottom: -7px;
   }
 }
