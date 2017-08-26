@@ -193,6 +193,9 @@ class App extends React.Component {
             : false;
           return currList;
         });
+        
+    // TODO: maybe add check for currListName === undefined and set 'To Read' 
+    // as current list
     
     return this.state.bookLists[currListName]
       ? this.state.bookLists[currListName]
@@ -202,7 +205,9 @@ class App extends React.Component {
   toggleSelected = (listName) => {
     const bookLists = {...this.state.bookLists};
     let list = bookLists[listName];
+    if(!list) return;
     list.selected = !list.selected;
+    
     this.setState(newState => {
       return {bookLists: newState.bookLists};
     });
@@ -230,19 +235,21 @@ class App extends React.Component {
       return alert('list does not exist');
     }
     
-    let listToRemove = bookLists[listName];
-    let ids = [];
-    for (var id in listToRemove.books) {
-      ids.push(id);
+    if(window.confirm(`Are you sure you want to remove your ${listName} shelf and all its books?`)) {
+      let listToRemove = bookLists[listName];
+      let ids = [];
+      for (var id in listToRemove.books) {
+        ids.push(id);
+      }
+      this.removeBookIDs(ids);
+      
+      bookLists[listName] = null;
+      this.setState(newState => {
+        return {
+          bookLists: update(newState.bookLists, {$set: bookLists})
+        };
+      });
     }
-    this.removeBookIDs(ids);
-    
-    bookLists[listName] = null;
-    this.setState(newState => {
-      return {
-        bookLists: update(newState.bookLists, {$set: bookLists})
-      };
-    });
   };
     
   switchList = (listName) => {
