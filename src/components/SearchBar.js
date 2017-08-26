@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SearchIcon from './svg/Search';
+
 import { getJSON } from '../get';
 import { APIKey } from '../api';
 
@@ -32,7 +34,9 @@ class SearchBar extends React.Component {
       <div>
         <form ref={(input) => this.searchForm = input} className="book-search" onSubmit={(e) => this.search(e)}>
           <input ref={(input) => this.searchTerms = input} className="book-search-input" type="text" placeholder="Search Books..." />
-          <button type="submit">Search</button>
+          <button type="submit">
+            <SearchIcon/>
+          </button>
         </form>
       </div>
     )
