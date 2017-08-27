@@ -41,7 +41,7 @@ class BookView extends React.Component {
             toggleSideList={this.props.toggleSideList}
             syncBookView={this.syncBookView}/>
           
-          <button onClick={() => this.remove(bookInfo.list, bookInfo.id)}>Remove</button>
+          <button className="remove-btn" onClick={() => this.remove(bookInfo.list, bookInfo.id)}>Remove</button>
         </div>
       )
     } else {
