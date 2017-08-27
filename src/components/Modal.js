@@ -29,6 +29,10 @@ class Modal extends React.Component {
       <div>
         <div className={`modal${showClass}`}>
           <div className="modal-input-wrapper">
+            <div className="modal-close-wrapper" onClick={() => this.props.toggleModal()}>
+              <span className="modal-close modal-close-one"></span>
+              <span className="modal-close modal-close-two"></span>
+            </div>
             <h1>Create New List</h1>
             <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
               <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>

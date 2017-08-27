@@ -27,6 +27,31 @@
   
   .modal-input-wrapper {
     padding: 25px 0px 0 28px;
+    
+    .modal-close-wrapper {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      .modal-close {
+        display: inline-block;
+        position: inherit;
+        top: 6px;
+        width: 15px;
+        height: 3px;
+        border-radius: 1px;
+        background-color: #6d6d6d;
+        &.modal-close-one {
+          transform: rotate(45deg);
+        }
+        &.modal-close-two {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    
     h1 {
       margin-bottom: 13px;
       font-size: 20px;
