@@ -1,6 +1,17 @@
 .book-view-wrapper {
   margin: 20px;
   
+  .book-view-back-link {
+    margin: 20px 0;
+    font-size: 15px;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
   .book-view-cover {
     width: 200px;
   }

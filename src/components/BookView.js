@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import AddBookBtn from './AddBookBtn';
 import MoveBookBtn from './MoveBookBtn';
@@ -90,6 +91,7 @@ class BookView extends React.Component {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     return (
       <div className="book-view-wrapper">
+        <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
         <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
         <div className="book-view-title">{bookInfo.title}</div>
         <div className="book-view-author">{bookInfo.author}</div>
