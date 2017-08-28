@@ -8,6 +8,9 @@ class BookView extends React.Component {
   
   componentWillMount() {
     this.syncBookView();
+    if(this.props.showFullDesc) {
+      this.props.toggleDesc();
+    }
   }
   
   componentWillUnmount() {
@@ -57,6 +60,32 @@ class BookView extends React.Component {
     }
   };
   
+  renderDesc = () => {
+    const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
+    const bookDesc = bookInfo.desc;
+    const descClass = this.props.showFullDesc ? " show-full-desc" : "";
+    
+    if(bookDesc && bookDesc.length < 190) {
+      return (
+        <p className="book-view-desc">{bookDesc}</p>
+      )
+    } else if(bookDesc) {
+      const abbrivDesc = bookDesc.slice(0, 190);  
+      return (
+        <div className="book-view-desc">
+          <div className={`book-view-desc-short-wrapper${descClass}`}>    {/* show this be default */}
+            <span className="book-view-desc-short">{abbrivDesc}</span>  
+            <span className="desc-more-less" onClick={() => this.props.toggleDesc()}>...More</span>    {/* on click, show full */}
+          </div>
+          <div className={`book-view-desc-full-wrapper${descClass}`}>
+            <span className="book-view-desc-full">{bookDesc}</span>
+            <div className="desc-more-less" onClick={() => this.props.toggleDesc()}>Less</div>    {/* on click, show short */}
+          </div>
+        </div>
+      )
+    }
+  };
+  
   render() {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     return (
@@ -64,7 +93,7 @@ class BookView extends React.Component {
         <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
         <div className="book-view-title">{bookInfo.title}</div>
         <div className="book-view-author">{bookInfo.author}</div>
-        <p className="book-view-desc">{bookInfo.desc}</p>
+        {this.renderDesc()}
         {this.renderBtns()}
       </div>
     )
@@ -79,6 +108,8 @@ BookView.propTypes = {
   toggleSideList: PropTypes.func.isRequired,
   removeBook: PropTypes.func.isRequired,
   moveBook: PropTypes.func.isRequired,
+  toggleDesc: PropTypes.func.isRequired,
+  showFullDesc: PropTypes.bool.isRequired,
   showList: PropTypes.object.isRequired,
   bookInfo: PropTypes.oneOfType([
     PropTypes.object,

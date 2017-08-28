@@ -9,6 +9,36 @@
     @include book-btn;
   }
   
+  .book-view-desc {
+    margin: 20px 0 30px;
+    
+    .book-view-desc-short-wrapper {
+      display: block;
+      &.show-full-desc {
+        display: none;
+      }
+    }
+    
+    .book-view-desc-full-wrapper {
+      display: none;
+      &.show-full-desc {
+        display: block;
+      }
+    }
+    
+    .desc-more-less {
+      color: #039be5;
+      cursor: pointer;
+      margin-left: 3px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    div.desc-more-less {
+      margin: 0;
+    }
+  }
+  
   .remove-btn {
     padding: 12px 16px 10px;
     border-radius: 4px;

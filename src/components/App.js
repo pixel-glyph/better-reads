@@ -30,7 +30,8 @@ class App extends React.Component {
           },
         searchResults: [],
         isFetching: false,
-        showModal: false
+        showModal: false,
+        showFullDesc: false
     };
   }
   
@@ -279,6 +280,16 @@ class App extends React.Component {
     });
   };
   
+  toggleDesc = () => {
+    let showFullDesc = this.state.showFullDesc;
+    showFullDesc = !showFullDesc;
+    this.setState(newState => {
+      return {
+        showFullDesc: update(newState.showFullDesc, {$set: showFullDesc})
+      };
+    });
+  };
+  
   setResults = (results) => {
     let searchResults;
     if(results.items) {
@@ -476,6 +487,8 @@ class App extends React.Component {
             showList={this.state.showList}
             toggleSideList={this.toggleSideList}
             moveBook={this.moveBook}
+            toggleDesc={this.toggleDesc}
+            showFullDesc={this.state.showFullDesc}
             removeBook={this.removeBook}/>
         )}/>
       </div>
