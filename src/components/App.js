@@ -185,7 +185,7 @@ class App extends React.Component {
   
   getCurrentList = () => {
     let currList;
-    const currListName =  
+    let currListName =  
       Object
         .keys(this.state.bookLists)
         .find(list => {
@@ -195,8 +195,9 @@ class App extends React.Component {
           return currList;
         });
         
-    // TODO: maybe add check for currListName === undefined and set 'To Read' 
-    // as current list
+    if(!currListName) {
+      currListName = 'To Read';
+    }
     
     return this.state.bookLists[currListName]
       ? this.state.bookLists[currListName]
