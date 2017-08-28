@@ -4,8 +4,12 @@
     margin: 50px 0 0;
     list-style-type: none;
     
-    .btn-wrapper {
-      @include book-btn;
+    .btn-wrapper-add {
+      @include book-btn(#00AE68, #fff);
+    }
+    
+    .btn-wrapper-move {
+      @include book-btn(#ccc, #3a3a3a);
     }
     
     .book-view-btns {

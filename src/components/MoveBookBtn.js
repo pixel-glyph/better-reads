@@ -8,7 +8,7 @@ class MoveBookBtn extends React.Component {
   render() {
     return (
       <div className="book-view-btns">
-        <div className="btn-wrapper" onClick={() => this.props.toggleSideList(this.props.index)}>  
+        <div className="btn-wrapper-move" onClick={() => this.props.toggleSideList(this.props.index)}>  
           <div className="add-book-btn on-search">
             <span>{this.props.bookInfo.list}</span>
           </div>

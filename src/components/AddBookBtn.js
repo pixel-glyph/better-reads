@@ -15,7 +15,7 @@ class AddBookBtn extends React.Component {
   render() {
     return (
       <div className="book-view-btns">
-        <span className="btn-wrapper">  
+        <span className="btn-wrapper-add">  
           <div 
             className="add-book-btn on-search" 
             onClick={() => this.addBook('To Read', this.props.bookInfo)}>

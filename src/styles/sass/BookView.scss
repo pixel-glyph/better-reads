@@ -5,8 +5,12 @@
     width: 200px;
   }
   
-  .btn-wrapper {
-    @include book-btn;
+  .btn-wrapper-add {
+    @include book-btn(#00AE68, #fff);
+  }
+  
+  .btn-wrapper-move {
+    @include book-btn(#ccc, #3a3a3a);
   }
   
   .book-view-desc {
