@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import update from 'immutability-helper';
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
@@ -419,7 +420,7 @@ class App extends React.Component {
         this.toggleSelected('To Read');
       };
       
-      return(
+      return (
         <div className="main-wrapper">
           <SwitchListBtn 
             switchList={this.switchList}
@@ -438,6 +439,12 @@ class App extends React.Component {
             }
           </div>
           <BookListPane currentList={this.getCurrentList()}/>
+          <CSSTransitionGroup
+            transitionName="example"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+            <div className="remove-popup">Shelf has been removed</div>
+          </CSSTransitionGroup>
           <Modal 
             toggleSelected={this.toggleSelected} 
             getCurrentList={this.getCurrentList} 
