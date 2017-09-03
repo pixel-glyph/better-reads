@@ -1,0 +1,30 @@
+.remove-popup {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 153px;
+  padding: 10px;
+  font-size: 14px;
+  color: #f1efef;
+  background-color: #414141;
+  border-radius: 20px;
+}
+
+.remove-list-popup-enter {
+  transition: opacity 300ms ease-in;
+  opacity: 0.01;
+  
+  &.remove-list-popup-enter-active {
+    opacity: 1;
+  }
+}
+
+.remove-list-popup-leave {
+  transition: opacity 500ms ease-in;
+  opacity: 1;
+  
+  &.remove-list-popup-leave-active {
+    opacity: 0.01;
+  }
+}

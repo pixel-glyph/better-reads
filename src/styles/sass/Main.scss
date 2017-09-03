@@ -34,20 +34,4 @@
     }
   }
   
-  .remove-popup {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translate(-50%);
-    width: 153px;
-    padding: 10px;
-    font-size: 14px;
-    color: #f1efef;
-    background-color: #414141;
-    border-radius: 20px;
-    // opacity: 0;
-    // &.show-remove-popup {
-    //   opacity: 1;
-    // }
-  }
 }

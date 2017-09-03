@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import update from 'immutability-helper';
-import { CSSTransitionGroup } from 'react-transition-group'
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
@@ -14,6 +13,7 @@ import SwitchListBtn from './SwitchListBtn';
 import PlusIcon from './svg/Plus';
 import RemoveIcon from './svg/Remove';
 import Modal from './Modal';
+import RemovePopup from './RemovePopup';
 
 import base from '../base';
 
@@ -32,7 +32,8 @@ class App extends React.Component {
         searchResults: [],
         isFetching: false,
         showModal: false,
-        showFullDesc: false
+        showFullDesc: false,
+        isRemovePopupVisible: false
     };
   }
   
@@ -411,6 +412,12 @@ class App extends React.Component {
     });
   };
   
+  toggleRemovePopup = () => {
+    let isRemovePopupVisible = this.state.isRemovePopupVisible;
+    isRemovePopupVisible = !isRemovePopupVisible;
+    this.setState({ isRemovePopupVisible });
+  };
+  
   render() {
     const Main = () => {
       const currList = this.getCurrentList().listName;
@@ -418,6 +425,10 @@ class App extends React.Component {
       const removeListHandler = () => {
         this.removeList(currList);
         this.toggleSelected('To Read');
+        this.toggleRemovePopup();
+        setTimeout(() => {
+          this.toggleRemovePopup();
+        }, 2500);
       };
       
       return (
@@ -439,12 +450,6 @@ class App extends React.Component {
             }
           </div>
           <BookListPane currentList={this.getCurrentList()}/>
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
-            <div className="remove-popup">Shelf has been removed</div>
-          </CSSTransitionGroup>
           <Modal 
             toggleSelected={this.toggleSelected} 
             getCurrentList={this.getCurrentList} 
@@ -480,6 +485,10 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}/>
+        
+        <RemovePopup
+          isVisible={this.state.isRemovePopupVisible}
+          message="List has Been Removed"/>
         
         <Route exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
