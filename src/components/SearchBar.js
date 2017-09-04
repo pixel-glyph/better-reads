@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SearchIcon from './svg/Search';
 
 import { getJSON } from '../get';
+import { getSuggestions } from '../get';
 import { APIKey } from '../api';
 
 class SearchBar extends React.Component {
@@ -29,11 +30,24 @@ class SearchBar extends React.Component {
     });  // add another then() here to stop loading gif
   };
   
+  showSuggestions = (e) => {
+    const query = this.searchTerms.value + e.key;
+    getSuggestions(query);
+  };
+  
   render() {
     return (
       <div>
-        <form ref={(input) => this.searchForm = input} className="book-search" onSubmit={(e) => this.search(e)}>
-          <input ref={(input) => this.searchTerms = input} className="book-search-input" type="text" placeholder="Search Books..." />
+        <form 
+          ref={(input) => this.searchForm = input} 
+          className="book-search" 
+          onSubmit={(e) => this.search(e)}>
+          <input 
+            ref={(input) => this.searchTerms = input} 
+            onKeyDown={(e) => this.showSuggestions(e)}
+            className="book-search-input" 
+            type="text" 
+            placeholder="Search Books..." />
           <button type="submit">
             <SearchIcon/>
           </button>
