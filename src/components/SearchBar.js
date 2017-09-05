@@ -31,13 +31,18 @@ class SearchBar extends React.Component {
   };
   
   showSuggestions = (e) => {
-    const query = this.searchTerms.value + e.key;
-    getSuggestions(query);
+    if(e.key.length < 2 && e.key !== ' ') {
+      const query = this.searchTerms.value + e.key;
+      getSuggestions(query);
+    } else if(e.key === 'Backspace') {
+      const query = this.searchTerms.value.slice(0, -1);
+      getSuggestions(query);
+    }
   };
   
   render() {
     return (
-      <div>
+      <div className="book-search-wrapper">
         <form 
           ref={(input) => this.searchForm = input} 
           className="book-search" 
@@ -52,6 +57,11 @@ class SearchBar extends React.Component {
             <SearchIcon/>
           </button>
         </form>
+        <div className="search-suggs-wrapper">
+          <ul className="search-suggs">
+            
+          </ul>
+        </div>
       </div>
     )
   }

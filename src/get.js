@@ -31,7 +31,18 @@ export function getBook(volumeID, APIKey) {
 }
 
 window.myJsonpCallback = (data) => {
-  console.log('zee data: ', data);
+  const searchSuggs = data[1].slice(0, 5);
+  const suggList = document.querySelector('.search-suggs');
+  while(suggList.firstChild) {
+    suggList.removeChild(suggList.firstChild);
+  }
+  
+  searchSuggs.forEach(sugg => {
+    let suggItem = document.createElement('li');
+    suggItem.classList.add('sugg-item');
+    suggItem.textContent = sugg;
+    suggList.appendChild(suggItem);
+  });
 };
 
 export function getSuggestions(queryTerm) {
@@ -39,4 +50,5 @@ export function getSuggestions(queryTerm) {
   var scriptEl = document.createElement('script');
 	scriptEl.setAttribute('src', requestUrl);
 	document.body.appendChild(scriptEl);
+	document.body.removeChild(scriptEl);
 }
