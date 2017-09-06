@@ -43,8 +43,15 @@
   }
   
   .search-suggs-wrapper {
+    display: none;
+    position: absolute;
+    width: 298px;
     margin-top: 0;
     border: 1px solid #babcbd;
+    overflow-x: scroll;
+    background-color: #fff;
+    z-index: 30;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     
     .search-suggs {
       list-style-type: none;

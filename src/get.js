@@ -31,18 +31,26 @@ export function getBook(volumeID, APIKey) {
 }
 
 window.myJsonpCallback = (data) => {
-  const searchSuggs = data[1].slice(0, 5);
+  const searchSuggs = data[1].slice(0, 10);
+  const searchSuggsWrapper = document.querySelector('.search-suggs-wrapper');
   const suggList = document.querySelector('.search-suggs');
   while(suggList.firstChild) {
     suggList.removeChild(suggList.firstChild);
   }
   
   searchSuggs.forEach(sugg => {
+    if(sugg.startsWith('http://')) return;
     let suggItem = document.createElement('li');
     suggItem.classList.add('sugg-item');
     suggItem.textContent = sugg;
     suggList.appendChild(suggItem);
   });
+  
+  if(searchSuggs.length) {
+    searchSuggsWrapper.style.display = 'block';
+  } else {
+    searchSuggsWrapper.style.display = 'none';
+  }
 };
 
 export function getSuggestions(queryTerm) {

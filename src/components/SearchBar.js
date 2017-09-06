@@ -58,9 +58,7 @@ class SearchBar extends React.Component {
           </button>
         </form>
         <div className="search-suggs-wrapper">
-          <ul className="search-suggs">
-            
-          </ul>
+          <ul className="search-suggs"></ul>
         </div>
       </div>
     )
