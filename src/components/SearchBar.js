@@ -5,6 +5,7 @@ import SearchIcon from './svg/Search';
 
 import { getJSON } from '../get';
 import { getSuggestions } from '../get';
+import { selectSuggestions } from '../get';
 import { APIKey } from '../api';
 
 class SearchBar extends React.Component {
@@ -37,6 +38,8 @@ class SearchBar extends React.Component {
     } else if(e.key === 'Backspace') {
       const query = this.searchTerms.value.slice(0, -1);
       getSuggestions(query);
+    } else if(e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === 'Tab') {
+      selectSuggestions(e.key);
     }
   };
   

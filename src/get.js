@@ -60,3 +60,59 @@ export function getSuggestions(queryTerm) {
 	document.body.appendChild(scriptEl);
 	document.body.removeChild(scriptEl);
 }
+
+export function selectSuggestions(key) {
+  const suggs = document.querySelectorAll('.search-suggs > .sugg-item');
+  if(!suggs.length) return;
+  
+  let selected = document.querySelector('.sugg-item.selected'),
+      current;
+      
+  if(selected) {
+    selected.classList.remove('selected');
+  }
+  
+  if(key === 'ArrowDown') {
+    if(!selected || !selected.nextElementSibling) {
+      current = suggs[0];
+    } else {
+      current = selected.nextElementSibling;
+    }
+  } else if(key === 'ArrowUp') {
+    if(!selected || !selected.previousElementSibling) {
+      current = suggs[suggs.length - 1];
+    } else {
+      current = selected.previousElementSibling;
+    }
+  } else if((key === 'Enter' || key === 'Tab') && selected) {
+    removeSuggList();
+  }
+  
+  if(current) {
+    current.classList.add('selected');
+  }
+  const newSelected = document.querySelector('.sugg-item.selected');
+  
+  if(newSelected) {
+    const input = document.querySelector('.book-search-input');
+    const suggName = newSelected.textContent;
+    input.value = suggName;
+  }
+}
+
+function isSuggList(e) {
+  if(!document.querySelectorAll('.search-suggs > .sugg-item').length) return;
+  if(document.querySelector('.search-suggs').contains(e.target)) {
+    const selectedBookName = e.target.textContent;
+    document.querySelector('.book-search-input').value = selectedBookName;
+    removeSuggList();
+  } else {
+    removeSuggList();
+  }
+}
+
+function removeSuggList() {
+  document.querySelector('.search-suggs-wrapper').style.display = 'none';
+}
+
+document.addEventListener('click', isSuggList)
