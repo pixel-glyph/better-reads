@@ -3,22 +3,29 @@ import PropTypes from 'prop-types';
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class Header extends React.Component {
   
   render() {
-    const headerClass = this.props.showSearchBar ? ' show-header' : ''
+    let header = this.props.showHeader
+      ? <div key={this.props.path} className='app-header'>
+          <Logo/>
+          <SearchBar 
+            path={this.props.path} 
+            history={this.props.history} 
+            setResults={this.props.setResults}
+            toggleFetch={this.props.toggleFetch} />
+        </div>
+      : null;
     
     return (
-      <div className={`app-header${headerClass}`}>
-        <Logo/>
-        <SearchBar 
-          path={this.props.path} 
-          history={this.props.history} 
-          setResults={this.props.setResults}
-          toggleFetch={this.props.toggleFetch}
-          showSearchBar={this.props.showSearchBar}/>
-      </div>
+      <CSSTransitionGroup
+        transitionName="header"
+        transitionEnterTimeout={200}
+        transitionLeaveTimeout={200}>
+        {header}
+      </CSSTransitionGroup>
     )
   }
 }
@@ -28,7 +35,7 @@ Header.propTypes = {
   toggleFetch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
-  showSearchBar: PropTypes.bool.isRequired
+  showHeader: PropTypes.bool.isRequired
 };
 
 export default Header;

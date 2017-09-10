@@ -501,15 +501,14 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
-          showSearchBar={this.state.showHeader}/>
+          showHeader={this.state.showHeader}/>
         
         <Logo/>
         <SearchBar 
           path={this.props.location.pathname} 
           history={this.props.history} 
           setResults={this.setResults}
-          toggleFetch={this.toggleFetch}
-          showSearchBar={this.state.showHeader}/>
+          toggleFetch={this.toggleFetch}/>
         
         <RemovePopup
           isVisible={this.state.isRemovePopupVisible}

@@ -44,10 +44,9 @@ class SearchBar extends React.Component {
   };
   
   render() {
-    const showClass = this.props.showSearchBar ? ' show-search-bar' : '';
     
     return (
-      <div className={`book-search-wrapper${showClass}`}>
+      <div className='book-search-wrapper'>
         <form 
           ref={(input) => this.searchForm = input} 
           className="book-search" 
@@ -74,8 +73,7 @@ SearchBar.propTypes = {
   setResults: PropTypes.func.isRequired,
   toggleFetch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
-  showSearchBar: PropTypes.bool.isRequired
+  path: PropTypes.string.isRequired
 };
 
 export default SearchBar;
