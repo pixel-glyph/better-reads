@@ -21,7 +21,8 @@ class SwitchListBtn extends React.Component {
           lists={this.props.lists} 
           switchList={this.props.switchList}
           showList={this.props.showList}
-          toggleSideList={this.props.toggleSideList}/>
+          toggleSideList={this.props.toggleSideList}
+          onMobile={true} />
       </div>
     )
   }

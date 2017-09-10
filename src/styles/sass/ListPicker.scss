@@ -1,3 +1,32 @@
-.app-list-picker {
-  @include side-list;
+.switch-list-btn {
+  .app-list-picker {
+    @include side-list-mobile;
+  }
+}
+
+.book-list-pane-wrapper {
+  display: flex;
+  > .app-list-picker-wrapper {
+    display: none;
+    width: 250px;
+    
+    @media(min-width: 800px) {
+      display: block;
+    }
+    
+    > .app-list-picker {
+      
+      .book-lists {
+        list-style-type: none;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #c8ccd0;
+        border-radius: 7px;
+        cursor: pointer;
+        .list-title {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
 }

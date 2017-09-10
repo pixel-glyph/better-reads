@@ -10,6 +10,7 @@ import Book from './Book';
 import BookView from './BookView';
 import AddBookBtn from './AddBookBtn';
 import MoveBookBtn from './MoveBookBtn';
+import ListPicker from './ListPicker';
 import SwitchListBtn from './SwitchListBtn';
 import PlusIcon from './svg/Plus';
 import RemoveIcon from './svg/Remove';
@@ -465,7 +466,14 @@ class App extends React.Component {
               : null
             }
           </div>
-          <BookListPane currentList={this.getCurrentList()}/>
+          <div className="book-list-pane-wrapper">
+            <ListPicker
+              switchList={this.switchList}
+              toggleSideList={this.toggleSideList}
+              showList={this.state.showList}
+              lists={this.state.bookLists} />
+            <BookListPane currentList={this.getCurrentList()}/>
+          </div>
           <Modal 
             toggleSelected={this.toggleSelected} 
             getCurrentList={this.getCurrentList} 
@@ -473,7 +481,7 @@ class App extends React.Component {
             showModal={this.state.showModal}
             doesListExist={this.doesListExist}
             toggleModal={this.toggleModal}
-            bookLists={this.state.bookLists}/>
+            bookLists={this.state.bookLists} />
         </div>
       )
     };
@@ -501,14 +509,14 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
-          showHeader={this.state.showHeader}/>
+          showHeader={this.state.showHeader} />
         
         <Logo/>
         <SearchBar 
           path={this.props.location.pathname} 
           history={this.props.history} 
           setResults={this.setResults}
-          toggleFetch={this.toggleFetch}/>
+          toggleFetch={this.toggleFetch} />
         
         <RemovePopup
           isVisible={this.state.isRemovePopupVisible}
@@ -530,7 +538,7 @@ class App extends React.Component {
             moveBook={this.moveBook}
             toggleDesc={this.toggleDesc}
             showFullDesc={this.state.showFullDesc}
-            removeBook={this.removeBook}/>
+            removeBook={this.removeBook} />
         )}/>
       </div>
     )

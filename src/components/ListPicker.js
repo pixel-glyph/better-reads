@@ -18,7 +18,8 @@ class ListPicker extends React.Component {
             listDisplayName={list}
             numBooks={numBooks}
             toggleSideList={this.props.toggleSideList}
-            switchList={this.props.switchList}/>;
+            switchList={this.props.switchList}
+            onMobile={this.props.onMobile} />;
   };
   
   render() {
@@ -26,7 +27,7 @@ class ListPicker extends React.Component {
     const showClass = showList.isActive ? " show-list" : "";
       
     return (
-      <div>
+      <div className="app-list-picker-wrapper">
         <div className={`app-list-picker${showClass}`}>
           <ul className="book-lists list-names">
             <li className="list-title">Switch List</li>
@@ -49,7 +50,8 @@ ListPicker.propTypes = {
   lists: PropTypes.object.isRequired,
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.object.isRequired,
-  switchList: PropTypes.func.isRequired
+  switchList: PropTypes.func.isRequired,
+  onMobile: PropTypes.bool
 };
 
 export default ListPicker;

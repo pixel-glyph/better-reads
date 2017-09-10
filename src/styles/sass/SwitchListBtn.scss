@@ -6,6 +6,10 @@
   border-radius: 4px;
   cursor: pointer;
   
+  @media(min-width: 800px) {
+    display: none;
+  }
+  
   .btn-wrapper {
     font-size: 15px;
     display: flex;

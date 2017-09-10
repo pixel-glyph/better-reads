@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 class BookList extends React.Component {  
   switchListSelect = (list) => {
-    this.props.toggleSideList();
+    if(this.props.onMobile) {
+      this.props.toggleSideList();
+    }
     this.props.switchList(list);
   };
   
@@ -23,7 +25,8 @@ BookList.propTypes = {
   listDisplayName: PropTypes.string.isRequired,
   numBooks: PropTypes.number.isRequired,
   toggleSideList: PropTypes.func.isRequired,
-  switchList: PropTypes.func.isRequired
+  switchList: PropTypes.func.isRequired,
+  onMobile: PropTypes.bool
 };
 
 export default BookList;

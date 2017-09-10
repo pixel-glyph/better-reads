@@ -1,4 +1,6 @@
 .app-book-list-pane {
+  flex-grow: 1;
+  max-width: 780px;
   height: auto;
   margin: 10px auto;
   background-color: #fff;
