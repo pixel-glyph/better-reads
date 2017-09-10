@@ -14,6 +14,7 @@ import PlusIcon from './svg/Plus';
 import RemoveIcon from './svg/Remove';
 import Modal from './Modal';
 import RemovePopup from './RemovePopup';
+import ScrollToTopRoute from './ScrollToTopRoute';
 
 import base from '../base';
 
@@ -90,7 +91,7 @@ class App extends React.Component {
   }
   
   handleScroll = (e) => {
-    let scrollTop = e.srcElement.body.scrollTop;
+    let scrollTop = window.scrollY;
     if(scrollTop > 165) {
       this.setState({ showHeader: true })
     } else {
@@ -518,7 +519,7 @@ class App extends React.Component {
           isVisible={this.state.isRemovePopupVisible}
           message="List has Been Removed"/>
         
-        <Route exact path="/" component={Main}/>
+        <ScrollToTopRoute exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>
         <Route path="/book/:id" render={(props) => (
           <BookView 
