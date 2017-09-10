@@ -4,6 +4,7 @@ import update from 'immutability-helper';
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
+import Header from './Header';
 import BookListPane from './BookListPane';
 import Book from './Book';
 import BookView from './BookView';
@@ -492,20 +493,15 @@ class App extends React.Component {
       </div>
     );
     
-    const headerClass = this.state.showHeader ? ' show-header' : ''
-
     return (
       <div className="app-wrapper">
         
-        <div className={`app-header${headerClass}`}>
-          <Logo/>
-          <SearchBar 
-            path={this.props.location.pathname} 
-            history={this.props.history} 
-            setResults={this.setResults}
-            toggleFetch={this.toggleFetch}
-            showSearchBar={this.state.showHeader}/>
-        </div>
+        <Header
+          path={this.props.location.pathname} 
+          history={this.props.history} 
+          setResults={this.setResults}
+          toggleFetch={this.toggleFetch}
+          showSearchBar={this.state.showHeader}/>
         
         <Logo/>
         <SearchBar 
