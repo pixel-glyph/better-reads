@@ -2,8 +2,22 @@
   width: 200px;
   height: 40px;
   margin: 30px auto;
+  
   a {
     color: #3a3a3a;
     text-decoration: none;
+  }
+}
+
+.app-wrapper {
+  > .app-logo {
+    @media(min-width: 800px) {
+      width: 329px;
+      height: 54px;
+      margin: 40px auto 90px;
+      h1 {
+        font-size: 56px;
+      }
+    }
   }
 }

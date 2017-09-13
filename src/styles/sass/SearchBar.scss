@@ -2,6 +2,11 @@
   width: 300px;
   margin: 20px auto 25px;
   
+  @media(min-width: 800px) {
+    width: 511px;
+    margin-bottom: 35px;
+  }
+  
   .book-search {
     display: flex;
     
@@ -21,6 +26,9 @@
       }
       &:focus {
         outline: none;
+      }
+      @media(min-width: 800px) {
+        width: 417px;
       }
     }
     
@@ -66,6 +74,10 @@
           background-color: #4d90fe;
         }
       }
+    }
+    
+    @media(min-width: 800px) {
+      width: 508px;
     }
   }
   
