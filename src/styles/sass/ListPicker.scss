@@ -6,30 +6,36 @@
 
 .book-list-pane-wrapper {
   display: flex;
+  max-width: 1120px;
+  margin: 0 auto;
+  
   > .app-list-picker-wrapper {
     display: none;
-    width: 270px;
     
     @media(min-width: 800px) {
       display: block;
+      flex-grow: 1;
+      max-width: 270px;
     }
     
     > .app-list-picker {
       
       .book-lists {
-        margin: 40px 0 0 20px;
+        margin: 38px 0 0 0px;
         padding: 0;
         list-style-type: none;
         border: 1px solid #c8ccd0;
         border-radius: 7px;
         cursor: pointer;
+        
         .list-title {
-          background-color: #b5c0c9;
+          background-color: rgba(181, 192, 201, 0.68);
           margin: 0 auto;
           padding: 11px;
           border-radius: 6px 6px 0 0;
           font-weight: bold;
           font-size: 18px;
+          cursor: default;
         }
         
         .list-name {

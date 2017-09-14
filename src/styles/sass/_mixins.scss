@@ -44,7 +44,7 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   cursor: default;
-  z-index: 20;
+  z-index: 40;
   &.show-list {
     transform: translateX(-300px);
   }

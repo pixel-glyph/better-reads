@@ -25,6 +25,14 @@ class ListPicker extends React.Component {
   render() {
     const { showList } = this.props;
     const showClass = showList.isActive ? " show-list" : "";
+    let lists = Object.keys(this.props.lists);
+    
+    lists.forEach((list, i) => {
+    	if(list === "Read" || list === "To Read") { 
+    		lists.splice(i, 1);
+        lists.unshift(list);
+    	}
+    });
       
     return (
       <div className="app-list-picker-wrapper">
@@ -32,9 +40,7 @@ class ListPicker extends React.Component {
           <ul className="book-lists list-names">
             <li className="list-title">Switch List</li>
             {
-              Object
-                .keys(this.props.lists)
-                .map((list, i) => this.getNumbooks(list, i))
+              lists.map((list, i) => this.getNumbooks(list, i))
             }
           </ul>
         </div>
