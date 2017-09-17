@@ -23,8 +23,10 @@ class ListPicker extends React.Component {
   };
   
   render() {
-    const { showList } = this.props;
+    const { showList, fixList } = this.props;
     const showClass = showList.isActive ? " show-list" : "";
+    const posClass = fixList ? " list-picker-fixed" : "";
+    
     let lists = Object.keys(this.props.lists);
     
     lists.forEach((list, i) => {
@@ -35,7 +37,7 @@ class ListPicker extends React.Component {
     });
       
     return (
-      <div className="app-list-picker-wrapper">
+      <div className={`app-list-picker-wrapper${posClass}`}>
         <div className={`app-list-picker${showClass}`}>
           <ul className="book-lists list-names">
             <li className="list-title">Switch List</li>
@@ -57,7 +59,8 @@ ListPicker.propTypes = {
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.object.isRequired,
   switchList: PropTypes.func.isRequired,
-  onMobile: PropTypes.bool
+  onMobile: PropTypes.bool,
+  fixList: PropTypes.bool
 };
 
 export default ListPicker;

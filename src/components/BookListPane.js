@@ -24,8 +24,10 @@ class BookListPane extends React.Component {
   };
   
   render() {
+    const posClass = this.props.fixList ? " list-picker-fixed" : "";
+
     return (
-      <div className="app-book-list-pane">
+      <div className={`app-book-list-pane${posClass}`}>
         <h1 className="list-title">{this.props.currentList.listName}</h1>
         <ul className="app-book-list">
           {this.renderList()}
@@ -36,7 +38,8 @@ class BookListPane extends React.Component {
 }
 
 BookListPane.propTypes = {
-  currentList: PropTypes.object.isRequired
+  currentList: PropTypes.object.isRequired,
+  fixList: PropTypes.bool.isRequired
 };
 
 export default BookListPane;

@@ -12,6 +12,12 @@
   > .app-list-picker-wrapper {
     display: none;
     
+    &.list-picker-fixed {
+      position: fixed;
+      width: 270px;
+      top: 52px;
+    }
+    
     @media(min-width: 800px) {
       display: block;
       flex-grow: 1;

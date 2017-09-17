@@ -37,7 +37,8 @@ class App extends React.Component {
         showModal: false,
         showFullDesc: false,
         isRemovePopupVisible: false,
-        showHeader: false
+        showHeader: false,
+        fixListPicker: false
     };
   }
   
@@ -85,19 +86,31 @@ class App extends React.Component {
   
   componentWillUnmount() {
     base.removeBinding(this.ref);
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.headerScroll);
+    window.removeEventListener('scroll', this.listPositionScroll);
   }
   
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.headerScroll);
+    window.addEventListener('scroll', this.listPositionScroll);
   }
   
-  handleScroll = (e) => {
+  headerScroll = (e) => {
     let scrollTop = window.scrollY;
     if(scrollTop > 165) {
       this.setState({ showHeader: true })
     } else {
       this.setState({ showHeader: false })
+    }
+  };
+  
+  listPositionScroll = (e) => {
+    if(window.innerWidth < 800) return;
+    let scrollTop = window.scrollY;
+    if(scrollTop > 210) {
+      this.setState({ fixListPicker: true })
+    } else {
+      this.setState({ fixListPicker: false })
     }
   };
   
@@ -471,8 +484,11 @@ class App extends React.Component {
               switchList={this.switchList}
               toggleSideList={this.toggleSideList}
               showList={this.state.showList}
-              lists={this.state.bookLists} />
-            <BookListPane currentList={this.getCurrentList()}/>
+              lists={this.state.bookLists}
+              fixList={this.state.fixListPicker} />
+            <BookListPane 
+              currentList={this.getCurrentList()}
+              fixList={this.state.fixListPicker} />
           </div>
           <Modal 
             toggleSelected={this.toggleSelected} 
