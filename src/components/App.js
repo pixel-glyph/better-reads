@@ -96,15 +96,18 @@ class App extends React.Component {
   }
   
   headerScroll = (e) => {
+    if(window.didScrollHeader) return;
     let scrollTop = window.scrollY;
     if(scrollTop > 165) {
       this.setState({ showHeader: true })
     } else {
       this.setState({ showHeader: false })
     }
+    window.didScrollHeader = true;
   };
   
   listPositionScroll = (e) => {
+    if(window.didScrollListPicker) return;
     if(window.innerWidth < 800) return;
     let scrollTop = window.scrollY;
     if(scrollTop > 210) {
@@ -112,6 +115,7 @@ class App extends React.Component {
     } else {
       this.setState({ fixListPicker: false })
     }
+    window.didScrollListPicker = true;
   };
   
   doesBookExist = (id) => {
