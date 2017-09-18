@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import BookList from './BookList';
 import Overlay from './Overlay';
+import Plus from './svg/Plus';
 
 class ListPicker extends React.Component {
   
@@ -46,9 +47,13 @@ class ListPicker extends React.Component {
             }
           </ul>
         </div>
+        <div className="add-list-wrapper" onClick={() => this.props.toggleModal()}>
+          <Plus onDesktop={true}/>
+          <span>Create new list</span>
+        </div>
         <Overlay 
           toggle={this.props.toggleSideList} 
-          showOverlay={showList.isActive}/>
+          showOverlay={showList.isActive} />
       </div>
     )
   }
@@ -59,6 +64,7 @@ ListPicker.propTypes = {
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.object.isRequired,
   switchList: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func,
   onMobile: PropTypes.bool,
   fixList: PropTypes.bool
 };

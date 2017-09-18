@@ -485,7 +485,8 @@ class App extends React.Component {
               toggleSideList={this.toggleSideList}
               showList={this.state.showList}
               lists={this.state.bookLists}
-              fixList={this.state.fixListPicker} />
+              fixList={this.state.fixListPicker}
+              toggleModal={this.toggleModal} />
             <BookListPane 
               currentList={this.getCurrentList()}
               fixList={this.state.fixListPicker} />

@@ -2,6 +2,10 @@
   .app-list-picker {
     @include side-list-mobile;
   }
+  
+  .add-list-wrapper {
+    display: none;
+  }
 }
 
 .book-list-pane-wrapper {
@@ -57,5 +61,43 @@
         }
       }
     }
+    
+    .add-list-wrapper {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      margin: 10px;
+    
+      .icon-plus {
+        margin: 0;
+        background-color: rgba(181, 192, 201, 0.68);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 300ms;
+        z-index: 5;
+        &:hover {
+          transform: rotate(90deg);
+          + span {
+            opacity: 1;
+            transform: translateX(15px);
+          }
+        }
+      }
+      
+      span {
+        position: absolute;
+        display: inline-block;
+        top: 6px;
+        left: 25px;
+        width: 100px;
+        font-size: 15px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 300ms ease-in-out;
+        cursor: default;
+      }
+      
+    }
+    
   }
 }
