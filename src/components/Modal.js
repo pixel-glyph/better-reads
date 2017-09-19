@@ -18,7 +18,7 @@ class Modal extends React.Component {
     }
     
     const currList = this.props.getCurrentList();
-    this.props.createList(this.newListName.value);
+    this.props.createList(this.newListName.value.trim());
     this.props.toggleSelected(currList.listName);
     this.props.toggleModal();
   };

@@ -20,7 +20,9 @@ class ListPicker extends React.Component {
             numBooks={numBooks}
             toggleSideList={this.props.toggleSideList}
             switchList={this.props.switchList}
-            onMobile={this.props.onMobile} />;
+            onMobile={this.props.onMobile} 
+            removeListHandler={this.props.removeListHandler} 
+            lists={this.props.lists} />;
   };
   
   render() {
@@ -64,6 +66,7 @@ ListPicker.propTypes = {
   toggleSideList: PropTypes.func.isRequired,
   showList: PropTypes.object.isRequired,
   switchList: PropTypes.func.isRequired,
+  removeListHandler: PropTypes.func,
   toggleModal: PropTypes.func,
   onMobile: PropTypes.bool,
   fixList: PropTypes.bool

@@ -49,14 +49,26 @@
         }
         
         .list-name {
+          display: flex;
+          justify-content: space-between;
           padding: 8px 7px;
           border-bottom: 1px solid #dddada;
           &:hover {
-            background-color: #f1f6fa;
+            background-color: rgba(220, 237, 251, 0.4);
+            .list-picker-remove-icon {
+              visibility: visible;
+            }
           }
           &:last-child {
             border: none;
             border-radius: 0 0 6px 6px;
+          }
+          &.selected {
+            background-color: #dcedfb;
+          }
+          
+          .list-picker-remove-icon {
+            visibility: hidden;
           }
         }
       }

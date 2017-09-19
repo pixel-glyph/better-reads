@@ -267,26 +267,36 @@ class App extends React.Component {
     });
   };
   
-  removeList = (listName) => {
+  removeList = (list) => {
+    const currList = !list ? this.getCurrentList().listName : list;
     const bookLists = {...this.state.bookLists};
-    if(!this.doesListExist(bookLists, listName)) {
+    if(!this.doesListExist(bookLists, currList)) {
       return alert('list does not exist');
     }
     
-    if(window.confirm(`Are you sure you want to remove your ${listName} shelf and all its books?`)) {
-      let listToRemove = bookLists[listName];
+    if(window.confirm(`Are you sure you want to remove your ${currList} shelf and all its books?`)) {
+      let listToRemove = bookLists[currList];
       let ids = [];
       for (var id in listToRemove.books) {
         ids.push(id);
       }
       this.removeBookIDs(ids);
       
-      bookLists[listName] = null;
+      bookLists[currList] = null;
       this.setState(newState => {
         return {
           bookLists: update(newState.bookLists, {$set: bookLists})
         };
       });
+      
+      if(!list) {
+        this.toggleSelected('To Read');
+      }
+      
+      this.toggleRemovePopup();
+      setTimeout(() => {
+        this.toggleRemovePopup();
+      }, 2500);
     }
   };
     
@@ -456,13 +466,8 @@ class App extends React.Component {
     const Main = () => {
       const currList = this.getCurrentList().listName;
       
-      const removeListHandler = () => {
-        this.removeList(currList);
-        this.toggleSelected('To Read');
-        this.toggleRemovePopup();
-        setTimeout(() => {
-          this.toggleRemovePopup();
-        }, 2500);
+      const removeListHandler = (listToRemove) => {
+        this.removeList(listToRemove);
       };
       
       return (
@@ -490,7 +495,8 @@ class App extends React.Component {
               showList={this.state.showList}
               lists={this.state.bookLists}
               fixList={this.state.fixListPicker}
-              toggleModal={this.toggleModal} />
+              toggleModal={this.toggleModal} 
+              removeListHandler={removeListHandler} />
             <BookListPane 
               currentList={this.getCurrentList()}
               fixList={this.state.fixListPicker} />
