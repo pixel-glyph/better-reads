@@ -268,7 +268,8 @@ class App extends React.Component {
   };
   
   removeList = (list) => {
-    const currList = !list ? this.getCurrentList().listName : list;
+    const selectedList = this.getCurrentList().listName;
+    const currList = !list ? selectedList : list;
     const bookLists = {...this.state.bookLists};
     if(!this.doesListExist(bookLists, currList)) {
       return alert('list does not exist');
@@ -289,7 +290,7 @@ class App extends React.Component {
         };
       });
       
-      if(!list) {
+      if(!list || list === selectedList) {
         this.toggleSelected('To Read');
       }
       

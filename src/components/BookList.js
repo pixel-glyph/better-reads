@@ -17,7 +17,7 @@ class BookList extends React.Component {
     while(!parentElem.classList.contains("list-picker-remove-icon")) {
       parentElem = parentElem.parentNode;
     }
-    const listToRemove = parentElem.previousSibling.firstChild.textContent.trim();
+    const listToRemove = parentElem.previousSibling.firstChild.textContent;
     this.props.removeListHandler(listToRemove);
   };
   
@@ -28,8 +28,8 @@ class BookList extends React.Component {
     return (
       <li className={`list-name${selectedClass}`} onClick={() => this.switchListSelect(listName)}>
         <div className="list-name-text">
-          <span>{listDisplayName} </span>
-          <span>({this.props.numBooks})</span>
+          <span>{listDisplayName}</span>
+          <span> ({this.props.numBooks})</span>
         </div>
         {!onMobile && listDisplayName !== "To Read" && listDisplayName !== "Read"
           ? <div className="list-picker-remove-icon" onClick={(e) => this.removeList(e)}>
