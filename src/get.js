@@ -122,7 +122,7 @@ setInterval(() => {
   if(window.didScrollHeader) {
     window.didScrollHeader = false
   }
-}, 100);
+}, 50);
 
 setInterval(() => {
   if(window.didScrollListPicker) {

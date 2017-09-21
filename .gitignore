@@ -19,6 +19,9 @@ src/**/*.css
 .env.test.local
 .env.production.local
 
+# VScode
+.vscode/.react
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

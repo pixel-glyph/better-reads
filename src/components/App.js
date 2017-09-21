@@ -95,6 +95,10 @@ class App extends React.Component {
     window.addEventListener('scroll', this.listPositionScroll);
   }
   
+  componentDidUpdate() {
+    this.ensureSelectedList();
+  }
+
   headerScroll = (e) => {
     if(window.didScrollHeader) return;
     let scrollTop = window.scrollY;
@@ -238,6 +242,24 @@ class App extends React.Component {
     return this.state.bookLists[currListName]
       ? this.state.bookLists[currListName]
       : {};
+  };
+
+  ensureSelectedList = () => {
+    const bookLists = {...this.state.bookLists};
+    let listSelected;
+    for(const list in bookLists) {
+      if(bookLists[list] && bookLists[list].selected) {
+        if(listSelected) {
+          bookLists[list].selected = false;
+        } else {
+          listSelected = true;
+        }
+      }
+    }
+
+    if(!listSelected) {
+      bookLists['To Read'].selected = true;
+    }
   };
   
   toggleSelected = (listName) => {
