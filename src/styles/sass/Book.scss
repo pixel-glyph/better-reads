@@ -1,6 +1,15 @@
 .book {
   padding: 12px 0;
   border-top: 1px solid rgba(128, 128, 128, 0.34);
+  position: relative;
+
+  @media(min-width: 800px) {
+    &:hover {
+      .icon-menu {
+        display: block;
+      }
+    }
+  }
   
   &.no-results,
   &.empty-list {
@@ -24,5 +33,21 @@
   
   img {
     width: 65px;
+  }
+
+  .icon-menu {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    padding: 7px;
+    fill: #BEBEBE;
+    border-radius: 25px;
+    cursor: pointer;
+
+    &.focused {
+      display: block;
+      background-color: #ececec;
+    }
   }
 }

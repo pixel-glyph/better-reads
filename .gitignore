@@ -20,7 +20,8 @@ src/**/*.css
 .env.production.local
 
 # VScode
-.vscode/.react
+.vscode/
+.react
 
 npm-debug.log*
 yarn-debug.log*

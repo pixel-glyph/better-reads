@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Menu from './svg/Menu';
+
 class Book extends React.Component {
   
   render() {
@@ -19,6 +21,7 @@ class Book extends React.Component {
           </p>
           <p className="book-author">by {bookInfo.author}, {bookInfo.pubDate}</p>
         </div>
+        <Menu/>
       </div>
     )
   }
