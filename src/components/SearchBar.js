@@ -13,6 +13,10 @@ class SearchBar extends React.Component {
   search = (e) => {
     e.preventDefault();
     if(!this.searchTerms.value) return;
+
+    if(this.props.isBookMenuActive) {
+      this.props.toggleBookMenu();
+    }
     
     this.props.toggleFetch();
     const searchTerms = this.searchTerms.value.split(' ').join('+');
@@ -73,7 +77,9 @@ SearchBar.propTypes = {
   setResults: PropTypes.func.isRequired,
   toggleFetch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
+  isBookMenuActive: PropTypes.bool.isRequired,
+  toggleBookMenu: PropTypes.func.isRequired
 };
 
 export default SearchBar;

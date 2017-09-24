@@ -278,8 +278,11 @@ class App extends React.Component {
   };
   
   createList = (listName) => {
+    if(this.state.showBookMenu.isActive) {
+      this.toggleBookMenu();
+    }
+
     const bookLists = {...this.state.bookLists};
-    
     bookLists[listName] = {
       listName: listName,
       selected: true,
@@ -294,6 +297,10 @@ class App extends React.Component {
   };
   
   removeList = (list) => {
+    if(this.state.showBookMenu.isActive) {
+      this.toggleBookMenu();
+    }
+
     const selectedList = this.getCurrentList().listName;
     const currList = !list ? selectedList : list;
     const bookLists = {...this.state.bookLists};
@@ -328,6 +335,9 @@ class App extends React.Component {
   };
     
   switchList = (listName) => {
+    if(this.state.showBookMenu.isActive) {
+      this.toggleBookMenu();
+    }
     const currList = this.getCurrentList();
     if(listName === currList.listName) return;
     this.toggleSelected(listName);
@@ -583,7 +593,9 @@ class App extends React.Component {
           path={this.props.location.pathname} 
           history={this.props.history} 
           setResults={this.setResults}
-          toggleFetch={this.toggleFetch} />
+          toggleFetch={this.toggleFetch}
+          toggleBookMenu={this.toggleBookMenu}
+          isBookMenuActive={this.state.showBookMenu.isActive} />
         
         <RemovePopup
           isVisible={this.state.isRemovePopupVisible}
