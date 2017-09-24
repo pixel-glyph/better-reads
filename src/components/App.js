@@ -32,6 +32,10 @@ class App extends React.Component {
             isActive: false,
             index: 0
           },
+        showBookMenu: {
+            isActive: false,
+            index: 0
+          },
         searchResults: [],
         isFetching: false,
         showModal: false,
@@ -272,7 +276,7 @@ class App extends React.Component {
       return {bookLists: newState.bookLists};
     });
   };
-    
+  
   createList = (listName) => {
     const bookLists = {...this.state.bookLists};
     
@@ -468,6 +472,17 @@ class App extends React.Component {
     });
   };
   
+  toggleBookMenu = (i=0) => {
+    const showBookMenu = {...this.state.showBookMenu};
+    showBookMenu.isActive = !showBookMenu.isActive;
+    showBookMenu.index = i;
+    this.setState(newState => {
+      return {
+        showBookMenu: update(newState.showBookMenu, {$set: showBookMenu})
+      };
+    });
+  };
+
   toggleSideList = (i=0) => {
     const showList = {...this.state.showList};
     showList.isActive = !showList.isActive;
@@ -522,7 +537,9 @@ class App extends React.Component {
               removeListHandler={removeListHandler} />
             <BookListPane 
               currentList={this.getCurrentList()}
-              fixList={this.state.fixListPicker} />
+              fixList={this.state.fixListPicker} 
+              toggleBookMenu={this.toggleBookMenu}
+              showBookMenu={this.state.showBookMenu} />
           </div>
           <Modal 
             toggleSelected={this.toggleSelected} 

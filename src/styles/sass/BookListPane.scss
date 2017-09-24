@@ -26,6 +26,34 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+
+    .book-wrapper {
+      position: relative;
+      @media(min-width: 800px) {
+        &:hover {
+          .icon-menu {
+            display: block;
+          }
+        }
+      }
+      
+      .icon-menu {
+        display: none;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        padding: 7px;
+        fill: #BEBEBE;
+        border-radius: 25px;
+        cursor: pointer;
+    
+        &.focused {
+          display: block;
+          background-color: #ececec;
+        }
+      }
+    }
+
     .on-search {
       display: none;
     }

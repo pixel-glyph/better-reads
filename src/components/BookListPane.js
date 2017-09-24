@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Book from './Book';
+import Menu from './svg/Menu';
+
 
 class BookListPane extends React.Component {
   
-  renderBook = (bookId) => {
+  renderBook = (bookId, i) => {
     if(!this.props.currentList.books[bookId]) return;
     return (
-      <li key={bookId}>
+      <li className="book-wrapper" key={bookId}>
         <Book bookInfo={this.props.currentList.books[bookId]}/>
+        <div onClick={() => this.props.toggleBookMenu(i)}>
+          <Menu index={i} showBookMenu={this.props.showBookMenu}/>
+        </div>
       </li>
     )
   };
@@ -20,7 +26,7 @@ class BookListPane extends React.Component {
     }
     return Object
       .keys(currentList.books)
-      .map(bookId => this.renderBook(bookId));
+      .map((bookId, i) => this.renderBook(bookId, i));
   };
   
   render() {
@@ -39,7 +45,9 @@ class BookListPane extends React.Component {
 
 BookListPane.propTypes = {
   currentList: PropTypes.object.isRequired,
-  fixList: PropTypes.bool.isRequired
+  toggleBookMenu: PropTypes.func.isRequired,  
+  fixList: PropTypes.bool.isRequired,
+  showBookMenu: PropTypes.object.isRequired
 };
 
 export default BookListPane;
