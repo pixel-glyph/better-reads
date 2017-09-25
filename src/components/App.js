@@ -586,7 +586,9 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
-          showHeader={this.state.showHeader} />
+          showHeader={this.state.showHeader}
+          toggleBookMenu={this.toggleBookMenu}
+          isBookMenuActive={this.state.showBookMenu.isActive} />
         
         <Logo/>
         <SearchBar 
