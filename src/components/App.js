@@ -416,7 +416,8 @@ class App extends React.Component {
         const lists = this.getAllLists();
         
         lists.forEach((list) => {
-          if(this.isBookInList(this.state.bookLists[list].books, book.id)) {
+          let books = this.state.bookLists[list].books;
+          if(books && this.isBookInList(books, book.id)) {
             book.list = list;
             return;
           }
@@ -561,7 +562,7 @@ class App extends React.Component {
               fixList={this.state.fixListPicker} 
               toggleBookMenu={this.toggleBookMenu}
               getAllLists={this.getAllLists}
-              switchList={this.switchList}
+              moveBook={this.moveBook}
               showBookMenuMoveList={this.state.showBookMenuMoveList}
               toggleBookMenuMoveList={this.toggleBookMenuMoveList}
               showBookMenu={this.state.showBookMenu} />
