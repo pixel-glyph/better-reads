@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Book from './Book';
+import BookMenu from './BookMenu';
 import Menu from './svg/Menu';
 
 
@@ -15,6 +16,12 @@ class BookListPane extends React.Component {
         <div onClick={() => this.props.toggleBookMenu(i)}>
           <Menu index={i} showBookMenu={this.props.showBookMenu}/>
         </div>
+        <BookMenu 
+          index={i} 
+          showBookMenu={this.props.showBookMenu}
+          getAllLists={this.props.getAllLists}
+          switchList={this.props.switchList}
+          currentList={this.props.currentList} />
       </li>
     )
   };
@@ -47,7 +54,9 @@ BookListPane.propTypes = {
   currentList: PropTypes.object.isRequired,
   toggleBookMenu: PropTypes.func.isRequired,  
   fixList: PropTypes.bool.isRequired,
-  showBookMenu: PropTypes.object.isRequired
+  getAllLists: PropTypes.func.isRequired,
+  showBookMenu: PropTypes.object.isRequired,
+  switchList: PropTypes.func.isRequired  
 };
 
 export default BookListPane;

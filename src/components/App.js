@@ -549,6 +549,8 @@ class App extends React.Component {
               currentList={this.getCurrentList()}
               fixList={this.state.fixListPicker} 
               toggleBookMenu={this.toggleBookMenu}
+              getAllLists={this.getAllLists}
+              switchList={this.switchList}
               showBookMenu={this.state.showBookMenu} />
           </div>
           <Modal 
