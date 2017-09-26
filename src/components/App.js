@@ -40,8 +40,9 @@ class App extends React.Component {
         isFetching: false,
         showModal: false,
         showFullDesc: false,
-        isRemovePopupVisible: false,
         showHeader: false,
+        showBookMenuMoveList: false,
+        isRemovePopupVisible: false,
         fixListPicker: false
     };
   }
@@ -493,6 +494,16 @@ class App extends React.Component {
     });
   };
 
+  toggleBookMenuMoveList = () => {
+    let showBookMenuMoveList = this.state.showBookMenuMoveList;
+    showBookMenuMoveList = !showBookMenuMoveList;
+    this.setState(newState => {
+      return {
+        showBookMenuMoveList: update(newState.showBookMenuMoveList, {$set: showBookMenuMoveList})
+      };
+    });
+  };
+
   toggleSideList = (i=0) => {
     const showList = {...this.state.showList};
     showList.isActive = !showList.isActive;
@@ -551,6 +562,8 @@ class App extends React.Component {
               toggleBookMenu={this.toggleBookMenu}
               getAllLists={this.getAllLists}
               switchList={this.switchList}
+              showBookMenuMoveList={this.state.showBookMenuMoveList}
+              toggleBookMenuMoveList={this.toggleBookMenuMoveList}
               showBookMenu={this.state.showBookMenu} />
           </div>
           <Modal 

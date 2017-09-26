@@ -7,6 +7,8 @@
     width: 160px;
     border: 1px solid #c8ccd0;
     border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+                0 25px 50px 0 rgba(0, 0, 0, 0.1);
     z-index: 20;
     &.show-menu {
       display: block;
@@ -32,11 +34,10 @@
         list-style-type: none;
         padding: 0;
         background-color: #fff;
-        border-radius: 0 0 5px 5px;      
-        cursor: pointer;      
+        cursor: pointer;
         z-index: 10;
       }
-
+      
       li {
         height: 20px;
         padding: 8px;
@@ -48,6 +49,7 @@
       
       ul.book-menu-list {
         border-top: 15px solid #cad1d7;
+        border-radius: 0 0 5px 5px;      
 
         li {
           &.book-menu-move {
@@ -79,7 +81,23 @@
       }
 
       ul.book-menu-move-list {
+        position: absolute;
+        top: 52px;
+        left: -143px;
+        opacity: 0;
+        border: 1px solid #c8ccd0;
+        border-radius: 2px;
+        transition: all 300ms;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+                    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+        &.show-move-list {
+          opacity: 1;
+        }
         
+        .move-list-header {
+          background-color: #eaeaea;
+          border: none;
+        }
       }
 
     }

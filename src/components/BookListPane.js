@@ -21,6 +21,8 @@ class BookListPane extends React.Component {
           showBookMenu={this.props.showBookMenu}
           getAllLists={this.props.getAllLists}
           switchList={this.props.switchList}
+          showBookMenuMoveList={this.props.showBookMenuMoveList}
+          toggleBookMenuMoveList={this.props.toggleBookMenuMoveList}
           currentList={this.props.currentList} />
       </li>
     )
@@ -56,7 +58,9 @@ BookListPane.propTypes = {
   fixList: PropTypes.bool.isRequired,
   getAllLists: PropTypes.func.isRequired,
   showBookMenu: PropTypes.object.isRequired,
-  switchList: PropTypes.func.isRequired  
+  switchList: PropTypes.func.isRequired,
+  toggleBookMenuMoveList: PropTypes.func.isRequired,
+  showBookMenuMoveList: PropTypes.bool.isRequired
 };
 
 export default BookListPane;
