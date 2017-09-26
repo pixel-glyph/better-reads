@@ -7,20 +7,29 @@ import Menu from './svg/Menu';
 
 
 class BookListPane extends React.Component {
+
+  toggleBookMenuClick = (i) => {
+    if(this.props.showBookMenuMoveList) {
+      this.props.toggleBookMenuMoveList();
+    }
+    this.props.toggleBookMenu(i)
+  };
   
   renderBook = (bookId, i) => {
     if(!this.props.currentList.books[bookId]) return;
     return (
       <li className="book-wrapper" key={bookId}>
         <Book bookInfo={this.props.currentList.books[bookId]}/>
-        <div onClick={() => this.props.toggleBookMenu(i)}>
+        <div onClick={() => this.toggleBookMenuClick(i)}>
           <Menu index={i} showBookMenu={this.props.showBookMenu}/>
         </div>
         <BookMenu 
           index={i} 
+          bookInfo={this.props.currentList.books[bookId]} 
           showBookMenu={this.props.showBookMenu}
           getAllLists={this.props.getAllLists}
-          switchList={this.props.switchList}
+          moveBook={this.props.moveBook}
+          toggleBookMenu={this.props.toggleBookMenu}
           showBookMenuMoveList={this.props.showBookMenuMoveList}
           toggleBookMenuMoveList={this.props.toggleBookMenuMoveList}
           currentList={this.props.currentList} />
@@ -58,7 +67,7 @@ BookListPane.propTypes = {
   fixList: PropTypes.bool.isRequired,
   getAllLists: PropTypes.func.isRequired,
   showBookMenu: PropTypes.object.isRequired,
-  switchList: PropTypes.func.isRequired,
+  moveBook: PropTypes.func.isRequired,
   toggleBookMenuMoveList: PropTypes.func.isRequired,
   showBookMenuMoveList: PropTypes.bool.isRequired
 };

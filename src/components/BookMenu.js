@@ -9,11 +9,18 @@ class BookMenu extends React.Component {
   populateMoveList = () => {
     const currentListName = this.props.currentList.listName;
     const lists = this.props.getAllLists(currentListName);
-
+    const { bookInfo } = this.props;
+    
     const moveLists = lists.map((list, i) => {
-      return <li key={i} onClick={() => this.props.switchList(list)}>{list}</li>;
+      return <li key={i} onClick={() => this.menuMoveBook(list, bookInfo, bookInfo.id)}>{list}</li>;
     });
     return moveLists;
+  };
+
+  menuMoveBook = (list, book, id) => {
+    this.props.toggleBookMenuMoveList();
+    this.props.toggleBookMenu();
+    this.props.moveBook(list, book, id);
   };
 
   render() {
@@ -37,7 +44,7 @@ class BookMenu extends React.Component {
             </li>
           </ul>
           <ul className={`book-menu-move-list${showMoveListClass}`}>
-            <li className="move-list-header">
+            <li className="move-list-header" onClick={() => this.props.toggleBookMenuMoveList()}>
               <CaretRight/>
             </li>
             {this.populateMoveList()}
@@ -50,13 +57,15 @@ class BookMenu extends React.Component {
 }
 
 BookMenu.propTypes = {
+  bookInfo: PropTypes.object.isRequired,  
   showBookMenu: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   currentList: PropTypes.object.isRequired,  
   getAllLists: PropTypes.func.isRequired,
-  switchList: PropTypes.func.isRequired,
   toggleBookMenuMoveList: PropTypes.func.isRequired,
-  showBookMenuMoveList: PropTypes.bool.isRequired
+  showBookMenuMoveList: PropTypes.bool.isRequired,
+  toggleBookMenu: PropTypes.func.isRequired,
+  moveBook: PropTypes.func.isRequired  
 };
 
 export default BookMenu;
