@@ -220,7 +220,7 @@ class App extends React.Component {
   removeBook = (listName, bookID) => {
     this.removeBookIDs(bookID);
     this.removeBookFromList(listName, bookID);
-    this.removeBookViewList();
+    this.removeBookViewList(bookID);
   };
   
   moveBook = (toList, book, id) => {
@@ -474,8 +474,9 @@ class App extends React.Component {
     });
   };
   
-  removeBookViewList = () => {
+  removeBookViewList = (id) => {
     const bookView = {...this.state.bookView};
+    if(bookView.id !== id) return;
     bookView.list = null;
     this.setState(newState => {
       return {
@@ -563,6 +564,7 @@ class App extends React.Component {
               toggleBookMenu={this.toggleBookMenu}
               getAllLists={this.getAllLists}
               moveBook={this.moveBook}
+              removeBook={this.removeBook}
               showBookMenuMoveList={this.state.showBookMenuMoveList}
               toggleBookMenuMoveList={this.toggleBookMenuMoveList}
               showBookMenu={this.state.showBookMenu} />

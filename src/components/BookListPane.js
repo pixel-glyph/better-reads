@@ -12,7 +12,7 @@ class BookListPane extends React.Component {
     if(this.props.showBookMenuMoveList) {
       this.props.toggleBookMenuMoveList();
     }
-    this.props.toggleBookMenu(i)
+    this.props.toggleBookMenu(i);
   };
   
   renderBook = (bookId, i) => {
@@ -29,6 +29,7 @@ class BookListPane extends React.Component {
           showBookMenu={this.props.showBookMenu}
           getAllLists={this.props.getAllLists}
           moveBook={this.props.moveBook}
+          removeBook={this.props.removeBook}
           toggleBookMenu={this.props.toggleBookMenu}
           showBookMenuMoveList={this.props.showBookMenuMoveList}
           toggleBookMenuMoveList={this.props.toggleBookMenuMoveList}
@@ -68,6 +69,7 @@ BookListPane.propTypes = {
   getAllLists: PropTypes.func.isRequired,
   showBookMenu: PropTypes.object.isRequired,
   moveBook: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired,
   toggleBookMenuMoveList: PropTypes.func.isRequired,
   showBookMenuMoveList: PropTypes.bool.isRequired
 };

@@ -10,7 +10,7 @@ class BookMenu extends React.Component {
     const currentListName = this.props.currentList.listName;
     const lists = this.props.getAllLists(currentListName);
     const { bookInfo } = this.props;
-    
+
     const moveLists = lists.map((list, i) => {
       return <li key={i} onClick={() => this.menuMoveBook(list, bookInfo, bookInfo.id)}>{list}</li>;
     });
@@ -23,8 +23,18 @@ class BookMenu extends React.Component {
     this.props.moveBook(list, book, id);
   };
 
+  menuRemoveBook = (currListName, id) => {
+    if(this.props.showBookMenuMoveList) {
+      this.props.toggleBookMenuMoveList();
+    }
+    this.props.toggleBookMenu();
+
+    this.props.removeBook(currListName, id);
+  };
+
   render() {
     const { isActive, index } = this.props.showBookMenu;
+    const currentListName = this.props.currentList.listName;    
     const showBookMenuClass = isActive && index === this.props.index ? " show-menu" : "";
     const showMoveListClass = this.props.showBookMenuMoveList ? " show-move-list" : "";
 
@@ -38,7 +48,7 @@ class BookMenu extends React.Component {
               <span>Move To</span>
               <CaretRight/>
             </li>
-            <li className="book-menu-remove">
+            <li className="book-menu-remove" onClick={() => this.menuRemoveBook(currentListName, this.props.bookInfo.id)}>
               <Remove/>
               <span> Remove Book</span>
             </li>
@@ -65,7 +75,8 @@ BookMenu.propTypes = {
   toggleBookMenuMoveList: PropTypes.func.isRequired,
   showBookMenuMoveList: PropTypes.bool.isRequired,
   toggleBookMenu: PropTypes.func.isRequired,
-  moveBook: PropTypes.func.isRequired  
+  moveBook: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired  
 };
 
 export default BookMenu;
