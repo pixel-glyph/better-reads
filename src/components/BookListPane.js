@@ -19,10 +19,17 @@ class BookListPane extends React.Component {
     if(!this.props.currentList.books[bookId]) return;
     return (
       <li className="book-wrapper" key={bookId}>
-        <Book bookInfo={this.props.currentList.books[bookId]}/>
+        <Book 
+          toggleBookMenu={this.props.toggleBookMenu}
+          showBookMenuMoveList={this.props.showBookMenuMoveList}
+          toggleBookMenuMoveList={this.props.toggleBookMenuMoveList}
+          showBookMenu={this.props.showBookMenu}
+          bookInfo={this.props.currentList.books[bookId]}/>
+
         <div onClick={() => this.toggleBookMenuClick(i)}>
           <Menu index={i} showBookMenu={this.props.showBookMenu}/>
         </div>
+
         <BookMenu 
           index={i} 
           bookInfo={this.props.currentList.books[bookId]} 
