@@ -36,10 +36,10 @@ class Book extends React.Component {
 Book.propTypes = {
   bookInfo: PropTypes.object.isRequired,
   addNewBook: PropTypes.func,
-  toggleBookMenuMoveList: PropTypes.func.isRequired,
-  showBookMenuMoveList: PropTypes.bool.isRequired,
-  showBookMenu: PropTypes.object.isRequired,  
-  toggleBookMenu: PropTypes.func.isRequired
+  toggleBookMenuMoveList: PropTypes.func,
+  showBookMenuMoveList: PropTypes.bool,
+  showBookMenu: PropTypes.object,  
+  toggleBookMenu: PropTypes.func
 };
 
 export default Book;

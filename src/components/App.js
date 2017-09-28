@@ -43,6 +43,7 @@ class App extends React.Component {
         showHeader: false,
         showBookMenuMoveList: false,
         isRemovePopupVisible: false,
+        newListInputActive: false,
         fixListPicker: false
     };
   }
@@ -506,6 +507,16 @@ class App extends React.Component {
     });
   };
 
+  toggleNewListInput = () => {
+    let newListInputActive = this.state.newListInputActive;
+    newListInputActive = !newListInputActive;
+    this.setState(newState => {
+      return {
+        newListInputActive: update(newState.newListInputActive, {$set: newListInputActive})
+      };
+    });
+  };
+
   toggleSideList = (i=0) => {
     const showList = {...this.state.showList};
     showList.isActive = !showList.isActive;
@@ -556,7 +567,12 @@ class App extends React.Component {
               showList={this.state.showList}
               lists={this.state.bookLists}
               fixList={this.state.fixListPicker}
-              toggleModal={this.toggleModal} 
+              doesListExist={this.doesListExist}
+              toggleSelected={this.toggleSelected}
+              getCurrentList={this.getCurrentList}
+              createList={this.createList}
+              toggleNewListInput={this.toggleNewListInput}
+              newListInputActive={this.state.newListInputActive}
               removeListHandler={removeListHandler} />
             <BookListPane 
               currentList={this.getCurrentList()}

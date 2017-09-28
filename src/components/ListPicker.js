@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import BookList from './BookList';
-import Overlay from './Overlay';
 import Plus from './svg/Plus';
 
 class ListPicker extends React.Component {
+
+  componentDidMount() {
+    if(this.props.newListInputActive) {
+      this.newListName.focus();
+    }
+  }
   
   getNumbooks = (list, i) => {
     const { lists } = this.props;
@@ -24,10 +29,32 @@ class ListPicker extends React.Component {
             removeListHandler={this.props.removeListHandler} 
             lists={this.props.lists} />;
   };
+
+  newListSubmit = (e) => {
+    e.preventDefault();
+
+    if(!this.props.newListInputActive) {
+      this.props.toggleNewListInput();
+    }
+    this.newListName.focus();
+    
+    if(!this.newListName.value) return;
+    
+    if(this.props.doesListExist(this.props.lists, this.newListName.value)) {
+      return alert('list already exists');
+    }
+    
+    const currList = this.props.getCurrentList();
+    this.props.createList(this.newListName.value.trim());
+    this.props.toggleSelected(currList.listName);
+
+    this.props.toggleNewListInput();
+  };
   
   render() {
-    const { showList, fixList } = this.props;
+    const { showList, newListInputActive, fixList } = this.props;
     const showClass = showList.isActive ? " show-list" : "";
+    const activeClass = newListInputActive ? "active" : "";
     const posClass = fixList ? " list-picker-fixed" : "";
     
     let lists = Object.keys(this.props.lists);
@@ -49,13 +76,14 @@ class ListPicker extends React.Component {
             }
           </ul>
         </div>
-        <div className="add-list-wrapper" onClick={() => this.props.toggleModal()}>
-          <Plus onDesktop={true}/>
-          <span>Create new list</span>
+        <div className="add-list-wrapper">
+          <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
+            <button className={activeClass} type="submit" title="create a new list">
+              <Plus onDesktop={true}/>
+            </button>
+            <input className={activeClass} ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>
+          </form>
         </div>
-        <Overlay 
-          toggle={this.props.toggleSideList} 
-          showOverlay={showList.isActive} />
       </div>
     )
   }
@@ -67,9 +95,14 @@ ListPicker.propTypes = {
   showList: PropTypes.object.isRequired,
   switchList: PropTypes.func.isRequired,
   removeListHandler: PropTypes.func,
-  toggleModal: PropTypes.func,
+  doesListExist: PropTypes.func,
+  toggleSelected: PropTypes.func,
+  getCurrentList: PropTypes.func,
+  createList: PropTypes.func,  
   onMobile: PropTypes.bool,
-  fixList: PropTypes.bool
+  fixList: PropTypes.bool,
+  newListInputActive: PropTypes.bool,
+  toggleNewListInput: PropTypes.func  
 };
 
 export default ListPicker;
