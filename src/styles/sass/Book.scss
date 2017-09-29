@@ -4,6 +4,7 @@
 
   &.no-results,
   &.empty-list {
+    min-height: 130px;    
     padding-left: 28px;
     border: none;
   }

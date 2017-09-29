@@ -18,7 +18,9 @@ class BookMenu extends React.Component {
   };
 
   menuMoveBook = (list, book, id) => {
-    this.props.toggleBookMenuMoveList();
+    if(this.props.showBookMenuMoveList) {
+      this.props.toggleBookMenuMoveList();
+    }    
     this.props.toggleBookMenu();
     this.props.moveBook(list, book, id);
   };
@@ -33,6 +35,7 @@ class BookMenu extends React.Component {
   };
 
   render() {
+    const { bookInfo } = this.props;    
     const { isActive, index } = this.props.showBookMenu;
     const currentListName = this.props.currentList.listName;    
     const showBookMenuClass = isActive && index === this.props.index ? " show-menu" : "";
@@ -43,7 +46,10 @@ class BookMenu extends React.Component {
         <div className="book-menu-arrow"></div>
         <div className="book-menu-list-wrapper">
           <ul className="book-menu-list">
-            <li className="book-menu-done-reading">Done Reading</li>
+            { this.props.currentList.listName === "To Read"
+              ? <li className="book-menu-done-reading" onClick={() => this.menuMoveBook("Read", bookInfo, bookInfo.id)}>Done Reading</li>
+              : null
+            }
             <li className="book-menu-move" onClick={() => this.props.toggleBookMenuMoveList()}>
               <span>Move To</span>
               <CaretRight/>
