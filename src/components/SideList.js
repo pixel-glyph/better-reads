@@ -15,7 +15,7 @@ class SideList extends React.Component {
   
   render() {
     const { showList, bookInfo, index } = this.props;
-    const showClass = (!index && showList.isActive) || (showList.isActive && showList.index === index)
+    const showClass = (index === undefined && showList.isActive) || (showList.isActive && showList.index === index)
       ? " show-list" 
       : "";
     

@@ -506,7 +506,7 @@ class App extends React.Component {
     });
   };
 
-  toggleSideList = (i=0) => {
+  toggleSideList = (i) => {    
     const showList = {...this.state.showList};
     showList.isActive = !showList.isActive;
     showList.index = i;
