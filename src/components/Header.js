@@ -16,7 +16,6 @@ class Header extends React.Component {
             history={this.props.history} 
             setResults={this.props.setResults}
             toggleFetch={this.props.toggleFetch}
-            toggleBookMenu={this.props.toggleBookMenu}
             isBookMenuActive={this.props.isBookMenuActive} />
         </div>
       : null;
@@ -38,8 +37,7 @@ Header.propTypes = {
   history: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
   showHeader: PropTypes.bool.isRequired,
-  isBookMenuActive: PropTypes.bool.isRequired,
-  toggleBookMenu: PropTypes.func.isRequired
+  isBookMenuActive: PropTypes.bool.isRequired
 };
 
 export default Header;

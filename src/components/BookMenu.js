@@ -6,6 +6,29 @@ import CaretRight from './svg/CaretRight';
 
 class BookMenu extends React.Component {
 
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+  
+  handleClickOutside = (e) => {
+    if(
+      this.props.showBookMenu.isActive && 
+      this.bookMenuRef && 
+      !this.bookMenuRef.contains(e.target) && 
+      this.props.index === this.props.showBookMenu.index
+    ) {
+        if(this.showBookMenuMoveList) {
+          this.toggleBookMenuMoveList();
+        }
+        this.props.toggleBookMenu();
+      
+    }
+  };
+  
   populateMoveList = () => {
     const currentListName = this.props.currentList.listName;
     const lists = this.props.getAllLists(currentListName);
@@ -42,7 +65,7 @@ class BookMenu extends React.Component {
     const showMoveListClass = this.props.showBookMenuMoveList ? " show-move-list" : "";
 
     return (
-      <div className={`book-menu${showBookMenuClass}`}>
+      <div className={`book-menu${showBookMenuClass}`} ref={(node) => this.bookMenuRef = node}>
         <div className="book-menu-arrow"></div>
         <div className="book-menu-list-wrapper">
           <ul className="book-menu-list">

@@ -14,10 +14,6 @@ class SearchBar extends React.Component {
     e.preventDefault();
     if(!this.searchTerms.value) return;
 
-    if(this.props.isBookMenuActive) {
-      this.props.toggleBookMenu();
-    }
-    
     this.props.toggleFetch();
     const searchTerms = this.searchTerms.value.split(' ').join('+');
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&key=${APIKey}`;
@@ -78,8 +74,7 @@ SearchBar.propTypes = {
   toggleFetch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
-  isBookMenuActive: PropTypes.bool.isRequired,
-  toggleBookMenu: PropTypes.func.isRequired
+  isBookMenuActive: PropTypes.bool.isRequired
 };
 
 export default SearchBar;

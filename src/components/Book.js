@@ -4,25 +4,16 @@ import { Link } from 'react-router-dom';
 
 class Book extends React.Component {
   
-  hideBookMenu = () => {
-    if(this.props.showBookMenuMoveList) {
-      this.props.toggleBookMenuMoveList();
-    }
-    if(this.props.showBookMenu.isActive) {
-      this.props.toggleBookMenu();
-    }
-  };
-
   render() {
     const { bookInfo } = this.props;
     return (
       <div className="book">
-        <Link to={{pathname: `/book/${bookInfo.id}`, bookInfo: bookInfo}} onClick={() => this.hideBookMenu()}>
+        <Link to={{pathname: `/book/${bookInfo.id}`, bookInfo: bookInfo}}>
           <img className="book-thumbnail-img" src={bookInfo.img} alt="book cover"/>
         </Link>
         <div className="book-title-author">
           <p>
-            <Link to={{pathname: `/book/${bookInfo.id}`, bookInfo: bookInfo}} onClick={() => this.hideBookMenu()}>
+            <Link to={{pathname: `/book/${bookInfo.id}`, bookInfo: bookInfo}}>
               {bookInfo.title}
             </Link>
           </p>
@@ -36,10 +27,8 @@ class Book extends React.Component {
 Book.propTypes = {
   bookInfo: PropTypes.object.isRequired,
   addNewBook: PropTypes.func,
-  toggleBookMenuMoveList: PropTypes.func,
   showBookMenuMoveList: PropTypes.bool,
-  showBookMenu: PropTypes.object,  
-  toggleBookMenu: PropTypes.func
+  showBookMenu: PropTypes.object
 };
 
 export default Book;

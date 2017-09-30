@@ -34,7 +34,6 @@
         list-style-type: none;
         padding: 0;
         background-color: #fff;
-        cursor: pointer;
         z-index: 10;
       }
       
@@ -42,6 +41,7 @@
         height: 20px;
         padding: 8px;
         border-top: 1px solid #c8ccd0;
+        cursor: pointer;        
         &:hover {
           background-color: #EFF1F3;
         }

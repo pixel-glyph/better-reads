@@ -280,10 +280,6 @@ class App extends React.Component {
   };
   
   createList = (listName) => {
-    if(this.state.showBookMenu.isActive) {
-      this.toggleBookMenu();
-    }
-
     const bookLists = {...this.state.bookLists};
     bookLists[listName] = {
       listName: listName,
@@ -299,10 +295,6 @@ class App extends React.Component {
   };
   
   removeList = (list) => {
-    if(this.state.showBookMenu.isActive) {
-      this.toggleBookMenu();
-    }
-
     const selectedList = this.getCurrentList().listName;
     const currList = !list ? selectedList : list;
     const bookLists = {...this.state.bookLists};
@@ -337,9 +329,6 @@ class App extends React.Component {
   };
     
   switchList = (listName) => {
-    if(this.state.showBookMenu.isActive) {
-      this.toggleBookMenu();
-    }
     const currList = this.getCurrentList();
     if(listName === currList.listName) return;
     this.toggleSelected(listName);
@@ -621,7 +610,6 @@ class App extends React.Component {
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
           showHeader={this.state.showHeader}
-          toggleBookMenu={this.toggleBookMenu}
           isBookMenuActive={this.state.showBookMenu.isActive} />
         
         <Logo/>
@@ -630,7 +618,6 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
-          toggleBookMenu={this.toggleBookMenu}
           isBookMenuActive={this.state.showBookMenu.isActive} />
         
         <RemovePopup
