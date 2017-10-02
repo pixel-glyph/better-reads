@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import AddBookBtn from './AddBookBtn';
 import MoveBookBtn from './MoveBookBtn';
+import Remove from './svg/Remove';
 
 class BookView extends React.Component {
   
@@ -36,7 +37,7 @@ class BookView extends React.Component {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
     if(this.props.doesBookExist(this.props.bookID)) {
       return (
-        <div className="book-view-btns">
+        <div className="book-view-btns-wrapper">
           <MoveBookBtn
             bookInfo={bookInfo} 
             moveBook={this.props.moveBook}
@@ -45,18 +46,23 @@ class BookView extends React.Component {
             toggleSideList={this.props.toggleSideList}
             syncBookView={this.syncBookView}/>
           
-          <button className="remove-btn" onClick={() => this.remove(bookInfo.list, bookInfo.id)}>Remove</button>
+          <button className="remove-btn" onClick={() => this.remove(bookInfo.list, bookInfo.id)}>
+            <Remove/>
+            <span>Remove</span>
+          </button>
         </div>
       )
     } else {
       return (
-        <AddBookBtn 
-          bookInfo={bookInfo} 
-          addNewBook={this.props.addNewBook}
-          getAllLists={this.props.getAllLists}
-          showList={this.props.showList}
-          toggleSideList={this.props.toggleSideList}
-          syncBookView={this.syncBookView}/>
+        <div className="book-view-btns-wrapper">
+          <AddBookBtn 
+            bookInfo={bookInfo} 
+            addNewBook={this.props.addNewBook}
+            getAllLists={this.props.getAllLists}
+            showList={this.props.showList}
+            toggleSideList={this.props.toggleSideList}
+            syncBookView={this.syncBookView}/>
+        </div>
       )
     }
   };
@@ -68,7 +74,7 @@ class BookView extends React.Component {
     
     if(bookDesc && bookDesc.length < 190) {
       return (
-        <p className="book-view-desc">{bookDesc}</p>
+        <div className="book-view-desc">{bookDesc}</div>
       )
     } else if(bookDesc) {
       const abbrivDesc = bookDesc.slice(0, 190);  
@@ -89,16 +95,38 @@ class BookView extends React.Component {
   
   render() {
     const bookInfo = this.props.location.bookInfo || this.props.bookInfo;
-    return (
-      <div className="book-view-wrapper">
-        <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
-        <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
-        <div className="book-view-title">{bookInfo.title}</div>
-        <div className="book-view-author">{bookInfo.author}</div>
-        {this.renderDesc()}
-        {this.renderBtns()}
-      </div>
-    )
+    let width = window.innerWidth;
+    if(width < 800) {
+      return (
+        <div className="book-view-wrapper">
+          <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
+          <div className="book-view-body">
+            <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
+            <div className="book-view-title-author">
+              <div className="book-view-title">{bookInfo.title}</div>
+              <div className="book-view-author">by {bookInfo.author}</div>
+            </div>
+          </div>
+          {this.renderDesc()}
+          {this.renderBtns()}
+        </div>
+      )
+    } else {
+      return (
+        <div className="book-view-wrapper">
+          <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
+          <div className="book-view-body">
+            <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
+            <div className="book-view-title-author">
+              <div className="book-view-title">{bookInfo.title}</div>
+              <div className="book-view-author">by {bookInfo.author}</div>
+              {this.renderBtns()}
+            </div>
+          </div>
+          {this.renderDesc()}
+        </div>
+      )
+    }
   }
 }
 

@@ -18,41 +18,11 @@
           border: none;
         }
 
-        .book-view-btns {
-          padding: 45px 30px 0 0;
-          position: relative;
-          
-          .add-list-select {
-            display: none;
-            position: absolute;
-            top: 85px;
-            right: -270px;
-            width: 210px;
-            height: auto;
-            border: 1px solid rgba(128, 128, 128, 0.34);            
-            overflow: scroll;
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            &.show-list {
-              display: block;
-            }
+        @include side-list-desktop;
 
-            ul.list-names {
-              li.list-title {
-                padding: 7px 20px;
-                font-weight: bold;
-              }
-              li.list-name {
-                &:hover {
-                  background-color: #F7F7F7;
-                }
-              }
-            }
-          }
-          
-          .overlay {
-            display: none;
-          }
+        .add-list-select {
+          top: 85px;
+          right: -270px;
         }
       }
     }
@@ -67,6 +37,7 @@
     
     .book-view-btns {
       display: none;
+      padding: 45px 30px 0 0;      
     }
     
     //TODO: implement SASS media query functions

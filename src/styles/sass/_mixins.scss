@@ -66,3 +66,39 @@
   }
   
 }
+
+@mixin side-list-desktop {
+  .book-view-btns {
+    position: relative;
+    
+    .add-list-select {
+      display: none;
+      position: absolute;
+      width: 210px;
+      height: auto;
+      border: 1px solid rgba(128, 128, 128, 0.34);            
+      overflow: scroll;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      &.show-list {
+        display: block;
+      }
+
+      ul.list-names {
+        li.list-title {
+          padding: 7px 20px;
+          font-weight: bold;
+        }
+        li.list-name {
+          &:hover {
+            background-color: #F7F7F7;
+          }
+        }
+      }
+    }
+    
+    .overlay {
+      display: none;
+    }
+  }
+}

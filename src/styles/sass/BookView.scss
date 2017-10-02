@@ -1,5 +1,53 @@
 .book-view-wrapper {
   margin: 20px;
+
+  @media(min-width: 800px) {
+    min-width: 720px;
+    max-width: 1024px;
+    margin: auto;
+    padding: 0 20px;    
+
+    .book-view-body {
+      display: flex;
+      height: 264px;
+      margin-top: 30px;      
+
+      .book-view-title-author {
+        margin: 0 0 0 55px;
+
+        .book-view-title {
+          font-size: 32px;
+        }
+
+        .book-view-author {
+          margin: 10px 0 0 20px;
+          font-size: 18px;
+        }
+
+        .book-view-btns-wrapper {
+          display: flex;
+          margin: 50px 20px 0 50px;
+          
+          @include side-list-desktop;
+
+          .add-list-select {
+            top: 40px;
+            right: -300px;
+          }
+
+          .remove-btn {
+            margin: 0 20px;
+          }
+        }
+
+      }
+    }
+
+    div.book-view-desc {
+      margin: 40px 0 30px;
+      max-width: 700px;
+    }
+  }
   
   .book-view-back-link {
     margin: 20px 0;
@@ -26,6 +74,7 @@
   
   .book-view-desc {
     margin: 20px 0 30px;
+    max-width: 800px;    
     
     .book-view-desc-short-wrapper {
       display: block;
@@ -55,7 +104,7 @@
   }
   
   .remove-btn {
-    padding: 12px 16px 10px;
+    padding: 5px 16px 0px;
     border-radius: 4px;
     margin: 10px 0;
     font-size: 16px;
@@ -63,5 +112,17 @@
     border: none;
     background-color: #7393a4;
     cursor: pointer;
+
+    .icon-remove {
+      margin: 0 8px -7px 0;
+      background-color: whitesmoke;
+      border-radius: 25px;
+      fill: #7393a4;
+    }
+
+    span {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
   }
 }

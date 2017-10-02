@@ -263,7 +263,7 @@ class App extends React.Component {
       }
     }
 
-    if(!listSelected) {
+    if(!listSelected && bookLists['To Read']) {
       bookLists['To Read'].selected = true;
     }
   };
