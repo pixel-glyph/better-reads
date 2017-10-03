@@ -369,20 +369,25 @@ class App extends React.Component {
     let searchResults;
     if(results.items) {
       searchResults = results.items.map(book => {
+        
         const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
         const desc = book.volumeInfo.description ? book.volumeInfo.description : '';
         const pubDate = book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : '';
         const img = book.volumeInfo.imageLinks 
           ? book.volumeInfo.imageLinks.smallThumbnail
           : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
-          
+        const hiResImg = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+          ? book.volumeInfo.imageLinks.thumbnail
+          : img;
+        
         return {
           title: book.volumeInfo.title,
           id: book.id,
           pubDate,
           author,
           desc,
-          img
+          img,
+          hiResImg
         };
       });
     } else {

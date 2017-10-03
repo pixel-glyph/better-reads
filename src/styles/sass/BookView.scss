@@ -10,7 +10,12 @@
     .book-view-body {
       display: flex;
       height: 264px;
-      margin-top: 30px;      
+      margin-top: 30px;
+
+      .book-view-cover {
+        min-width: 200px;
+        height: 300px;
+      }
 
       .book-view-title-author {
         margin: 0 0 0 55px;
