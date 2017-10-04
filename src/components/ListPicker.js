@@ -70,7 +70,7 @@ class ListPicker extends React.Component {
       <div className={`app-list-picker-wrapper${posClass}`}>
         <div className={`app-list-picker${showClass}`}>
           <ul className="book-lists list-names">
-            <li className="list-title">Switch List</li>
+            <li className="list-title">Switch Shelf</li>
             {
               lists.map((list, i) => this.getNumbooks(list, i))
             }

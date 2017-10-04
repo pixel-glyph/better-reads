@@ -609,7 +609,7 @@ class App extends React.Component {
         
         <RemovePopup
           isVisible={this.state.isRemovePopupVisible}
-          message="List has Been Removed"/>
+          message="Shelf has been removed"/>
         
         <ScrollToTopRoute exact path="/" component={Main}/>
         <Route path="/search" component={Search}/>

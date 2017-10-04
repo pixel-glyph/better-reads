@@ -14,7 +14,7 @@ class SwitchListBtn extends React.Component {
             <ListIcon/>
           </div>
           <div className="switch-list-btn-title">
-            <span>Switch List</span>
+            <span>Switch Shelf</span>
           </div>
         </div>
         <ListPicker 

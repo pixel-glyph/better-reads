@@ -11,6 +11,7 @@
 .book-list-pane-wrapper {
   display: flex;
   max-width: 1120px;
+  min-height: 357px;  
   margin: 0 auto;
   
   > .app-list-picker-wrapper {
