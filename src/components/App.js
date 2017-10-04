@@ -54,8 +54,8 @@ class App extends React.Component {
         context: this,
         state: 'bookLists',
         defaultValue: {
-          'To Read': {
-            listName: 'To Read',
+          'Want to Read': {
+            listName: 'Want to Read',
             selected: true,
             books: {}
           },
@@ -229,7 +229,7 @@ class App extends React.Component {
         });
         
     if(!currListName) {
-      currListName = 'To Read';
+      currListName = 'Want to Read';
     }
     
     return this.state.bookLists[currListName]
@@ -250,8 +250,8 @@ class App extends React.Component {
       }
     }
 
-    if(!listSelected && bookLists['To Read']) {
-      bookLists['To Read'].selected = true;
+    if(!listSelected && bookLists['Want to Read']) {
+      bookLists['Want to Read'].selected = true;
     }
   };
   
@@ -305,7 +305,7 @@ class App extends React.Component {
       });
       
       if(!list || list === selectedList) {
-        this.toggleSelected('To Read');
+        this.toggleSelected('Want to Read');
       }
       
       this.toggleRemovePopup();
@@ -530,7 +530,7 @@ class App extends React.Component {
             <div className="plus-icon-wrapper icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
               New List <PlusIcon/>
             </div>
-            {currList !== 'To Read' && currList !== 'Read'
+            {currList !== 'Want to Read' && currList !== 'Read'
               ? <div className="remove-icon-wrapper icon-wrapper" title="Remove List" onClick={() => removeListHandler()}>
                   Remove List <RemoveIcon/>
                 </div>

@@ -60,7 +60,7 @@ class ListPicker extends React.Component {
     let lists = Object.keys(this.props.lists);
     
     lists.forEach((list, i) => {
-    	if(list === "Read" || list === "To Read") { 
+    	if(list === "Read" || list === "Want to Read") { 
     		lists.splice(i, 1);
         lists.unshift(list);
     	}

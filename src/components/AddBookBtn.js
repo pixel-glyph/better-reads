@@ -18,8 +18,8 @@ class AddBookBtn extends React.Component {
         <span className="btn-wrapper-add">  
           <div 
             className="add-book-btn on-search" 
-            onClick={() => this.addBook('To Read', this.props.bookInfo)}>
-            <span>To Read</span>
+            onClick={() => this.addBook('Want to Read', this.props.bookInfo)}>
+            <span>Want to Read</span>
           </div>
           <div className="btn-icon-wrapper" onClick={() => this.props.toggleSideList(this.props.index)}>
             <PlusIcon/>

@@ -31,7 +31,7 @@ class BookList extends React.Component {
           <span>{listDisplayName}</span>
           <span> ({this.props.numBooks})</span>
         </div>
-        {!onMobile && listDisplayName !== "To Read" && listDisplayName !== "Read"
+        {!onMobile && listDisplayName !== "Want to Read" && listDisplayName !== "Read"
           ? <div className="list-picker-remove-icon" onClick={(e) => this.removeList(e)}>
               <Remove/>
             </div>

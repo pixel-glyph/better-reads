@@ -69,7 +69,7 @@ class BookMenu extends React.Component {
         <div className="book-menu-arrow"></div>
         <div className="book-menu-list-wrapper">
           <ul className="book-menu-list">
-            { this.props.currentList.listName === "To Read"
+            { this.props.currentList.listName === "Want to Read"
               ? <li className="book-menu-done-reading" onClick={() => this.menuMoveBook("Read", bookInfo, bookInfo.id)}>Done Reading</li>
               : null
             }
