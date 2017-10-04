@@ -41,7 +41,6 @@ class App extends React.Component {
         isFetching: false,
         showModal: false,
         showFullDesc: false,
-        showHeader: false,
         showBookMenuMoveList: false,
         isRemovePopupVisible: false,
         newListInputActive: false,
@@ -93,29 +92,16 @@ class App extends React.Component {
   
   componentWillUnmount() {
     base.removeBinding(this.ref);
-    window.removeEventListener('scroll', this.headerScroll);
     window.removeEventListener('scroll', this.listPositionScroll);
   }
   
   componentDidMount() {
-    window.addEventListener('scroll', this.headerScroll);
     window.addEventListener('scroll', this.listPositionScroll);
   }
   
   componentDidUpdate() {
     this.ensureSelectedList();
   }
-
-  headerScroll = (e) => {
-    if(window.didScrollHeader) return;
-    let scrollTop = window.scrollY;
-    if(scrollTop > 165) {
-      this.setState({ showHeader: true })
-    } else {
-      this.setState({ showHeader: false })
-    }
-    window.didScrollHeader = true;
-  };
   
   listPositionScroll = (e) => {
     if(window.didScrollListPicker) return;
@@ -611,7 +597,6 @@ class App extends React.Component {
           history={this.props.history} 
           setResults={this.setResults}
           toggleFetch={this.toggleFetch}
-          showHeader={this.state.showHeader}
           isBookMenuActive={this.state.showBookMenu.isActive} />
         
         <Logo/>

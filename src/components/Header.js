@@ -8,7 +8,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 class Header extends React.Component {
   
   render() {
-    let header = this.props.showHeader
+    let header = window.scrollY > 100
       ? <div key={this.props.path} className='app-header'>
           <Logo/>
           <SearchBar 
@@ -36,7 +36,6 @@ Header.propTypes = {
   toggleFetch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
-  showHeader: PropTypes.bool.isRequired,
   isBookMenuActive: PropTypes.bool.isRequired
 };
 

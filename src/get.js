@@ -115,14 +115,7 @@ function removeSuggList() {
   document.querySelector('.search-suggs-wrapper').style.display = 'none';
 }
 
-window.didScrollHeader = false;
 window.didScrollListPicker = false;
-
-setInterval(() => {
-  if(window.didScrollHeader) {
-    window.didScrollHeader = false
-  }
-}, 50);
 
 setInterval(() => {
   if(window.didScrollListPicker) {
