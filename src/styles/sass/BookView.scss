@@ -3,13 +3,13 @@
 
   @media(min-width: 800px) {
     min-width: 720px;
-    max-width: 1024px;
-    margin: auto;
+    max-width: 825px;
+    margin: 60px auto;
     padding: 0 20px;    
 
     .book-view-body {
       display: flex;
-      height: 264px;
+      height: 304px;
       margin-top: 30px;
 
       .book-view-cover {
@@ -21,7 +21,7 @@
         margin: 0 0 0 55px;
 
         .book-view-title {
-          font-size: 32px;
+          font-size: 28px;
         }
 
         .book-view-author {

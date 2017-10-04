@@ -14,6 +14,10 @@ class BookView extends React.Component {
       this.props.toggleDesc();
     }
   }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);    
+  }
   
   componentWillUnmount() {
     if(this.props.showList.isActive) {
@@ -102,7 +106,7 @@ class BookView extends React.Component {
         <div className="book-view-wrapper">
           <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
           <div className="book-view-body">
-            <img src={bookInfo.hiResImg} alt="book cover" className="book-view-cover"/>
+            <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
             <div className="book-view-title-author">
               <div className="book-view-title">{bookInfo.title}</div>
               <div className="book-view-author">by {bookInfo.author}</div>
@@ -117,7 +121,7 @@ class BookView extends React.Component {
         <div className="book-view-wrapper">
           <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
           <div className="book-view-body">
-            <img src={bookInfo.hiResImg} alt="book cover" className="book-view-cover"/>
+            <img src={bookInfo.img} alt="book cover" className="book-view-cover"/>
             <div className="book-view-title-author">
               <div className="book-view-title">{bookInfo.title}</div>
               <div className="book-view-author">by {bookInfo.author}</div>

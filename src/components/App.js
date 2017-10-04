@@ -17,6 +17,7 @@ import RemoveIcon from './svg/Remove';
 import Modal from './Modal';
 import RemovePopup from './RemovePopup';
 import ScrollToTopRoute from './ScrollToTopRoute';
+import Footer from './Footer';
 
 import base from '../base';
 
@@ -365,7 +366,7 @@ class App extends React.Component {
     });
   };
   
-  setResults = (results) => {
+  setResults = (results) => {    
     let searchResults;
     if(results.items) {
       searchResults = results.items.map(book => {
@@ -376,9 +377,6 @@ class App extends React.Component {
         const img = book.volumeInfo.imageLinks 
           ? book.volumeInfo.imageLinks.smallThumbnail
           : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif';
-        const hiResImg = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
-          ? book.volumeInfo.imageLinks.thumbnail
-          : img;
         
         return {
           title: book.volumeInfo.title,
@@ -386,8 +384,7 @@ class App extends React.Component {
           pubDate,
           author,
           desc,
-          img,
-          hiResImg
+          img
         };
       });
     } else {
@@ -647,6 +644,7 @@ class App extends React.Component {
             showFullDesc={this.state.showFullDesc}
             removeBook={this.removeBook} />
         )}/>
+        <Footer/>
       </div>
     )
   }
