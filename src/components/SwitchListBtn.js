@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ListPicker from './ListPicker';
 import ListIcon from './svg/List';
+import Overlay from './Overlay';
 
 class SwitchListBtn extends React.Component {
   
@@ -23,6 +24,9 @@ class SwitchListBtn extends React.Component {
           showList={this.props.showList}
           toggleSideList={this.props.toggleSideList}
           onMobile={true} />
+        <Overlay 
+          toggle={this.props.toggleSideList} 
+          showOverlay={this.props.showList.isActive} />
       </div>
     )
   }
