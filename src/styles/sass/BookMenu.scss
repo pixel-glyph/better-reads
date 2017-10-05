@@ -54,12 +54,25 @@
         li {
           &.book-menu-move {
             display: flex;
-            justify-content: space-between;
             span {
+              order: 1;
               padding-top: 2px;
             }
             .icon-caret-right {
               margin-top: -2px;
+              transform: rotate(180deg);              
+            }
+
+            @media(min-width: 1500px) {
+              justify-content: space-between;
+              span {
+                order: 0;
+                padding-top: 2px;
+              }
+              .icon-caret-right {
+                margin-top: -2px;
+                transform: rotate(0deg);              
+              }              
             }
           }
 
@@ -96,6 +109,10 @@
         }
         &.on-want-to-read {
           top: 52px;
+        }
+
+        @media(min-width: 1500px) {
+          left: 160px;          
         }
       }
 
