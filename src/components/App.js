@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import update from 'immutability-helper';
 
 import Logo from './Logo';
@@ -576,6 +577,7 @@ class App extends React.Component {
     
     const Search = () => (
       <div className="search-wrapper">
+        <p className="book-view-back-link"><Link to="/">&#8592; Back to My Shelves</Link></p>
         {!this.state.isFetching
           ? <ul className="search-results">
               {this.listResults()}

@@ -83,7 +83,7 @@
       ul.book-menu-move-list {
         display: none;
         position: absolute;
-        top: 52px;
+        top: 14px;
         left: -192px;
         width: 190px;
         border: 1px solid #c8ccd0;
@@ -94,15 +94,8 @@
         &.show-move-list {
           display: block;
         }
-        
-        .move-list-header {
-          background-color: #eaeaea;
-          border: none;
-
-          .btn-icon {
-            display: block;
-            margin: 0 0 0 auto;
-          }
+        &.on-want-to-read {
+          top: 52px;
         }
       }
 

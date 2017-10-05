@@ -63,6 +63,7 @@ class BookMenu extends React.Component {
     const currentListName = this.props.currentList.listName;    
     const showBookMenuClass = isActive && index === this.props.index ? " show-menu" : "";
     const showMoveListClass = this.props.showBookMenuMoveList ? " show-move-list" : "";
+    const wantToReadClass = this.props.currentList.listName === "Want to Read" ? " on-want-to-read" : "";
 
     return (
       <div className={`book-menu${showBookMenuClass}`} ref={(node) => this.bookMenuRef = node}>
@@ -82,10 +83,7 @@ class BookMenu extends React.Component {
               <span> Remove Book</span>
             </li>
           </ul>
-          <ul className={`book-menu-move-list${showMoveListClass}`}>
-            <li className="move-list-header" onClick={() => this.props.toggleBookMenuMoveList()}>
-              <CaretRight/>
-            </li>
+          <ul className={`book-menu-move-list${showMoveListClass}${wantToReadClass}`}>
             {this.populateMoveList()}
           </ul>
         </div>
