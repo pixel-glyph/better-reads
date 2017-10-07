@@ -125,10 +125,10 @@ class BookView extends React.Component {
             <div className="book-view-title-author">
               <div className="book-view-title">{bookInfo.title}</div>
               <div className="book-view-author">by {bookInfo.author}</div>
-              {this.renderBtns()}
+              {this.renderDesc()}
             </div>
           </div>
-          {this.renderDesc()}
+          {this.renderBtns()}
         </div>
       )
     }
