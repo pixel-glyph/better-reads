@@ -4,6 +4,25 @@ import Overlay from './Overlay';
 
 class SideList extends React.Component {
   
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+  
+  handleClickOutside = (e) => {
+    if(
+      this.props.showList.isActive && 
+      this.sideListRef && 
+      !this.sideListRef.contains(e.target) && 
+      this.props.index === this.props.showList.index
+    ) {
+      this.props.toggleSideList();
+    }
+  };
+  
   listSelect = (e, book) => {
     const list = e.target.textContent;
     this.props.toggleSideList();
@@ -20,7 +39,7 @@ class SideList extends React.Component {
       : "";
     
     return (
-      <div>
+      <div ref={(node) => this.sideListRef = node}>
         <div className={`add-list-select${showClass}`}>
           <ul className="list-names">
             <li className="list-title">{this.props.listTitle}</li>
