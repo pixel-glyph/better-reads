@@ -11,7 +11,9 @@
   
   .add-book-btn {
     display: inline-block;
+    width: 115px;
     vertical-align: top;
+    text-align: center;    
     padding: 7px 16px 6px;    
     background-color: $btn-color;
     border-radius: 4px 0 0 4px;
@@ -74,9 +76,8 @@
     .add-list-select {
       display: none;
       position: absolute;
-      width: 210px;
+      width: 176px;
       height: auto;
-      border: 1px solid rgba(128, 128, 128, 0.34);            
       overflow: scroll;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
       z-index: 10;
