@@ -1,5 +1,6 @@
 .book {
-  padding: 12px 0;
+  position: relative;
+  padding: 14px 0 4px;
   border-top: 1px solid rgba(128, 128, 128, 0.34);
 
   &.no-results,
@@ -15,12 +16,31 @@
   }
   
   .book-title-author {
+    position: absolute;
+    top: 23px;
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 30px;
     
     p {
       margin: 0;
+      a {
+        color: #3a3a3a;
+        font-size: 18px;
+        font-weight: 600;        
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
+
+    .book-author {
+      margin-top: -3px;      
+      padding-left: 14px;      
+      font-style: italic;
+      color: #777;
+    }
+
   }
   
   img {
