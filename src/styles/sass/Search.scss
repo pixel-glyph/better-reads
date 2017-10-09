@@ -28,6 +28,9 @@
         
         .book {
           border: none;
+          .book-title-author {
+            width: 645px;
+          }
         }
 
         @include side-list-desktop;
