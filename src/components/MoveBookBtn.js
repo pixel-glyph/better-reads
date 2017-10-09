@@ -4,13 +4,25 @@ import SideList from './SideList';
 import PropTypes from 'prop-types';
 
 class MoveBookBtn extends React.Component {
+
+  componentDidUpdate() {
+    this.setMoveBtnWidth();
+  }
+  
+  setMoveBtnWidth = () => {
+    if(this.btnText.offsetHeight > 40) {
+      let text = this.btnText.textContent;
+      text = text.substr(0, 11).concat('...');
+      this.btnText.textContent = text;
+    }
+  };
   
   render() {
     return (
       <div className="book-view-btns">
         <div className="btn-wrapper-move" onClick={() => this.props.toggleSideList(this.props.index)}>  
           <div className="add-book-btn on-search">
-            <span>{this.props.bookInfo.list}</span>
+            <span ref={(node) => this.btnText = node}>{this.props.bookInfo.list}</span>
           </div>
           <div className="btn-icon-wrapper">
             <MoveIcon/>
