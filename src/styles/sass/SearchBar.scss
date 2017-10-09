@@ -3,8 +3,12 @@
   margin: 20px auto 25px;
   
   @media(min-width: 800px) {
-    width: 511px;
-    margin-bottom: 35px;
+    width: 430px;
+    margin-bottom: 90px;
+  }
+  
+  @media(min-width: 984px) {
+    width: 486px;
   }
   
   .book-search {
@@ -27,7 +31,12 @@
       &:focus {
         outline: none;
       }
-      @media(min-width: 800px) {
+      
+      @media(min-width: 984px) {
+        width: 392px;
+      }
+      
+      @media(min-width: 1175px) {
         width: 417px;
       }
     }
@@ -51,9 +60,8 @@
   .search-suggs-wrapper {
     display: none;
     position: absolute;
-    width: 298px;
+    width: 300px;
     margin-top: 0;
-    border: 1px solid #babcbd;
     overflow-x: hidden;
     background-color: #fff;
     z-index: 30;
@@ -77,8 +85,13 @@
     }
     
     @media(min-width: 800px) {
-      width: 508px;
+      width: 430px;
     }
+
+    @media(min-width: 984px) {
+      width: 486px;
+    }
+
   }
   
 }
