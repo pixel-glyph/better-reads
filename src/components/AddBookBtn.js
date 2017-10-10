@@ -13,8 +13,10 @@ class AddBookBtn extends React.Component {
   };
   
   render() {
+    const showClass = this.props.showList.isActive ? " show-list" : "";
+
     return (
-      <div className="book-view-btns">
+      <div className={`book-view-btns${showClass}`}>
         <span className="btn-wrapper-add">  
           <div 
             className="add-book-btn on-search" 

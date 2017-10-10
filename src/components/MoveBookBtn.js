@@ -18,8 +18,10 @@ class MoveBookBtn extends React.Component {
   };
   
   render() {
+    const showClass = this.props.showList.isActive ? " show-list" : "";
+
     return (
-      <div className="book-view-btns">
+      <div className={`book-view-btns${showClass}`}>
         <div className="btn-wrapper-move" onClick={() => this.props.toggleSideList(this.props.index)}>  
           <div className="add-book-btn on-search">
             <span ref={(node) => this.btnText = node}>{this.props.bookInfo.list}</span>

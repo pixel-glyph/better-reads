@@ -72,22 +72,36 @@
 @mixin side-list-desktop {
   .book-view-btns {
     position: relative;
+
+    &.show-list {
+      .btn-wrapper-move,
+      .btn-wrapper-add {
+        border-radius: 4px 4px 0 0;
+
+        .add-book-btn {
+          border-radius: 4px 0 0 0;
+        }
+      }
+    }
     
     .add-list-select {
       display: none;
       position: absolute;
-      width: 176px;
+      width: 184px;
       height: auto;
       overflow: scroll;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
       z-index: 10;
+
       &.show-list {
         display: block;
       }
 
       ul.list-names {
         li.list-title {
-          padding: 7px 20px;
+          height: 18px;
+          padding: 3px 20px 10px;
+          font-size: 16px;
           font-weight: bold;
         }
         li.list-name {
