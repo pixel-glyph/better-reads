@@ -40,7 +40,7 @@
         cursor: pointer;
         
         .list-title {
-          background-color: rgba(181, 192, 201, 0.68);
+          background-color: $misty-blue;
           margin: 0 auto;
           padding: 11px;
           border-radius: 6px 6px 0 0;
@@ -53,9 +53,10 @@
           display: flex;
           justify-content: space-between;
           padding: 8px 7px;
+          background-color: #fff;
           border-bottom: 1px solid #dddada;
           &:hover {
-            background-color: rgba(220, 237, 251, 0.4);
+            background-color: $light-grey;
             .list-picker-remove-icon {
               visibility: visible;
             }
@@ -65,7 +66,7 @@
             border-radius: 0 0 6px 6px;
           }
           &.selected {
-            background-color: #dcedfb;
+            background-color: $hazy-sky;
           }
           
           .list-picker-remove-icon {
