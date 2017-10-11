@@ -5,9 +5,14 @@
 
   &.no-results,
   &.empty-list {
-    min-height: 130px;    
+    min-height: 116px;
     padding-left: 28px;
     border: none;
+
+    p {
+      margin: 30px 0 20px 30px;
+      color: #848484;
+    }
   }
   
   .book-thumbnail-img {
