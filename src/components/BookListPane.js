@@ -48,7 +48,7 @@ class BookListPane extends React.Component {
     if(!currentList.books || !Object.keys(currentList.books).length) {
       return (
         <li className="book empty-list">
-          <p>This list is empty. Search to add books!</p>
+          <p>This shelf is empty. Search to add books!</p>
         </li>
       )
     }
