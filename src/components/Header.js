@@ -8,7 +8,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 class Header extends React.Component {
   
   render() {
-    let header = window.scrollY > 100 && window.innerWidth > 800
+    let header = window.scrollY > 170 && window.innerWidth > 800
       ? <div key={this.props.path} className='app-header'>
           <Logo/>
           <SearchBar 

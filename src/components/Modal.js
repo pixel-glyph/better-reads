@@ -33,7 +33,7 @@ class Modal extends React.Component {
               <span className="modal-close modal-close-one"></span>
               <span className="modal-close modal-close-two"></span>
             </div>
-            <h1>Create New List</h1>
+            <h1>Create New Shelf</h1>
             <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
               <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>
               <button type="submit">Add List</button>
