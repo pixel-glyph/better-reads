@@ -78,10 +78,10 @@ class ListPicker extends React.Component {
         </div>
         <div className="add-list-wrapper">
           <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
-            <button className={activeClass} type="submit" title="create a new list">
+            <button className={activeClass} type="submit" title="create a new shelf">
               <Plus onDesktop={true}/>
             </button>
-            <input className={activeClass} ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>
+            <input className={activeClass} ref={(input) => this.newListName = input} type="text" placeholder="Shelf Title" maxLength="30"/>
           </form>
         </div>
       </div>

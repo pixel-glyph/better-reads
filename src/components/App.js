@@ -528,11 +528,11 @@ class App extends React.Component {
             showList={this.state.showList}
             lists={this.state.bookLists}/>
           <div className="main-icon-wrapper">
-            <div className="plus-icon-wrapper icon-wrapper" title="Create New List" onClick={() => this.toggleModal()}>
+            <div className="plus-icon-wrapper icon-wrapper" title="Create New Shelf" onClick={() => this.toggleModal()}>
               New Shelf <PlusIcon/>
             </div>
             {currList !== 'Want to Read' && currList !== 'Read'
-              ? <div className="remove-icon-wrapper icon-wrapper" title="Remove List" onClick={() => removeListHandler()}>
+              ? <div className="remove-icon-wrapper icon-wrapper" title="Remove Shelf" onClick={() => removeListHandler()}>
                   Remove Shelf <RemoveIcon/>
                 </div>
               : null

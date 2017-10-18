@@ -35,8 +35,8 @@ class Modal extends React.Component {
             </div>
             <h1>Create New Shelf</h1>
             <form ref={(input) => this.newListForm = input} onSubmit={(e) => this.newListSubmit(e)}>
-              <input ref={(input) => this.newListName = input} type="text" placeholder="List Title" maxLength="30"/>
-              <button type="submit">Add List</button>
+              <input ref={(input) => this.newListName = input} type="text" placeholder="Shelf Title" maxLength="30"/>
+              <button type="submit">Add Shelf</button>
             </form>
           </div>
         </div>
